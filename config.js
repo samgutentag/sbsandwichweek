@@ -4,64 +4,64 @@
 
 const THEME = {
   // Event identity
-  eventName: "SB Food Week 2026",
-  eventDates: "TBD",
-  emoji: "🍽️",
+  eventName: "SB Sandwich Week 2026",
+  eventDates: "Jun 25–Jul 1",
+  emoji: "🥪",
 
   // OG image text (two lines for the social preview image)
   ogLine1: "Santa Barbara",
-  ogLine2: "Food Week 2026",
+  ogLine2: "Sandwich Week 2026",
 
   // Labels (what to call the featured item)
-  itemLabel: "item",
-  itemLabelPlural: "items",
+  itemLabel: "sandwich",
+  itemLabelPlural: "sandwiches",
 
   // Site URL (used for OG meta tags, embed snippets, print page)
-  siteUrl: "https://YOUR-DOMAIN.com",
+  siteUrl: "https://sbsandwichweekmap.com",
 
   // Description (used for meta tags)
   description:
     "Interactive map of all participating restaurants. Search, filter by area, and get directions.",
 
   // Header — link to the source article announcing your event
-  sourceLabel: "Source: Your Source",
-  sourceUrl: "https://example.com/your-event-article",
+  sourceLabel: "Source: TBD",
+  sourceUrl: "https://example.com/sandwich-week-article",
 
   // Venmo tip jar (set venmoUser to null to hide the tip jar entirely)
-  venmoUser: null,
-  venmoNote: "Enjoyed the map?",
+  venmoUser: "samgutentag",
+  venmoNote: "Buy me a sandwich?",
 
   // Tip jar tiers — size: "s" (custom emoji), "m" (half theme emoji), "l" (full theme emoji)
   // The "m" tier gets an orange featured border. Tracking events: tip-s, tip-m, tip-l
   tipTiers: [
-    { size: "s", label: "Small Tip", emoji: "🪙", amount: 1 },
-    { size: "m", label: "Medium Tip", amount: 5 },
-    { size: "l", label: "Big Tip", amount: 10 },
+    { size: "s", label: "Bag of Chips", emoji: "🫓", amount: 1 },
+    { size: "m", label: "Half a Sandwich", amount: 5 },
+    { size: "l", label: "Full Sandwich", amount: 10 },
   ],
 
   // LocalStorage namespace (unique per event to avoid collisions)
-  storageKey: "sbfoodweek-checklist",
+  storageKey: "sbsandwichweek-checklist",
 
   // Print page
-  printTitle: "SB Food Week 2026 — My Picks",
+  printTitle: "SB Sandwich Week 2026 — My Picks",
 
   // Event start date — used for analytics/stats time filters (ISO date)
-  eventStartDate: "2026-01-01",
+  eventStartDate: "2026-06-25",
 
   // Event end date — concluded banner/modal auto-shows after this date (ISO date, null to never show)
-  eventEndDate: "2026-01-07",
+  eventEndDate: "2026-07-01",
 
   // Map center and zoom level — [latitude, longitude]
   mapCenter: [34.42, -119.7],
   mapZoom: 13,
 
   // GitHub repo URL (used in About modal and footer)
-  githubRepoUrl: "https://github.com/YOUR_USERNAME/YOUR_REPO",
+  githubRepoUrl: "https://github.com/samgutentag/sbsandwichweek",
 
   // Data launch date — before this date, data.js (skeleton) loads.
   // On or after this date, data-<year>.js (full menu details) loads.
   // Format: "YYYY-MM-DD" in local time, activates at 12:01 AM. Set null to always load full data.
-  dataLiveDate: null,
+  dataLiveDate: "2026-06-24",
 
   // Event tracking — Cloudflare Worker URL (null to disable, see README Step 9)
   trackUrl: null,
@@ -71,15 +71,17 @@ const THEME = {
 
   // Contact email domain — auto-generates sb{itemLabel}week{year}@{domain}
   // Set null to hide the contact link in the About modal
-  contactDomain: null,
+  contactDomain: "samgutentag.com",
 
   // Tag filters — category filters shown in the search/filter menu.
   // Each key must match a boolean property on restaurant objects in your data file.
   // Example: if you define { key: "vegetarian", ... }, each restaurant needs vegetarian: true/false.
   // Icons can be emoji strings ("🌱") or SVG filenames ("icon-vegetarian.svg") in the repo root.
   tagFilters: [
+    // Define once you know what filters make sense for sandwiches
+    // { key: "hotSandwich", icon: "🔥", label: "Hot" },
+    // { key: "coldSandwich", icon: "🧊", label: "Cold" },
     // { key: "vegetarian", icon: "🌱", label: "Vegetarian" },
-    // { key: "glutenFree", icon: "🚫", label: "Gluten Free" },
   ],
 
   // Hours filters — time-of-day filters (hidden until hours.json loads, see README Step 11)

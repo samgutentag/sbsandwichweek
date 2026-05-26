@@ -1,4 +1,4 @@
-# SB Food Week 2026 Map
+# SB Sandwich Week 2026 Map
 
 A config-driven interactive map for food week events. Burger week, sandwich week, coffee week — change `config.js` and you're done.
 
@@ -595,11 +595,11 @@ The map can be embedded on other websites via an iframe. A showcase page at `/em
 
 ```html
 <iframe
-  src="https://YOUR-DOMAIN.com/embed/map"
+  src="https://sbsandwichweekmap.com/embed/map"
   width="100%"
   height="600"
   style="border: none; border-radius: 8px;"
-  title="SB Food Week 2026 Interactive Map"
+  title="SB Sandwich Week 2026 Interactive Map"
   loading="lazy"
   allowfullscreen
 ></iframe>
