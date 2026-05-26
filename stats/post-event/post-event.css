@@ -1,0 +1,7 @@
+/* Post-Event tab — reuses stats.css classes, minimal overrides only */
+
+.pe-date-range {
+  color: #888;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}

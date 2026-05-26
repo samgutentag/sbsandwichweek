@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stats — SB Food Week 2026 Map</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>"
+    />
+    <script src="../config.js"></script>
+    <script>
+      document.title = "Stats — " + THEME.eventName + " Map";
+    </script>
+    <link rel="stylesheet" href="stats.css" />
+    <link rel="stylesheet" href="stats-tabs.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1><a id="pageTitle" href="/">SB Food Week 2026</a></h1>
+        <span class="header-sub">Stats Dashboard</span>
+      </div>
+      <a class="back-link" id="backLink" href="/">Back to Map</a>
+    </header>
+
+    <div class="concluded-banner" id="concludedBanner">
+      <span id="concludedBannerText">🍽️ SB Food Week 2026 has wrapped!</span> <a href="/">Back to the map</a>
+    </div>
+
+    <main>
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="activity">Activity</button>
+        <button class="tab-btn" data-tab="insights">Insights</button>
+        <button class="tab-btn" data-tab="trends">Trends</button>
+        <button class="tab-btn" data-tab="restaurants">Restaurants</button>
+        <button class="tab-btn" data-tab="post-event">Post-Event</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-activity">
+        <div class="leaderboard-section" id="activitySection">
+          <h2>Activity</h2>
+          <p class="leaderboard-hint">Total actions across all restaurants</p>
+          <div class="summary-cards" id="summaryCards">
+            <div class="card card-clickable" data-metric="view" data-metric-label="Views">
+              <div class="card-value" id="totalViews">—</div>
+              <div class="card-label">Views</div>
+            </div>
+            <div class="card card-clickable" data-metric="directions-apple" data-metric-label="Apple Maps">
+              <div class="card-value" id="totalDirApple">—</div>
+              <div class="card-label">Apple Maps</div>
+            </div>
+            <div class="card card-clickable" data-metric="directions-google" data-metric-label="Google Maps">
+              <div class="card-value" id="totalDirGoogle">—</div>
+              <div class="card-label">Google Maps</div>
+            </div>
+            <div class="card card-clickable" data-metric="website" data-metric-label="Website">
+              <div class="card-value" id="totalWebsite">—</div>
+              <div class="card-label">Website</div>
+            </div>
+            <div class="card card-clickable" data-metric="phone" data-metric-label="Phone">
+              <div class="card-value" id="totalPhone">—</div>
+              <div class="card-label">Phone</div>
+            </div>
+            <div class="card card-clickable" data-metric="instagram" data-metric-label="Instagram">
+              <div class="card-value" id="totalInstagram">—</div>
+              <div class="card-label">Instagram</div>
+            </div>
+            <div class="card card-clickable" data-metric="share" data-metric-label="Shares">
+              <div class="card-value" id="totalShares">—</div>
+              <div class="card-label">Shares</div>
+            </div>
+            <div class="card card-clickable" data-metric="deeplink" data-metric-label="Direct Links">
+              <div class="card-value" id="totalDeeplinks">—</div>
+              <div class="card-label">Direct Links</div>
+            </div>
+            <div class="card card-clickable" data-metric="upvote" data-metric-label="Likes">
+              <div class="card-value" id="totalLikes">—</div>
+              <div class="card-label">Likes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Activity panel — hidden for now, revisit later
+        <div class="leaderboard-section" id="liveSection" style="display: none">
+          <h2><span class="live-dot"></span> Live Activity</h2>
+          <p class="leaderboard-hint">Updates every 30 seconds</p>
+          <div class="live-cards" id="liveCards">
+            <div class="card card-clickable" data-live-metric="rum-visitors" data-metric-label="Visitors">
+              <div class="card-value" id="liveVisitors">—</div>
+              <div class="card-label">Visitors (last hour) <span class="info-tip" tabindex="0">&#9432;<span class="info-tip-text">Visitor data from Cloudflare RUM typically has a 15–30 minute delay.</span></span></div>
+            </div>
+            <div class="card card-clickable" data-live-metric="all-actions" data-metric-label="All Actions">
+              <div class="card-value" id="liveActions">—</div>
+              <div class="card-label">Actions (last 5 min)</div>
+            </div>
+            <div class="card card-clickable" data-live-metric="stats-view" data-metric-label="Stats Page Views">
+              <div class="card-value" id="statsPageViews">—</div>
+              <div class="card-label">Stats Page Views</div>
+            </div>
+          </div>
+        </div>
+        -->
+
+        <div class="leaderboard-section" id="filterSection">
+          <h2>Filter Usage</h2>
+          <p class="leaderboard-hint">How often each filter button is tapped</p>
+          <div class="filter-stats-grid" id="filterStatsGrid"></div>
+        </div>
+
+        <div class="leaderboard-section" id="platformSection" style="display: none">
+          <h2>Platform & Device</h2>
+          <p class="leaderboard-hint">Visitor breakdown from the last 7 days</p>
+          <div class="platform-grid" id="platformGrid"></div>
+        </div>
+
+        <div class="leaderboard-section" id="leaderboardSection">
+          <h2>Restaurant Leaderboard</h2>
+          <p class="leaderboard-hint">
+            <span class="scoring-toggle" id="scoringToggle">How is this calculated? <span class="toggle-arrow">&#x25BC;</span></span>
+          </p>
+          <div class="scoring-detail" id="scoringDetail">
+            <p><strong>Score</strong> = (Directions + Phone) &times; 3 + (Direct Links + Shares + Likes) &times; 2 + (Website + Instagram + Views) &times; 1</p>
+            <p><strong>3&times;</strong> Directions &amp; Phone &mdash; strongest visit intent, someone is heading there or calling</p>
+            <p><strong>2&times;</strong> Direct Links, Shares &amp; Likes &mdash; active engagement, someone shared a link or upvoted a favorite</p>
+            <p><strong>1&times;</strong> Website, Instagram &amp; Views &mdash; casual browsing and interest</p>
+            <p><strong>Contact</strong> = Website + Phone + Instagram combined</p>
+          </div>
+          <div class="table-wrap">
+            <table id="leaderboard">
+              <thead>
+                <tr>
+                  <th class="col-rank">#</th>
+                  <th class="col-name">Restaurant</th>
+                  <th class="col-num">Direct</th>
+                  <th class="col-num">Views</th>
+                  <th class="col-num">Maps</th>
+                  <th class="col-num">Contact</th>
+                  <th class="col-num">Shares</th>
+                  <th class="col-num">Likes</th>
+                  <th class="col-num">Score</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-insights"></div>
+      <div class="tab-panel" id="tab-trends"></div>
+      <div class="tab-panel" id="tab-restaurants"></div>
+      <div class="tab-panel" id="tab-post-event"></div>
+
+      <p class="footer-note" id="footerNote">Loading data…</p>
+    </main>
+
+    <!-- Metric chart modal -->
+    <div class="chart-modal-overlay" id="chartModalOverlay">
+      <div class="chart-modal">
+        <div class="chart-modal-header">
+          <h3 id="chartModalTitle">—</h3>
+          <button class="chart-modal-close" id="chartModalClose">&times;</button>
+        </div>
+        <div class="chart-modal-body">
+          <canvas id="chartModalCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load data for AREA_COLORS -->
+    <script>
+      var __dataYearOverride =
+        new URLSearchParams(window.location.search).get("year");
+      (function () {
+        var src;
+        if (__dataYearOverride && /^\d{4}$/.test(__dataYearOverride)) {
+          src = "../data-" + __dataYearOverride + ".js";
+        } else {
+          var live = THEME.dataLiveDate;
+          if (!live || new Date() >= new Date(live + "T00:01:00")) {
+            src = "../data-" + new Date().getFullYear() + ".js";
+          } else {
+            src = "../data.js";
+          }
+        }
+        var err = __dataYearOverride
+          ? ' onerror="window.location.replace(window.location.pathname)"'
+          : "";
+        document.write(
+          '<script src="' + src + '"' + err + "></" + "script>"
+        );
+      })();
+    </script>
+    <script src="../tracking-snapshot.js"></script>
+    <script src="stats-utils.js"></script>
+    <script src="../track.js"></script>
+    <script src="stats.js"></script>
+    <script src="stats-tabs.js"></script>
+  </body>
+</html>

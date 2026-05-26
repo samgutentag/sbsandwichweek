@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embed — SB Food Week 2026 Map</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>"
+    />
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        background: #f5f5f5;
+        color: #333;
+      }
+      h1 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+      }
+      p {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 24px;
+      }
+      .embed-wrapper {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      }
+      iframe {
+        display: block;
+        border-radius: 8px;
+      }
+      .instructions {
+        margin-top: 24px;
+      }
+      .instructions h2 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+      .instructions p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 8px;
+      }
+      .instructions a {
+        color: #e63946;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .instructions a:hover {
+        text-decoration: underline;
+      }
+      pre {
+        background: #2b2b2b;
+        color: #f0f0f0;
+        padding: 16px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 0.82rem;
+        margin-top: 24px;
+        line-height: 1.5;
+      }
+      .mobile-notice {
+        display: none;
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 24px;
+        font-size: 0.9rem;
+        color: #664d03;
+        text-align: center;
+      }
+      .mobile-notice a {
+        color: #e63946;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .mobile-notice a:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 600px) {
+        .embed-wrapper {
+          display: none;
+        }
+        .mobile-notice {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="embedShowcaseTitle">Embed the SB Food Week 2026 Map</h1>
+    <p>
+      This is how the map will look embedded in a WordPress article or any
+      webpage.
+    </p>
+
+    <div class="mobile-notice" id="mobileNotice">
+      This embed preview works best on desktop.
+      <br />
+      <a id="mobileFullMapLink" href="https://sbburgerweekmap.com/">Open the full map instead &rarr;</a>
+    </div>
+
+    <div class="embed-wrapper">
+      <iframe
+        id="embedPreview"
+        src="/embed/map/"
+        width="100%"
+        height="600"
+        style="border: none; border-radius: 8px"
+        title="Interactive Map"
+        loading="lazy"
+        allowfullscreen
+      >
+      </iframe>
+    </div>
+
+    <div class="instructions" id="instructions">
+      <h2>How to Embed</h2>
+      <p>Copy and paste the code below into an HTML block on your website, blog, or CMS. Works with WordPress, Squarespace, Wix, and most site builders.</p>
+      <p>Need help getting it set up? <a id="embedContact" href="#">Get in touch</a> and I'm happy to help.</p>
+    </div>
+
+    <pre id="embedSnippet"><code></code></pre>
+
+    <script src="../config.js"></script>
+    <script>
+      (function () {
+        var t = THEME;
+        var mapTitle = t.eventName + " Interactive Map";
+        document.title = "Embed — " + t.eventName + " Map";
+        document.querySelector('link[rel="icon"]').href =
+          "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>" + t.emoji + "</text></svg>";
+        document.getElementById("embedShowcaseTitle").textContent = "Embed the " + t.eventName + " Map";
+        document.getElementById("embedPreview").title = mapTitle;
+        var mobileLink = document.getElementById("mobileFullMapLink");
+        if (mobileLink) mobileLink.href = t.siteUrl + "/";
+        var embedContact = document.getElementById("embedContact");
+        if (embedContact && t.contactDomain) {
+          var year = new Date().getFullYear();
+          embedContact.href = "mailto:sb" + t.itemLabel + "week" + year + "@" + t.contactDomain;
+        }
+        document.getElementById("embedSnippet").querySelector("code").textContent =
+          '<iframe\n' +
+          '  src="' + t.siteUrl + '/embed/map"\n' +
+          '  width="100%"\n' +
+          '  height="600"\n' +
+          '  style="border: none; border-radius: 8px;"\n' +
+          '  title="' + mapTitle + '"\n' +
+          '  loading="lazy"\n' +
+          '  allowfullscreen>\n' +
+          '</iframe>';
+      })();
+    </script>
+  </body>
+</html>

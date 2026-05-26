@@ -1,0 +1,104 @@
+name: Snapshot Tracking Data
+
+on:
+  # Daily snapshot to capture residual post-event usage
+  # schedule:
+  #   - cron: "0 14 * * *"  # Daily at 7am PT (14:00 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch tracking data and save snapshot
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          python3 << 'PYEOF'
+          import json, os, urllib.request, datetime
+
+          account_id = os.environ["CF_ACCOUNT_ID"]
+          api_token = os.environ["CF_API_TOKEN"]
+          api_url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/analytics_engine/sql"
+
+          def query(sql):
+              req = urllib.request.Request(api_url, data=sql.encode(), method="POST")
+              req.add_header("Authorization", f"Bearer {api_token}")
+              req.add_header("Content-Type", "text/plain")
+              with urllib.request.urlopen(req) as resp:
+                  return json.loads(resp.read())
+
+          # Detail breakdown (same query as the Worker ?detail=true)
+          detail_sql = """
+            SELECT blob2 AS name, blob1 AS action, SUM(1) AS count
+            FROM sbfoodweek
+            WHERE timestamp >= toDateTime('2026-01-01 09:00:00')
+              AND blob1 != 'test'
+            GROUP BY blob2, blob1
+            ORDER BY count DESC
+            LIMIT 2000
+          """
+          detail_resp = query(detail_sql)
+          detail = {}
+          for row in detail_resp.get("data", []):
+              name = row.get("name", "")
+              if not name:
+                  continue
+              if name not in detail:
+                  detail[name] = {}
+              detail[name][row["action"]] = int(row.get("count", 0))
+
+          # Upvote counts (same query as the Worker ?upvotes=true)
+          upvote_sql = """
+            SELECT blob2 AS name,
+              SUM(IF(blob1 = 'upvote', 1, 0)) - SUM(IF(blob1 = 'un-upvote', 1, 0)) AS net
+            FROM sbfoodweek
+            WHERE timestamp >= toDateTime('2026-01-01 09:00:00')
+              AND (blob1 = 'upvote' OR blob1 = 'un-upvote')
+            GROUP BY blob2
+            HAVING net > 0
+            ORDER BY net DESC
+            LIMIT 500
+          """
+          upvote_resp = query(upvote_sql)
+          upvotes = {}
+          for row in upvote_resp.get("data", []):
+              name = row.get("name", "")
+              net = int(row.get("net", 0))
+              if name and net > 0:
+                  upvotes[name] = net
+
+          # Combine into snapshot
+          snapshot = {
+              "timestamp": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "detail": detail,
+              "upvotes": upvotes,
+          }
+
+          os.makedirs("snapshots", exist_ok=True)
+          date_str = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+          filename = f"snapshots/tracking-{date_str}.json"
+
+          with open(filename, "w") as f:
+              json.dump(snapshot, f, indent=2, sort_keys=True)
+
+          restaurant_count = len(detail)
+          total_events = sum(v for d in detail.values() for v in d.values())
+          print(f"Saved {filename}: {restaurant_count} restaurants, {total_events} total events")
+          PYEOF
+
+      - name: Commit snapshot if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add snapshots/
+          git diff --cached --quiet && echo "No new data" && exit 0
+          git commit -m "Snapshot tracking data $(date -u +%Y-%m-%d) [skip ci]"
+          git pull --rebase
+          git push

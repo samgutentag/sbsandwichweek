@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- Preconnect to CDN and tile origins for faster LCP -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin />
+    <link rel="preconnect" href="https://b.basemaps.cartocdn.com" crossorigin />
+    <link rel="preconnect" href="https://c.basemaps.cartocdn.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://a.basemaps.cartocdn.com" />
+
+    <title>SB Food Week 2026 Map</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>"
+    />
+    <meta name="description" content="" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
+
+    <!-- Theme config — populates meta tags, title, favicon -->
+    <script src="config.js"></script>
+    <script>
+      (function () {
+        var t = THEME;
+        var title = t.eventName + " Map";
+        var desc = t.description;
+        var imgUrl = t.siteUrl + "/og-image.png";
+        document.title = title;
+        document.querySelector('meta[name="description"]').content =
+          "Interactive map of all participating restaurants for " +
+          t.eventName +
+          " (" +
+          t.eventDates +
+          "). " +
+          desc;
+        document.querySelector('meta[property="og:title"]').content = title;
+        document.querySelector('meta[property="og:description"]').content =
+          desc;
+        document.querySelector('meta[property="og:image"]').content = imgUrl;
+        document.querySelector('meta[property="og:url"]').content =
+          t.siteUrl + "/";
+        document.querySelector('meta[name="twitter:title"]').content = title;
+        document.querySelector('meta[name="twitter:description"]').content =
+          desc;
+        document.querySelector('meta[name="twitter:image"]').content = imgUrl;
+      })();
+    </script>
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css"
+      crossorigin
+    />
+
+    <!-- App CSS first — contains above-the-fold styles -->
+    <link rel="stylesheet" href="style.css" fetchpriority="high" />
+
+    <!-- MarkerCluster CSS (non-critical, can load after) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.min.css"
+      crossorigin
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.min.css"
+      crossorigin
+    />
+  </head>
+  <body>
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+    </div>
+    <header>
+      <h1 id="headerTitle">SB Food Week 2026 <span>| TBD</span></h1>
+      <div class="header-nav">
+        <a class="header-nav-link" href="/stats" target="_blank" rel="noopener"
+          >Stats</a
+        >
+        <span class="header-nav-sep">|</span>
+        <a class="about-link" id="aboutLink" href="#about">About</a>
+      </div>
+    </header>
+
+    <div class="concluded-banner" id="concludedBanner">
+      <span id="concludedBannerText">🍽️ SB Food Week 2026 has wrapped! Thanks for joining.</span>
+    </div>
+
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="drag-handle-zone" id="dragHandle">
+          <div class="drag-handle"></div>
+        </div>
+        <div class="sidebar-controls">
+          <div class="search-row">
+            <div class="search-wrapper">
+              <svg
+                class="search-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <input
+                type="search"
+                class="search-box"
+                id="searchBox"
+                placeholder="Search restaurants or items…"
+              />
+            </div>
+            <button class="filter-toggle-btn" id="filterToggle">Filter</button>
+          </div>
+          <div class="filter-panel" id="filterPanel">
+            <div class="area-filters" id="areaFilters"></div>
+          </div>
+        </div>
+        <div class="restaurant-count" id="restaurantCount"></div>
+        <ul class="restaurant-list" id="restaurantList"></ul>
+      </aside>
+
+      <div id="map"></div>
+
+      <button class="mobile-toggle" id="mobileToggle">
+        Show Restaurant List
+      </button>
+    </div>
+
+    <!-- About modal -->
+    <div class="about-overlay" id="aboutOverlay">
+      <div class="about-modal">
+        <button class="about-close" id="aboutClose" aria-label="Close">
+          &times;
+        </button>
+        <h2 id="aboutTitle">SB Food Week 2026</h2>
+        <p id="aboutDates" class="about-dates">TBD</p>
+        <p class="about-body">
+          Find participating restaurants, filter by area, and get directions.
+          Tap the printer icon to select favorites and print a custom list.
+        </p>
+        <div class="about-links">
+          <a
+            id="aboutSource"
+            class="about-link-card"
+            href="https://example.com/your-event-article"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="about-link-icon">📰</span>
+            <span class="about-link-label">Source</span>
+            <span class="about-link-desc">The Independent</span>
+          </a>
+          <a id="aboutVenmo" class="about-link-card" href="#">
+            <span class="about-link-icon">🫙</span>
+            <span class="about-link-label">Tip Jar</span>
+            <span class="about-link-desc">Enjoyed the map?</span>
+          </a>
+          <a
+            id="aboutEmbed"
+            class="about-link-card"
+            href="/embed"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="about-link-icon">🌐</span>
+            <span class="about-link-label">Embed</span>
+            <span class="about-link-desc">Add to your site</span>
+          </a>
+          <a
+            id="aboutStats"
+            class="about-link-card"
+            href="/stats"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="about-link-icon">📊</span>
+            <span class="about-link-label">Stats</span>
+            <span class="about-link-desc">Live leaderboard</span>
+          </a>
+          <a
+            class="about-link-card"
+            href="https://github.com/YOUR_USERNAME/YOUR_REPO"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="about-link-icon"
+              ><svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                /></svg
+            ></span>
+            <span class="about-link-label">GitHub</span>
+            <span class="about-link-desc">View the code</span>
+          </a>
+          <a
+            id="aboutContact"
+            class="about-link-card"
+            href="mailto:contact@example.com"
+          >
+            <span class="about-link-icon">✉️</span>
+            <span class="about-link-label">Contact</span>
+            <span class="about-link-desc">Feedback & corrections</span>
+          </a>
+        </div>
+        <p class="about-footer">
+          Made by
+          <a href="https://www.gutentag.world" target="_blank" rel="noopener"
+            >Sam Gutentag</a
+          >
+          in Santa Barbara, CA
+        </p>
+      </div>
+    </div>
+
+    <!-- Tip Jar modal -->
+    <div class="about-overlay" id="tipJarOverlay">
+      <div class="about-modal tip-jar-modal">
+        <button class="about-close" id="tipJarClose" aria-label="Close">
+          &times;
+        </button>
+        <h2>🫙 Tip Jar</h2>
+        <p class="about-body" id="tipJarBody">
+          This map was built by a solo dev in Santa Barbara. If it helped you
+          find your next item, consider leaving a tip!
+        </p>
+        <div class="tip-amounts" id="tipAmounts">
+          <!-- Tip tiers rendered by JS from THEME.tipTiers -->
+          <a id="tipShare" class="tip-amount-btn tip-amount-share" href="#">
+            <span class="tip-emoji">📤</span>
+            <span class="tip-label">Share the map with a friend</span>
+          </a>
+        </div>
+        <div class="tip-qr">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://venmo.com/YOUR_USERNAME"
+            alt="Venmo QR Code"
+            width="120"
+            height="120"
+            loading="lazy"
+          />
+          <span class="tip-qr-label">Scan to open Venmo</span>
+        </div>
+        <div class="tip-progress" id="tipProgress" style="display: none">
+          <div class="tip-progress-bar">
+            <div class="tip-progress-fill" id="tipProgressFill"></div>
+          </div>
+          <div class="tip-progress-labels" id="tipProgressLabels"></div>
+        </div>
+        <p class="about-footer">Made with ❤️ in Santa Barbara</p>
+      </div>
+    </div>
+
+    <!-- Event Concluded modal -->
+    <div class="about-overlay" id="concludedOverlay">
+      <div class="about-modal concluded-modal">
+        <button class="about-close" id="concludedClose" aria-label="Close">
+          &times;
+        </button>
+        <h2>That's a Wrap! 🍽️</h2>
+        <p class="about-body">
+          Thanks for exploring SB Food Week 2026! Whether you tried
+          one item or all of them, hope you had a blast.
+        </p>
+        <div class="concluded-ctas">
+          <a
+            id="concludedVenmo"
+            class="tip-amount-btn tip-amount-featured"
+            href="#"
+          >
+            <span class="tip-emoji">🫙</span>
+            <span class="tip-label">Tip Jar</span>
+          </a>
+          <a id="concludedContact" class="tip-amount-btn" href="#">
+            <span class="tip-emoji">✉️</span>
+            <span class="tip-label">Feedback</span>
+          </a>
+        </div>
+        <p class="concluded-note">
+          The map and all data are still here to explore.
+        </p>
+      </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"
+      crossorigin
+    ></script>
+
+    <!-- MarkerCluster JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.min.js"
+      crossorigin
+    ></script>
+
+    <!-- Load data: ?year=YYYY forces a specific year, otherwise date-gated -->
+    <script>
+      var __dataYearOverride = new URLSearchParams(window.location.search).get(
+        "year",
+      );
+      (function () {
+        var src;
+        if (__dataYearOverride && /^\d{4}$/.test(__dataYearOverride)) {
+          src = "data-" + __dataYearOverride + ".js";
+        } else {
+          var live = THEME.dataLiveDate;
+          if (!live || new Date() >= new Date(live + "T00:01:00")) {
+            src = "data-" + new Date().getFullYear() + ".js";
+          } else {
+            src = "data.js";
+          }
+        }
+        var err = __dataYearOverride
+          ? ' onerror="window.location.replace(window.location.pathname)"'
+          : "";
+        document.write('<script src="' + src + '"' + err + "></" + "script>");
+      })();
+    </script>
+    <script src="tracking-snapshot.js"></script>
+    <script src="track.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Cloudflare Web Analytics -->
+    <!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
