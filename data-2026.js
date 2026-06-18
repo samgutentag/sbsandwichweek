@@ -1,5 +1,5 @@
-// SB Sandwich Week 2026 — Restaurant Data (skeleton)
-// Loads before dataLiveDate. menuItems are empty until the menu is published.
+// SB Sandwich Week 2026 — Restaurant Data (full)
+// Loads on/after dataLiveDate. Fill menuItems from the printed menu (out June 25).
 // Event: June 25–July 1, 2026
 const SOURCE_URL = "https://www.independent.com/2026/06/11/sandwich-week-2026/";
 

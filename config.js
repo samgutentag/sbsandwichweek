@@ -24,8 +24,8 @@ const THEME = {
     "Interactive map of all participating restaurants. Search, filter by area, and get directions.",
 
   // Header — link to the source article announcing your event
-  sourceLabel: "Source: TBD",
-  sourceUrl: "https://example.com/sandwich-week-article",
+  sourceLabel: "Source: The Independent",
+  sourceUrl: "https://www.independent.com/2026/06/11/sandwich-week-2026/",
 
   // Venmo tip jar (set venmoUser to null to hide the tip jar entirely)
   venmoUser: "samgutentag",
