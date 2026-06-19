@@ -1154,22 +1154,6 @@ header h1 span {
   margin-top: 2px;
 }
 
-/* "Also at" — additional locations for multi-location restaurants */
-.popup-other-locations {
-  margin-top: 5px;
-  font-size: 0.78rem;
-  line-height: 1.4;
-  color: #555;
-}
-.popup-other-label {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.66rem;
-  letter-spacing: 0.03em;
-  color: #888;
-  margin-right: 3px;
-}
-
 /* Returning-restaurant badge — shown for 2+ years of participation */
 .returning-badge {
   display: inline-flex;

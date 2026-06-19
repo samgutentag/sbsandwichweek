@@ -411,7 +411,9 @@
   // Returning-restaurant badge: shows for 2+ years of participation (first-timers get nothing).
   function getReturningBadgeHtml(r) {
     var hist = THEME.firstYearByName || {};
-    var first = hist[r.name];
+    // strip any " (Location)" suffix so split multi-location pins still match
+    var base = r.name.replace(/\s*\([^)]*\)\s*$/, "");
+    var first = hist[base];
     if (!first || !THEME.eventYear) return "";
     var years = THEME.eventYear - first + 1;
     if (years < 2) return "";
@@ -520,15 +522,6 @@
           "</button>"
         : "") +
       "</div>" +
-      (r.otherLocations && r.otherLocations.length
-        ? '<div class="popup-other-locations"><span class="popup-other-label">Also at</span> ' +
-          r.otherLocations
-            .map(function (l) {
-              return escapeHtml(l);
-            })
-            .join(" &bull; ") +
-          "</div>"
-        : "") +
       '<div class="popup-directions-btns">' +
       '<a href="' +
       appleMapsUrl +
