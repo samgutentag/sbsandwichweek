@@ -34,7 +34,7 @@ export default {
                   Authorization: `Bearer ${env.CF_API_TOKEN}`,
                   "Content-Type": "text/plain",
                 },
-                body: `SELECT SUM(1) AS total FROM sbfoodweek WHERE timestamp >= NOW() - INTERVAL '5' MINUTE AND blob1 != 'test'`,
+                body: `SELECT SUM(1) AS total FROM sbsandwichweek WHERE timestamp >= NOW() - INTERVAL '5' MINUTE AND blob1 != 'test'`,
               },
             ),
             fetch("https://api.cloudflare.com/client/v4/graphql", {
@@ -102,7 +102,7 @@ export default {
                 Authorization: `Bearer ${env.CF_API_TOKEN}`,
                 "Content-Type": "text/plain",
               },
-              body: `SELECT blob2 AS query, SUM(1) AS count FROM sbfoodweek WHERE blob1 = 'search' AND timestamp >= NOW() - INTERVAL '7' DAY GROUP BY query ORDER BY count DESC LIMIT 500`,
+              body: `SELECT blob2 AS query, SUM(1) AS count FROM sbsandwichweek WHERE blob1 = 'search' AND timestamp >= NOW() - INTERVAL '7' DAY GROUP BY query ORDER BY count DESC LIMIT 500`,
             },
           );
 
@@ -265,13 +265,13 @@ export default {
             : `timestamp >= NOW() - INTERVAL '7' DAY`;
           const sql = label
             ? `SELECT toStartOfHour(timestamp) AS hour, blob2 AS label, SUM(1) AS count
-               FROM sbfoodweek
+               FROM sbsandwichweek
                WHERE ${timeFilter} AND blob1 != 'test' AND blob2 = '${label.replace(/'/g, "''")}'
                GROUP BY hour, label
                ORDER BY hour ASC
                LIMIT 5000`
             : `SELECT toStartOfHour(timestamp) AS hour, blob1 AS action, SUM(1) AS count
-               FROM sbfoodweek
+               FROM sbsandwichweek
                WHERE ${timeFilter} AND blob1 != 'test'
                GROUP BY hour, action
                ORDER BY hour ASC
@@ -328,7 +328,7 @@ export default {
         const sql = upvotes
           ? `SELECT blob2 AS name,
              SUM(IF(blob1 = 'upvote', 1, 0)) - SUM(IF(blob1 = 'un-upvote', 1, 0)) AS net
-             FROM sbfoodweek
+             FROM sbsandwichweek
              WHERE timestamp >= toDateTime('2026-06-25 09:00:00')
                AND (blob1 = 'upvote' OR blob1 = 'un-upvote')
              GROUP BY blob2
@@ -336,7 +336,7 @@ export default {
              ORDER BY net DESC
              LIMIT 500`
           : `SELECT blob2 AS name, blob1 AS action, SUM(1) AS count
-             FROM sbfoodweek
+             FROM sbsandwichweek
              WHERE timestamp >= toDateTime('2026-06-25 09:00:00')
                AND blob1 != 'test'
              GROUP BY blob2, blob1
@@ -394,29 +394,25 @@ export default {
       }
     }
 
-    // Event concluded — disable writes
-    if (request.method === "POST") {
-      return new Response("ok", { headers: corsHeaders });
-    }
-
+    // POST — record a tracking event
     if (request.method !== "POST") {
       return new Response("Method not allowed", { status: 405 });
     }
 
-    // try {
-    //   const { action, label } = await request.json();
-    //   if (!action || !label) {
-    //     return new Response("Missing fields", { status: 400, headers: corsHeaders });
-    //   }
-    //
-    //   env.TRACKER.writeDataPoint({
-    //     blobs: [action, label],
-    //     indexes: [action],
-    //   });
-    //
-    //   return new Response("ok", { headers: corsHeaders });
-    // } catch (e) {
-    //   return new Response("Bad request", { status: 400, headers: corsHeaders });
-    // }
+    try {
+      const { action, label } = await request.json();
+      if (!action || !label) {
+        return new Response("Missing fields", { status: 400, headers: corsHeaders });
+      }
+
+      env.TRACKER.writeDataPoint({
+        blobs: [action, label],
+        indexes: [action],
+      });
+
+      return new Response("ok", { headers: corsHeaders });
+    } catch (e) {
+      return new Response("Bad request", { status: 400, headers: corsHeaders });
+    }
   },
 };

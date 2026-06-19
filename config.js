@@ -34,7 +34,7 @@ const THEME = {
   // Tip jar tiers — size: "s" (custom emoji), "m" (half theme emoji), "l" (full theme emoji)
   // The "m" tier gets an orange featured border. Tracking events: tip-s, tip-m, tip-l
   tipTiers: [
-    { size: "s", label: "Bag of Chips", emoji: "🫓", amount: 1 },
+    { size: "s", label: "Side of Fries", emoji: "🍟", amount: 1 },
     { size: "m", label: "Half a Sandwich", amount: 5 },
     { size: "l", label: "Full Sandwich", amount: 10 },
   ],

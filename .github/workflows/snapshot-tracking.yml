@@ -37,7 +37,7 @@ jobs:
           # Detail breakdown (same query as the Worker ?detail=true)
           detail_sql = """
             SELECT blob2 AS name, blob1 AS action, SUM(1) AS count
-            FROM sbfoodweek
+            FROM sbsandwichweek
             WHERE timestamp >= toDateTime('2026-06-25 09:00:00')
               AND blob1 != 'test'
             GROUP BY blob2, blob1
@@ -58,7 +58,7 @@ jobs:
           upvote_sql = """
             SELECT blob2 AS name,
               SUM(IF(blob1 = 'upvote', 1, 0)) - SUM(IF(blob1 = 'un-upvote', 1, 0)) AS net
-            FROM sbfoodweek
+            FROM sbsandwichweek
             WHERE timestamp >= toDateTime('2026-06-25 09:00:00')
               AND (blob1 = 'upvote' OR blob1 = 'un-upvote')
             GROUP BY blob2

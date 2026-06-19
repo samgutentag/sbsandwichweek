@@ -1,10 +1,10 @@
-name = "sbfoodweek-track"
+name = "sbsandwichweek-track"
 main = "index.js"
 compatibility_date = "2024-01-01"
 
 [vars]
-ACCOUNT_ID = "YOUR_CLOUDFLARE_ACCOUNT_ID"
+ACCOUNT_ID = "95bdaad9a0525e9a9af474a004504732"
 
 [[analytics_engine_datasets]]
 binding = "TRACKER"
-dataset = "sbfoodweek"
+dataset = "sbsandwichweek"

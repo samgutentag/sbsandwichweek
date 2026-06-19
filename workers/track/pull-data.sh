@@ -1,10 +1,11 @@
 #!/bin/bash
 # Pull all tracking data from Cloudflare Analytics Engine
-# Usage: ./pull-data.sh [output_file]
+# Usage: CF_ACCOUNT_ID=... CF_API_TOKEN=... ./pull-data.sh [output_file]
+set -euo pipefail
 
-CF_ACCOUNT_ID="95bdaad9a0525e9a9af474a004504732"
-CF_API_TOKEN="cKFw6kVo-UJYpqK5xUBAotIu93qDmcZxtSgoBhcx"
-DATASET="sbburgerweek"
+: "${CF_ACCOUNT_ID:?Set CF_ACCOUNT_ID in the environment}"
+: "${CF_API_TOKEN:?Set CF_API_TOKEN in the environment}"
+DATASET="sbsandwichweek"
 OUTPUT="${1:-tracking_data.json}"
 
 curl -s "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/analytics_engine/sql" \
