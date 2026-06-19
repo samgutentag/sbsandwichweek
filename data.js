@@ -90,6 +90,7 @@ const restaurants = [
     name: "Crushcakes & Cafe (Goleta)",
     address: "5392 Hollister Ave, Goleta, CA 93117",
     area: "Goleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.435346,
     lng: -119.812297,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Crushcakes+%26+Cafe+5392+Hollister+Ave%2C+Goleta%2C+CA+93117",
@@ -233,6 +234,7 @@ const restaurants = [
     name: "Lighthouse Coffee (Cliff Dr)",
     address: "1819 Cliff Dr, Santa Barbara, CA 93109",
     area: "The Mesa",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4019,
     lng: -119.7215,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Lighthouse+Coffee+1819+Cliff+Dr%2C+Santa+Barbara%2C+CA+93109",
@@ -246,6 +248,7 @@ const restaurants = [
     name: "Lighthouse Coffee (Chapala)",
     address: "711 Chapala St, Santa Barbara, CA 93101",
     area: "Downtown",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4179,
     lng: -119.6991,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Lighthouse+Coffee+711+Chapala+St%2C+Santa+Barbara%2C+CA+93101",
@@ -259,6 +262,7 @@ const restaurants = [
     name: "Lighthouse Coffee (E Haley)",
     address: "401 E Haley St, Santa Barbara, CA 93101",
     area: "Eastside",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4199,
     lng: -119.6914,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Lighthouse+Coffee+401+E+Haley+St%2C+Santa+Barbara%2C+CA+93101",
@@ -272,6 +276,7 @@ const restaurants = [
     name: "Lighthouse Coffee (Turnpike)",
     address: "199 S Turnpike Rd #101, Goleta, CA 93111",
     area: "Noleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.436837,
     lng: -119.789826,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Lighthouse+Coffee+199+S+Turnpike+Rd+%23101%2C+Goleta%2C+CA+93111",
@@ -285,6 +290,7 @@ const restaurants = [
     name: "Lighthouse Coffee (Calle Real)",
     address: "5696 Calle Real, Goleta, CA 93117",
     area: "Goleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.441691,
     lng: -119.824031,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Lighthouse+Coffee+5696+Calle+Real%2C+Goleta%2C+CA+93117",
@@ -363,6 +369,7 @@ const restaurants = [
     name: "Panino (Montecito)",
     address: "1014 Coast Village Rd, Montecito, CA 93108",
     area: "Montecito",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4225635,
     lng: -119.6514797,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Panino+1014+Coast+Village+Rd%2C+Montecito%2C+CA+93108",
@@ -376,48 +383,10 @@ const restaurants = [
     name: "Panino (Goleta)",
     address: "5666 Calle Real, Goleta, CA 93117",
     area: "Goleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4415387,
     lng: -119.8231343,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Panino+5666+Calle+Real%2C+Goleta%2C+CA+93117",
-    appleMapsUrl: null,
-    website: "https://www.paninorestaurants.com",
-    phone: "805-963-3700",
-    instagram: null,
-    menuItems: [],
-  },
-  {
-    name: "Panino (Santa Ynez)",
-    address: "3569 Sagunto St, Santa Ynez, CA 93460",
-    area: "Santa Ynez Valley",
-    lat: 34.6129482,
-    lng: -120.0807331,
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Panino+3569+Sagunto+St%2C+Santa+Ynez%2C+CA+93460",
-    appleMapsUrl: null,
-    website: "https://www.paninorestaurants.com",
-    phone: "805-963-3700",
-    instagram: null,
-    menuItems: [],
-  },
-  {
-    name: "Panino (Los Olivos)",
-    address: "2900 Grand Ave, Los Olivos, CA 93441",
-    area: "Santa Ynez Valley",
-    lat: 34.665622,
-    lng: -120.114907,
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Panino+2900+Grand+Ave%2C+Los+Olivos%2C+CA+93441",
-    appleMapsUrl: null,
-    website: "https://www.paninorestaurants.com",
-    phone: "805-963-3700",
-    instagram: null,
-    menuItems: [],
-  },
-  {
-    name: "Panino (Solvang)",
-    address: "475 First St, Solvang, CA 93463",
-    area: "Santa Ynez Valley",
-    lat: 34.5955425,
-    lng: -120.1398004,
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Panino+475+First+St%2C+Solvang%2C+CA+93463",
     appleMapsUrl: null,
     website: "https://www.paninorestaurants.com",
     phone: "805-963-3700",
@@ -467,6 +436,7 @@ const restaurants = [
     name: "Santa Barbara Fish Market",
     address: "7127 Hollister Ave, Ste 18, Goleta, CA 93117",
     area: "Goleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.428633,
     lng: -119.876655,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Santa+Barbara+Fish+Market+7127+Hollister+Ave%2C+Goleta%2C+CA+93117",
@@ -506,6 +476,7 @@ const restaurants = [
     name: "Shalhoob's (Goleta)",
     address: "5112 Hollister Ave, Goleta, CA 93117",
     area: "Goleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.435304,
     lng: -119.802869,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Shalhoob's+5112+Hollister+Ave%2C+Goleta%2C+CA+93117",
@@ -532,6 +503,7 @@ const restaurants = [
     name: "South Coast Deli (Patterson)",
     address: "185 S Patterson Ave, Santa Barbara, CA 93111",
     area: "Goleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4356022,
     lng: -119.8095419,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=South+Coast+Deli+185+S+Patterson+Ave%2C+Santa+Barbara%2C+CA+93111",
@@ -545,6 +517,7 @@ const restaurants = [
     name: "South Coast Deli (State St)",
     address: "3534 State St, Santa Barbara, CA 93105",
     area: "Upper State",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4406232,
     lng: -119.7396863,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=South+Coast+Deli+3534+State+St%2C+Santa+Barbara%2C+CA+93105",
@@ -558,6 +531,7 @@ const restaurants = [
     name: "South Coast Deli (Santa Barbara St)",
     address: "205 Santa Barbara St, Santa Barbara, CA 93101",
     area: "Eastside",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4161667,
     lng: -119.6898439,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=South+Coast+Deli+205+Santa+Barbara+St%2C+Santa+Barbara%2C+CA+93101",
@@ -597,6 +571,7 @@ const restaurants = [
     name: "The Natural Cafe (Goleta)",
     address: "6990 Marketplace Dr, Goleta, CA 93117",
     area: "Goleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.4295103,
     lng: -119.8712779,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=The+Natural+Cafe+6990+Marketplace+Dr%2C+Goleta%2C+CA+93117",
@@ -649,6 +624,7 @@ const restaurants = [
     name: "Validation Ale (De La Vina)",
     address: "2840 De La Vina St, Santa Barbara, CA 93105",
     area: "Upper State",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.437506,
     lng: -119.726482,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Validation+Ale+2840+De+La+Vina+St%2C+Santa+Barbara%2C+CA+93105",
@@ -675,6 +651,7 @@ const restaurants = [
     name: "Jake's Drip House",
     address: "199 S Turnpike Rd, Ste 104, Santa Barbara, CA 93111",
     area: "Noleta",
+    // coords auto-geocoded — verify and add appleMapsUrl
     lat: 34.436837,
     lng: -119.789826,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Jake%27s+Drip+House+199+S+Turnpike+Rd%2C+Santa+Barbara%2C+CA+93111",
