@@ -87,6 +87,9 @@ const restaurants = [
   {
     name: "Crushcakes & Cafe",
     address: "1315 Anacapa St, Santa Barbara, CA 93101",
+    otherLocations: [
+      "5392 Hollister Ave, Goleta",
+    ],
     area: "Downtown",
     lat: 34.4225,
     lng: -119.7035,
@@ -111,16 +114,16 @@ const restaurants = [
     menuItems: [],
   },
   {
-    name: "Java's Drip House",
-    address: "149 S Turnpike Rd, Santa Barbara, CA 93111",
+    name: "Jake's Drip House",
+    address: "199 S Turnpike Rd, Ste 104, Santa Barbara, CA 93111",
     area: "Noleta",
-    lat: 34.4366,
-    lng: -119.7965,
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Java%27s+Drip+House+149+S+Turnpike+Rd%2C+Santa+Barbara%2C+CA+93111",
+    lat: 34.436837,
+    lng: -119.789826,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Jake%27s+Drip+House+199+S+Turnpike+Rd%2C+Santa+Barbara%2C+CA+93111",
     appleMapsUrl: null,
-    website: "https://davesdogs805.com",
-    phone: "805-770-7772",
-    instagram: "davesdogs805",
+    website: null,
+    phone: null,
+    instagram: null,
     menuItems: [],
   },
   {
@@ -243,7 +246,13 @@ const restaurants = [
   {
     name: "Lighthouse Coffee",
     address: "1819 Cliff Dr, Santa Barbara, CA 93109",
-    area: "Noleta",
+    otherLocations: [
+      "711 Chapala St, Santa Barbara",
+      "401 E Haley St, Santa Barbara",
+      "199 S Turnpike Rd #101, Goleta",
+      "5696 Calle Real, Goleta",
+    ],
+    area: "The Mesa",
     lat: 34.4015,
     lng: -119.7165,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Lighthouse+Coffee+1819+Cliff+Dr%2C+Santa+Barbara%2C+CA+93109",
@@ -308,6 +317,13 @@ const restaurants = [
   {
     name: "Panino",
     address: "834 Santa Barbara St, Santa Barbara, CA 93101",
+    otherLocations: [
+      "1014 Coast Village Rd, Montecito",
+      "5666 Calle Real, Goleta",
+      "3569 Sagunto St, Santa Ynez",
+      "2900 Grand Ave, Los Olivos",
+      "475 First St, Solvang",
+    ],
     area: "Downtown",
     lat: 34.4218,
     lng: -119.7015,
@@ -359,11 +375,11 @@ const restaurants = [
   },
   {
     name: "Santa Barbara Fish Market",
-    address: "117 Harbor Way #F, Santa Barbara, CA 93109",
-    area: "Waterfront",
-    lat: 34.404,
-    lng: -119.6905,
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Santa+Barbara+Fish+Market+117+Harbor+Way+%23F%2C+Santa+Barbara%2C+CA+93109",
+    address: "7127 Hollister Ave, Ste 18, Goleta, CA 93117",
+    area: "Goleta",
+    lat: 34.428633,
+    lng: -119.876655,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Santa+Barbara+Fish+Market+7127+Hollister+Ave%2C+Goleta%2C+CA+93117",
     appleMapsUrl: null,
     website: "https://www.sbfish.com",
     phone: "805-965-9564",
@@ -386,6 +402,9 @@ const restaurants = [
   {
     name: "Shalhoob's Funk Zone Patio",
     address: "220 Gray Ave, Santa Barbara, CA 93101",
+    otherLocations: [
+      "5112 Hollister Ave, Goleta",
+    ],
     area: "Funk Zone",
     lat: 34.4143,
     lng: -119.6897,
@@ -399,6 +418,11 @@ const restaurants = [
   {
     name: "South Coast Deli",
     address: "10 E Carrillo St, Santa Barbara, CA 93101",
+    otherLocations: [
+      "185 S Patterson St, Santa Barbara",
+      "3534 State St, Santa Barbara",
+      "205 Santa Barbara St, Santa Barbara",
+    ],
     area: "Downtown",
     lat: 34.4208,
     lng: -119.7016,
@@ -425,6 +449,9 @@ const restaurants = [
   {
     name: "The Natural Cafe",
     address: "361 Hitchcock Way, Santa Barbara, CA 93105",
+    otherLocations: [
+      "6990 Marketplace Dr, Goleta",
+    ],
     area: "Upper State",
     lat: 34.4378,
     lng: -119.7466,
@@ -464,6 +491,9 @@ const restaurants = [
   {
     name: "Validation Ale",
     address: "102 E Yanonali St, Santa Barbara, CA 93101",
+    otherLocations: [
+      "2840 De La Vina St, Santa Barbara",
+    ],
     area: "Funk Zone",
     lat: 34.4138,
     lng: -119.6889,

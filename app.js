@@ -520,6 +520,15 @@
           "</button>"
         : "") +
       "</div>" +
+      (r.otherLocations && r.otherLocations.length
+        ? '<div class="popup-other-locations"><span class="popup-other-label">Also at</span> ' +
+          r.otherLocations
+            .map(function (l) {
+              return escapeHtml(l);
+            })
+            .join(" &bull; ") +
+          "</div>"
+        : "") +
       '<div class="popup-directions-btns">' +
       '<a href="' +
       appleMapsUrl +
