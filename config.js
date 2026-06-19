@@ -98,6 +98,34 @@ const THEME = {
 // Next event promo (shown in off-season banner). null for generic "check back" message.
 THEME.nextEvent = null;
 
+// Event year, derived from eventStartDate — used for the "returning restaurant" badge math.
+THEME.eventYear = THEME.eventStartDate ? parseInt(THEME.eventStartDate.slice(0, 4), 10) : 2026;
+
+// Participation history — map of restaurant name -> first year they joined SB Sandwich Week.
+// Anything not listed is treated as a first-timer this year (no badge). The popup badge only
+// shows for 2+ years of participation. Add a name with its first year as restaurants return.
+// Sourced from the 2025 lineup: independent.com/2025/06/25/santa-barbaras-first-ever-sandwich-week/
+THEME.firstYearByName = {
+  "CAYA Restaurant and Bar": 2025,
+  "Cristino's Bakery": 2025,
+  "Crushcakes & Cafe": 2025,
+  "Dutch Garden Restaurant": 2025,
+  "Gino's Sicilian Express": 2025,
+  "Mission City Sandwich Shop": 2025,
+  "Norton's Pastrami & Deli": 2025,
+  "Panino": 2025,
+  "Poke House": 2025,
+  "Rinkside Cafe": 2025,
+  "Santa Barbara Fish Market": 2025,
+  "South Coast Deli": 2025,
+  "Valentino's Take N' Bake Pizza": 2025,
+  "Validation Ale": 2025,
+  "Yellow Belly": 2025,
+  // Uncertain — 2025 listed "Dave's Drip House x J's Hot Chicken"; 2026 is "Dave's Dogs Grill".
+  // Same Turnpike "Dave's"? Uncomment if confirmed:
+  // "Dave's Dogs Grill": 2025,
+};
+
 function getEventState() {
   var now = new Date();
   var liveDate = THEME.dataLiveDate ? new Date(THEME.dataLiveDate + "T00:01:00") : null;

@@ -1154,6 +1154,24 @@ header h1 span {
   margin-top: 2px;
 }
 
+/* Returning-restaurant badge — shown for 2+ years of participation */
+.returning-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 2px 9px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #7c4a03;
+  background: linear-gradient(180deg, #ffe7a8, #ffce6b);
+  border: 1px solid #f0b73f;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
 .popup-section-heading {
   font-size: 0.75rem;
   font-weight: 700;

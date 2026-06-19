@@ -408,6 +408,22 @@
     return html;
   }
 
+  // Returning-restaurant badge: shows for 2+ years of participation (first-timers get nothing).
+  function getReturningBadgeHtml(r) {
+    var hist = THEME.firstYearByName || {};
+    var first = hist[r.name];
+    if (!first || !THEME.eventYear) return "";
+    var years = THEME.eventYear - first + 1;
+    if (years < 2) return "";
+    var s = ["th", "st", "nd", "rd"], v = years % 100;
+    var ord = years + (s[(v - 20) % 10] || s[v] || s[0]);
+    return (
+      '<span class="returning-badge" title="' +
+      escapeHtml(THEME.eventName + " since " + first) +
+      '">' + THEME.emoji + " " + ord + " year</span>"
+    );
+  }
+
   function createDietaryIconEls(r) {
     var frag = document.createDocumentFragment();
     tagDefs.forEach(function (t) {
@@ -454,7 +470,9 @@
       (dietaryHtml
         ? '<span class="dietary-tags">' + dietaryHtml + "</span>"
         : "") +
-      "</h3></div>";
+      "</h3>" +
+      getReturningBadgeHtml(r) +
+      "</div>";
     popupHtml += '<div class="popup-section popup-section-menu">';
     if (r.menuItems.length > 0)
       r.menuItems.forEach(function (item) {
