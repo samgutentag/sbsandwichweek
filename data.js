@@ -4,11 +4,20 @@
 const SOURCE_URL = "https://www.independent.com/2026/06/11/sandwich-week-2026/";
 
 const AREA_COLORS = {
-  "Downtown SB": "#e63946",
-  Goleta: "#2d6a4f",
-  Carpinteria: "#1d3557",
+  "Downtown": "#e63946",
+  "Funk Zone": "#f59e0b",
+  "Waterfront": "#0ea5e9",
+  "The Mesa": "#16a34a",
+  "Upper State": "#0891b2",
+  "Eastside": "#a21caf",
+  "Westside": "#db2777",
+  "Noleta": "#65a30d",
+  "Goleta": "#2d6a4f",
   "Isla Vista": "#7b2cbf",
-  "Other SB": "#e07a5f",
+  "Montecito": "#92400e",
+  "Summerland": "#0d9488",
+  "Carpinteria": "#1d3557",
+  "Santa Ynez Valley": "#6b7280",
 };
 
 // Multi-location businesses — one flagship entry each below. Split into
@@ -26,7 +35,7 @@ const restaurants = [
   {
     name: "Bistro Amasa",
     address: "1404 De La Vina St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4256,
     lng: -119.7095,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Bistro+Amasa+1404+De+La+Vina+St%2C+Santa+Barbara%2C+CA+93101",
@@ -52,7 +61,7 @@ const restaurants = [
   {
     name: "Corner Tap Bar & Eatery",
     address: "1905 Cliff Dr, Santa Barbara, CA 93109",
-    area: "Other SB",
+    area: "The Mesa",
     lat: 34.4015,
     lng: -119.7165,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Corner+Tap+Bar+%26+Eatery+1905+Cliff+Dr%2C+Santa+Barbara%2C+CA+93109",
@@ -78,7 +87,7 @@ const restaurants = [
   {
     name: "Crushcakes & Cafe",
     address: "1315 Anacapa St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4225,
     lng: -119.7035,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Crushcakes+%26+Cafe+1315+Anacapa+St%2C+Santa+Barbara%2C+CA+93101",
@@ -91,7 +100,7 @@ const restaurants = [
   {
     name: "Dave's Dogs Grill",
     address: "149 S Turnpike Rd, Santa Barbara, CA 93111",
-    area: "Goleta",
+    area: "Noleta",
     lat: 34.4366,
     lng: -119.7965,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Dave%27s+Dogs+Grill+149+S+Turnpike+Rd%2C+Santa+Barbara%2C+CA+93111",
@@ -104,7 +113,7 @@ const restaurants = [
   {
     name: "Java's Drip House",
     address: "149 S Turnpike Rd, Santa Barbara, CA 93111",
-    area: "Goleta",
+    area: "Noleta",
     lat: 34.4366,
     lng: -119.7965,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Java%27s+Drip+House+149+S+Turnpike+Rd%2C+Santa+Barbara%2C+CA+93111",
@@ -117,7 +126,7 @@ const restaurants = [
   {
     name: "Dutch Garden Restaurant",
     address: "4203 State St, Santa Barbara, CA 93110",
-    area: "Other SB",
+    area: "Upper State",
     lat: 34.4403,
     lng: -119.7633,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Dutch+Garden+Restaurant+4203+State+St%2C+Santa+Barbara%2C+CA+93110",
@@ -130,7 +139,7 @@ const restaurants = [
   {
     name: "Etty's Jewish Deli & Bakery",
     address: "524 Chapala St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4192,
     lng: -119.7016,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Etty%27s+Jewish+Deli+%26+Bakery+524+Chapala+St%2C+Santa+Barbara%2C+CA+93101",
@@ -143,7 +152,7 @@ const restaurants = [
   {
     name: "Fresco at the Market",
     address: "38 W Victoria St, Ste 102, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4225,
     lng: -119.7042,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Fresco+at+the+Market+38+W+Victoria+St%2C+Ste+102%2C+Santa+Barbara%2C+CA+93101",
@@ -156,7 +165,7 @@ const restaurants = [
   {
     name: "Gino's Sicilian Express",
     address: "12 W Figueroa St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4198,
     lng: -119.7008,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Gino%27s+Sicilian+Express+12+W+Figueroa+St%2C+Santa+Barbara%2C+CA+93101",
@@ -169,7 +178,7 @@ const restaurants = [
   {
     name: "Goodland Waffles and Melts",
     address: "1131 State St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4221,
     lng: -119.7064,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Goodland+Waffles+and+Melts+1131+State+St%2C+Santa+Barbara%2C+CA+93101",
@@ -182,7 +191,7 @@ const restaurants = [
   {
     name: "Haas's Fine Ice Cream",
     address: "3987 State St, Ste B, Santa Barbara, CA 93105",
-    area: "Other SB",
+    area: "Upper State",
     lat: 34.4413,
     lng: -119.7639,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Haas%27s+Fine+Ice+Cream+3987+State+St%2C+Ste+B%2C+Santa+Barbara%2C+CA+93105",
@@ -195,7 +204,7 @@ const restaurants = [
   {
     name: "Hook & Press Donuts",
     address: "15 E Figueroa St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.42,
     lng: -119.7005,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Hook+%26+Press+Donuts+15+E+Figueroa+St%2C+Santa+Barbara%2C+CA+93101",
@@ -234,7 +243,7 @@ const restaurants = [
   {
     name: "Lighthouse Coffee",
     address: "1819 Cliff Dr, Santa Barbara, CA 93109",
-    area: "Other SB",
+    area: "Noleta",
     lat: 34.4015,
     lng: -119.7165,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Lighthouse+Coffee+1819+Cliff+Dr%2C+Santa+Barbara%2C+CA+93109",
@@ -247,7 +256,7 @@ const restaurants = [
   {
     name: "Mesa Burger",
     address: "315 Meigs Rd, Ste F, Santa Barbara, CA 93109",
-    area: "Other SB",
+    area: "The Mesa",
     lat: 34.403,
     lng: -119.7185,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Mesa+Burger+315+Meigs+Rd%2C+Ste+F%2C+Santa+Barbara%2C+CA+93109",
@@ -260,7 +269,7 @@ const restaurants = [
   {
     name: "Mission City Sandwich Shop",
     address: "1826 Cliff Dr, Ste A, Santa Barbara, CA 93109",
-    area: "Other SB",
+    area: "The Mesa",
     lat: 34.4014,
     lng: -119.717,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Mission+City+Sandwich+Shop+1826+Cliff+Dr%2C+Ste+A%2C+Santa+Barbara%2C+CA+93109",
@@ -273,7 +282,7 @@ const restaurants = [
   {
     name: "Noe's Cafe",
     address: "129 E Anapamu St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4233,
     lng: -119.7027,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Noe%27s+Cafe+129+E+Anapamu+St%2C+Santa+Barbara%2C+CA+93101",
@@ -286,7 +295,7 @@ const restaurants = [
   {
     name: "Norton's Pastrami & Deli",
     address: "18 W Figueroa St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4193,
     lng: -119.7008,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Norton%27s+Pastrami+%26+Deli+18+W+Figueroa+St%2C+Santa+Barbara%2C+CA+93101",
@@ -299,7 +308,7 @@ const restaurants = [
   {
     name: "Panino",
     address: "834 Santa Barbara St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4218,
     lng: -119.7015,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Panino+834+Santa+Barbara+St%2C+Santa+Barbara%2C+CA+93101",
@@ -312,7 +321,7 @@ const restaurants = [
   {
     name: "Poke House",
     address: "811 State St, Ste D, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4196,
     lng: -119.6986,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Poke+House+811+State+St%2C+Ste+D%2C+Santa+Barbara%2C+CA+93101",
@@ -325,7 +334,7 @@ const restaurants = [
   {
     name: "'Que by Whiskey 'N Rye",
     address: "38 W Victoria St, Ste 108, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4239,
     lng: -119.7038,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=%27Que+by+Whiskey+%27N+Rye+38+W+Victoria+St%2C+Ste+108%2C+Santa+Barbara%2C+CA+93101",
@@ -351,7 +360,7 @@ const restaurants = [
   {
     name: "Santa Barbara Fish Market",
     address: "117 Harbor Way #F, Santa Barbara, CA 93109",
-    area: "Other SB",
+    area: "Waterfront",
     lat: 34.404,
     lng: -119.6905,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Santa+Barbara+Fish+Market+117+Harbor+Way+%23F%2C+Santa+Barbara%2C+CA+93109",
@@ -364,7 +373,7 @@ const restaurants = [
   {
     name: "Santa Barbara Pizza House",
     address: "515 State St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4174,
     lng: -119.696,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Santa+Barbara+Pizza+House+515+State+St%2C+Santa+Barbara%2C+CA+93101",
@@ -377,7 +386,7 @@ const restaurants = [
   {
     name: "Shalhoob's Funk Zone Patio",
     address: "220 Gray Ave, Santa Barbara, CA 93101",
-    area: "Other SB",
+    area: "Funk Zone",
     lat: 34.4143,
     lng: -119.6897,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Shalhoob%27s+Funk+Zone+Patio+220+Gray+Ave%2C+Santa+Barbara%2C+CA+93101",
@@ -390,7 +399,7 @@ const restaurants = [
   {
     name: "South Coast Deli",
     address: "10 E Carrillo St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4208,
     lng: -119.7016,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=South+Coast+Deli+10+E+Carrillo+St%2C+Santa+Barbara%2C+CA+93101",
@@ -403,7 +412,7 @@ const restaurants = [
   {
     name: "The Blue Owl",
     address: "5 W Canon Perdido St, Santa Barbara, CA 93101",
-    area: "Downtown SB",
+    area: "Downtown",
     lat: 34.4189,
     lng: -119.6985,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=The+Blue+Owl+5+W+Canon+Perdido+St%2C+Santa+Barbara%2C+CA+93101",
@@ -416,7 +425,7 @@ const restaurants = [
   {
     name: "The Natural Cafe",
     address: "361 Hitchcock Way, Santa Barbara, CA 93105",
-    area: "Other SB",
+    area: "Upper State",
     lat: 34.4378,
     lng: -119.7466,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=The+Natural+Cafe+361+Hitchcock+Way%2C+Santa+Barbara%2C+CA+93105",
@@ -429,7 +438,7 @@ const restaurants = [
   {
     name: "The Patio Cafe",
     address: "3007 De La Vina St, Santa Barbara, CA 93105",
-    area: "Other SB",
+    area: "Upper State",
     lat: 34.4348,
     lng: -119.7268,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=The+Patio+Cafe+3007+De+La+Vina+St%2C+Santa+Barbara%2C+CA+93105",
@@ -442,7 +451,7 @@ const restaurants = [
   {
     name: "Valentino's Take N' Bake Pizza",
     address: "4421 Hollister Ave, Santa Barbara, CA 93110",
-    area: "Other SB",
+    area: "Noleta",
     lat: 34.4366,
     lng: -119.7795,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Valentino%27s+Take+N%27+Bake+Pizza+4421+Hollister+Ave%2C+Santa+Barbara%2C+CA+93110",
@@ -455,7 +464,7 @@ const restaurants = [
   {
     name: "Validation Ale",
     address: "102 E Yanonali St, Santa Barbara, CA 93101",
-    area: "Other SB",
+    area: "Funk Zone",
     lat: 34.4138,
     lng: -119.6889,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Validation+Ale+102+E+Yanonali+St%2C+Santa+Barbara%2C+CA+93101",
@@ -468,7 +477,7 @@ const restaurants = [
   {
     name: "Yellow Belly",
     address: "2611 De La Vina St, Santa Barbara, CA 93105",
-    area: "Other SB",
+    area: "Downtown",
     lat: 34.4317,
     lng: -119.724,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Yellow+Belly+2611+De+La+Vina+St%2C+Santa+Barbara%2C+CA+93105",
