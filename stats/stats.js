@@ -413,9 +413,11 @@
       .catch(function () { /* section stays hidden */ });
   }
 
-  // Live activity polling — disabled while panel is hidden
-  // updateLiveActivity();
-  // setInterval(updateLiveActivity, 30000);
+  // Live activity polling — only while the event is live (pre-event / during)
+  if (__statsEventState === "pre-event" || __statsEventState === "during") {
+    updateLiveActivity();
+    setInterval(updateLiveActivity, 30000);
+  }
 
   // ── Hourly chart modal ──────────────────
   var hourlyCache = null;
