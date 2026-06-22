@@ -121,9 +121,10 @@ THEME.firstYearByName = {
   "Valentino's Take N' Bake Pizza": 2025,
   "Validation Ale": 2025,
   "Yellow Belly": 2025,
-  // Uncertain — 2025 listed "Dave's Drip House x J's Hot Chicken"; 2026 is "Dave's Dogs Grill".
-  // Same Turnpike "Dave's"? Uncomment if confirmed:
-  // "Dave's Dogs Grill": 2025,
+  // Dave's: returning since 2025 (was "Dave's Drip House x J's Hot Chicken"). Same Turnpike
+  // business across both 2026 listings — badge both names.
+  "Dave's Dogs Grill": 2025,
+  "Dave's Drip House": 2025,
 };
 
 function getEventState() {
