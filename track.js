@@ -15,3 +15,18 @@
     }
   };
 })();
+
+// Cloudflare Web Analytics (RUM) beacon — powers the live-visitor counts.
+// Injected only when THEME.cfAnalyticsToken is set (and never on localhost).
+// Needed because the site is DNS-only on Cloudflare, so CF can't auto-inject it.
+(function () {
+  var token = typeof THEME !== "undefined" && THEME.cfAnalyticsToken;
+  if (!token) return;
+  var h = location.hostname;
+  if (h === "localhost" || h === "127.0.0.1" || h === "0.0.0.0") return;
+  var s = document.createElement("script");
+  s.defer = true;
+  s.src = "https://static.cloudflareinsights.com/beacon.min.js";
+  s.setAttribute("data-cf-beacon", JSON.stringify({ token: token }));
+  document.head.appendChild(s);
+})();
