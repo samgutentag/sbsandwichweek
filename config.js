@@ -67,7 +67,7 @@ const THEME = {
   trackUrl: "https://sbsandwichweek-track.developer-95b.workers.dev",
 
   // Cloudflare Web Analytics (null to disable, see README Step 8)
-  cfAnalyticsToken: null,
+  cfAnalyticsToken: "bae17b8a85d54610965c8c8662738354",
 
   // Contact email domain — auto-generates sb{itemLabel}week{year}@{domain}
   // Set null to hide the contact link in the About modal
