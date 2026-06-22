@@ -121,9 +121,7 @@ THEME.firstYearByName = {
   "Valentino's Take N' Bake Pizza": 2025,
   "Validation Ale": 2025,
   "Yellow Belly": 2025,
-  // Dave's: returning since 2025 (was "Dave's Drip House x J's Hot Chicken"). Same Turnpike
-  // business across both 2026 listings — badge both names.
-  "Dave's Dogs Grill": 2025,
+  // Dave's Drip House: returning since 2025 (was "Dave's Drip House x J's Hot Chicken").
   "Dave's Drip House": 2025,
 };
 
