@@ -329,7 +329,7 @@ export default {
           ? `SELECT blob2 AS name,
              SUM(IF(blob1 = 'upvote', 1, 0)) - SUM(IF(blob1 = 'un-upvote', 1, 0)) AS net
              FROM sbsandwichweek
-             WHERE timestamp >= toDateTime('2026-06-25 09:00:00')
+             WHERE timestamp >= toDateTime('2026-06-22 00:00:00')
                AND (blob1 = 'upvote' OR blob1 = 'un-upvote')
              GROUP BY blob2
              HAVING net > 0
@@ -337,7 +337,7 @@ export default {
              LIMIT 500`
           : `SELECT blob2 AS name, blob1 AS action, SUM(1) AS count
              FROM sbsandwichweek
-             WHERE timestamp >= toDateTime('2026-06-25 09:00:00')
+             WHERE timestamp >= toDateTime('2026-06-22 00:00:00')
                AND blob1 != 'test'
              GROUP BY blob2, blob1
              ORDER BY count DESC

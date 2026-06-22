@@ -219,7 +219,9 @@
         return resp.json();
       })
       .then(function (data) {
-        var n = (data && data.visitors1h) || 0;
+        // Prefer RUM visitors (last hour); fall back to recent interactions
+        // so the chip works immediately even before RUM data ingests.
+        var n = (data && (data.visitors1h || data.recentActions)) || 0;
         if (n > 0) {
           document.getElementById("liveChipCount").textContent = n.toLocaleString();
           chip.style.display = "";
@@ -231,10 +233,10 @@
         /* leave hidden */
       });
   }
-  if (__eventState === "pre-event" || __eventState === "during") {
-    updateLiveChip();
-    setInterval(updateLiveChip, 30000);
-  }
+  // Poll in every state — people browse the map before the event goes live.
+  // The chip self-hides when there are no recent visitors, so off-season is fine.
+  updateLiveChip();
+  setInterval(updateLiveChip, 30000);
 
   // ── Hours data ─────────────────────────────
   var hoursData = {};
