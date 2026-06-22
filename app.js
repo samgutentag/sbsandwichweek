@@ -210,6 +210,32 @@
   var __showUpvotes = __eventState !== "off-season";
   var __canVote = canCastVotes();
 
+  // ── Live-visitor header chip (during the event window only) ──
+  function updateLiveChip() {
+    var chip = document.getElementById("liveChip");
+    if (!chip || !THEME.trackUrl) return;
+    fetch(THEME.trackUrl + "?active=true", { method: "GET" })
+      .then(function (resp) {
+        return resp.json();
+      })
+      .then(function (data) {
+        var n = (data && data.visitors1h) || 0;
+        if (n > 0) {
+          document.getElementById("liveChipCount").textContent = n.toLocaleString();
+          chip.style.display = "";
+        } else {
+          chip.style.display = "none";
+        }
+      })
+      .catch(function () {
+        /* leave hidden */
+      });
+  }
+  if (__eventState === "pre-event" || __eventState === "during") {
+    updateLiveChip();
+    setInterval(updateLiveChip, 30000);
+  }
+
   // ── Hours data ─────────────────────────────
   var hoursData = {};
   var hoursLoaded = false;
