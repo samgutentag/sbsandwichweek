@@ -370,6 +370,44 @@ body {
   background: #e07a5f;
 }
 
+/* ── Dietary tag filters ─────────────────── */
+
+.area-btn[data-tag].active {
+  background: var(--dark);
+}
+
+.tag-icon {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+  transition: filter 0.15s;
+}
+
+.area-btn[data-tag].active .tag-icon {
+  filter: brightness(0) invert(1);
+}
+
+.dietary-tags {
+  display: inline-flex;
+  gap: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.dietary-icon {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+  opacity: 0.7;
+}
+
+.popup-section-name .dietary-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+  opacity: 0.8;
+}
+
 /* ── Tip Jar button ──────────────────────── */
 
 .tip-jar-btn {

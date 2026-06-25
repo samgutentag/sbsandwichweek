@@ -413,10 +413,14 @@
       '"></div>';
     var isUpvoted = upvotedSet.has(r.name);
     var upvoteCount = upvoteCounts[r.name] || 0;
+    var dietaryHtml = getDietaryIconsHtml(r);
     popupHtml +=
       '<div class="popup-section popup-section-name">' +
       "<h3>" +
       escapeHtml(r.name) +
+      (dietaryHtml
+        ? '<span class="dietary-tags">' + dietaryHtml + "</span>"
+        : "") +
       "</h3></div>";
     popupHtml += '<div class="popup-section popup-section-menu">';
     if (r.menuItems.length > 0)
@@ -822,6 +826,68 @@
   });
   filtersEl.parentNode.insertBefore(hoursFilterSpan, filtersEl.nextSibling);
 
+  // ── Dietary tag filters (Vegetarian / Gluten-Free) — 1:1 with the desktop map.
+  // Config icons are bare filenames resolved from the site root; the embed lives
+  // at /embed/map/, so relative paths need a prefix to reach them.
+  function tagIconSrc(icon) {
+    return /^(https?:|\/|\.\.)/.test(icon) ? icon : "../../" + icon;
+  }
+  function getDietaryIconsHtml(r) {
+    var html = "";
+    (THEME.tagFilters || []).forEach(function (t) {
+      if (r[t.key]) {
+        html +=
+          '<img src="' +
+          tagIconSrc(t.icon) +
+          '" alt="' +
+          t.label +
+          '" title="' +
+          t.label +
+          '" class="dietary-icon">';
+      }
+    });
+    return html;
+  }
+
+  var tagDefs = THEME.tagFilters || [];
+  var activeTag = null;
+  var tagFilterSpan = document.createElement("span");
+  tagFilterSpan.id = "tagFilters";
+  tagFilterSpan.className = "hours-filters tag-filters";
+  tagDefs.forEach(function (t) {
+    var btn = document.createElement("button");
+    btn.className = "area-btn";
+    btn.setAttribute("data-tag", t.key);
+    var img = document.createElement("img");
+    img.src = tagIconSrc(t.icon);
+    img.alt = t.label;
+    img.className = "tag-icon";
+    btn.appendChild(img);
+    btn.appendChild(document.createTextNode(" " + t.label));
+    tagFilterSpan.appendChild(btn);
+  });
+  if (tagDefs.length) {
+    filtersEl.parentNode.insertBefore(tagFilterSpan, hoursFilterSpan);
+  }
+
+  tagFilterSpan.addEventListener("click", function (e) {
+    var btn = e.target.closest(".area-btn");
+    if (!btn) return;
+    var tagKey = btn.getAttribute("data-tag");
+    if (activeTag === tagKey) {
+      activeTag = null;
+      btn.classList.remove("active");
+    } else {
+      tagFilterSpan.querySelectorAll(".area-btn").forEach(function (b) {
+        b.classList.remove("active");
+      });
+      activeTag = tagKey;
+      btn.classList.add("active");
+    }
+    if (typeof window.track === "function") window.track("filter-tag", tagKey);
+    renderList();
+  });
+
   filtersEl.addEventListener("click", function (e) {
     if (!e.target.classList.contains("area-btn")) return;
     filtersEl.querySelectorAll(".area-btn").forEach(function (b) {
@@ -903,7 +969,8 @@
           matchesHours = entry.dinner === true;
         }
       }
-      return matchesArea && matchesSearch && matchesHours;
+      var matchesTags = !activeTag || r[activeTag];
+      return matchesArea && matchesSearch && matchesTags && matchesHours;
     });
 
     filtered.sort(function (a, b) {
