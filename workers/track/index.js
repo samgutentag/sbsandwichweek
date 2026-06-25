@@ -323,22 +323,30 @@ export default {
       }
 
       const upvotes = url.searchParams.get("upvotes") === "true";
+      const startParam = url.searchParams.get("start");
+      const endParam = url.searchParams.get("end");
+      // Date-range filter from the stats UI. Omitted = all retained data (all-time).
+      const timeFilter = (startParam && endParam)
+        ? `timestamp >= toDateTime('${startParam.replace(/'/g, "''")} 00:00:00') AND timestamp <= toDateTime('${endParam.replace(/'/g, "''")} 23:59:59')`
+        : null;
+      const upvoteWhere = timeFilter
+        ? `${timeFilter} AND (blob1 = 'upvote' OR blob1 = 'un-upvote')`
+        : `(blob1 = 'upvote' OR blob1 = 'un-upvote')`;
+      const aggWhere = timeFilter ? `${timeFilter} AND blob1 != 'test'` : `blob1 != 'test'`;
 
       try {
         const sql = upvotes
           ? `SELECT blob2 AS name,
              SUM(IF(blob1 = 'upvote', 1, 0)) - SUM(IF(blob1 = 'un-upvote', 1, 0)) AS net
              FROM sbsandwichweek
-             WHERE timestamp >= toDateTime('2026-06-22 00:00:00')
-               AND (blob1 = 'upvote' OR blob1 = 'un-upvote')
+             WHERE ${upvoteWhere}
              GROUP BY blob2
              HAVING net > 0
              ORDER BY net DESC
              LIMIT 500`
           : `SELECT blob2 AS name, blob1 AS action, SUM(1) AS count
              FROM sbsandwichweek
-             WHERE timestamp >= toDateTime('2026-06-22 00:00:00')
-               AND blob1 != 'test'
+             WHERE ${aggWhere}
              GROUP BY blob2, blob1
              ORDER BY count DESC
              LIMIT 2000`;
