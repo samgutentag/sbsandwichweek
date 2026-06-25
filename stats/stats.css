@@ -559,6 +559,17 @@ tbody td.col-num {
   padding: 16px 20px 20px;
 }
 
+.chart-modal-caption {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #666;
+}
+
+.chart-modal-caption:empty {
+  display: none;
+}
+
 .chart-modal-body canvas {
   width: 100% !important;
   max-height: 400px;

@@ -549,8 +549,28 @@
   // Metrics that render as heatmap instead of line chart
   var heatmapMetrics = { "view": true };
 
+  // Plain-language "what this counts" captions, keyed by the card's data-metric.
+  var METRIC_CAPTIONS = {
+    view: "Someone opened this restaurant's pin on the map.",
+    "directions-apple": "Someone tapped the Apple Maps button for directions.",
+    "directions-google": "Someone tapped the Google Maps button for directions.",
+    website: "Someone tapped through to the restaurant's website.",
+    phone: "Someone tapped the phone number to call.",
+    instagram: "Someone tapped through to the restaurant's Instagram.",
+    share: "Someone used the share button to copy or send a link to this restaurant.",
+    deeplink:
+      "A visit that arrived through a shared link pointing straight at one restaurant — the map auto-opens its pin. The inbound counterpart to Shares.",
+    upvote: "Net upvotes: taps on the heart, minus any that were undone.",
+  };
+
+  function setChartCaption(text) {
+    var el = document.getElementById("chartModalCaption");
+    if (el) el.textContent = text || "";
+  }
+
   // Open chart for a metric (action-based, from ?hourly=true)
   function openChartModal(metricKey, label, opts) {
+    setChartCaption(METRIC_CAPTIONS[metricKey] || "");
     fetchHourly().then(function (data) {
       if (!data) return;
 
@@ -582,6 +602,9 @@
 
   // Open chart for a filter label (label-based, from ?hourly=true&label=X)
   function openFilterChartModal(filterKey, label) {
+    setChartCaption(
+      "How often the " + label + " filter was tapped, shown cumulatively by hour.",
+    );
     fetchHourlyLabel(filterKey).then(function (data) {
       if (!data) return;
       data = StatsUtils.filterHourlyToEvent(data);
