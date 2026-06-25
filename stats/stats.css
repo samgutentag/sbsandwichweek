@@ -478,6 +478,20 @@ tbody td.col-num {
   font-variant-numeric: tabular-nums;
 }
 
+/* Screen Widths breakdown — wider label/value than the platform bars, and a
+   distinct fill so mobile widths stand out from desktop. */
+.viewport-bars .bar-label {
+  width: 200px;
+}
+
+.viewport-bars .bar-value {
+  width: 78px;
+}
+
+.bar-fill-mobile {
+  background: linear-gradient(90deg, #2a9d8f, #1d7d70);
+}
+
 /* ── Clickable cards ─────────────────────── */
 
 .card-clickable {

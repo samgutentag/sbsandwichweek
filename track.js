@@ -14,6 +14,25 @@
       navigator.sendBeacon(url, blob);
     }
   };
+
+  // One viewport-width sample per session from the main map — feeds the
+  // "Screen Widths" breakdown for layout work. Skipped on the stats and embed
+  // pages so the sample reflects real map visitors, not dashboard views.
+  try {
+    var onMainMap = !/\/(stats|embed)\//.test(location.pathname);
+    if (onMainMap && !sessionStorage.getItem("vp-sampled")) {
+      var w = window.innerWidth || document.documentElement.clientWidth || 0;
+      var bucket =
+        w < 400 ? "<400"
+        : w < 600 ? "400-599"
+        : w < 768 ? "600-767"
+        : w < 1024 ? "768-1023"
+        : w < 1440 ? "1024-1439"
+        : "1440+";
+      window.track("viewport", bucket);
+      sessionStorage.setItem("vp-sampled", "1");
+    }
+  } catch (e) {}
 })();
 
 // Cloudflare Web Analytics (RUM) beacon — powers the live-visitor counts.
