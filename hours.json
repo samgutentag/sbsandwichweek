@@ -1,0 +1,1935 @@
+{
+  "_updated": "2026-06-25T23:24:53Z",
+  "'Que by Whiskey 'N Rye": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 1,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 2,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 3,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 4,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 6,
+        "open": "1130",
+        "close": "2030"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Bistro Amasa": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0930",
+        "close": "1400"
+      },
+      {
+        "day": 0,
+        "open": "1600",
+        "close": "2100"
+      },
+      {
+        "day": 1,
+        "open": "1600",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1600",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1600",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1600",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1600",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "0930",
+        "close": "1400"
+      },
+      {
+        "day": 6,
+        "open": "1600",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "CAYA Restaurant and Bar": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0800",
+        "close": "2100"
+      },
+      {
+        "day": 1,
+        "open": "0700",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "0700",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "0700",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "0700",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "0700",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "0800",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Corner Tap Bar & Eatery": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 1,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "2200"
+      },
+      {
+        "day": 6,
+        "open": "1130",
+        "close": "2200"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Cristino's Bakery": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0600",
+        "close": "1400"
+      },
+      {
+        "day": 1,
+        "open": "0600",
+        "close": "2000"
+      },
+      {
+        "day": 2,
+        "open": "0600",
+        "close": "2000"
+      },
+      {
+        "day": 3,
+        "open": "0600",
+        "close": "2000"
+      },
+      {
+        "day": 4,
+        "open": "0600",
+        "close": "2000"
+      },
+      {
+        "day": 5,
+        "open": "0600",
+        "close": "2000"
+      },
+      {
+        "day": 6,
+        "open": "0600",
+        "close": "1400"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Crushcakes & Cafe (Anacapa)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0730",
+        "close": "1600"
+      },
+      {
+        "day": 1,
+        "open": "0730",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0730",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0730",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0730",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0730",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "0730",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Crushcakes & Cafe (Goleta)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0730",
+        "close": "1530"
+      },
+      {
+        "day": 1,
+        "open": "0730",
+        "close": "1500"
+      },
+      {
+        "day": 2,
+        "open": "0730",
+        "close": "1500"
+      },
+      {
+        "day": 3,
+        "open": "0730",
+        "close": "1500"
+      },
+      {
+        "day": 4,
+        "open": "0730",
+        "close": "1500"
+      },
+      {
+        "day": 5,
+        "open": "0730",
+        "close": "1500"
+      },
+      {
+        "day": 6,
+        "open": "0730",
+        "close": "1530"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Dave's Drip House": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1200",
+        "close": "2100"
+      },
+      {
+        "day": 1,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2200"
+      },
+      {
+        "day": 6,
+        "open": "1200",
+        "close": "2200"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Dutch Garden Restaurant": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "2030"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Etty's Jewish Deli & Bakery": {
+    "periods": [
+      {
+        "day": 2,
+        "open": "1000",
+        "close": "1500"
+      },
+      {
+        "day": 3,
+        "open": "1000",
+        "close": "1500"
+      },
+      {
+        "day": 4,
+        "open": "1000",
+        "close": "1500"
+      },
+      {
+        "day": 5,
+        "open": "1000",
+        "close": "1430"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Fresco at the Market": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1130",
+        "close": "1930"
+      },
+      {
+        "day": 1,
+        "open": "1130",
+        "close": "1930"
+      },
+      {
+        "day": 2,
+        "open": "1130",
+        "close": "1930"
+      },
+      {
+        "day": 3,
+        "open": "1130",
+        "close": "1930"
+      },
+      {
+        "day": 4,
+        "open": "1130",
+        "close": "1930"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "1930"
+      },
+      {
+        "day": 6,
+        "open": "1130",
+        "close": "1930"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Gino's Sicilian Express": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1300",
+        "close": "2000"
+      },
+      {
+        "day": 1,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "1130",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Goodland Waffles and Melts": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0700",
+        "close": "1700"
+      },
+      {
+        "day": 1,
+        "open": "0700",
+        "close": "1700"
+      },
+      {
+        "day": 2,
+        "open": "0700",
+        "close": "1700"
+      },
+      {
+        "day": 3,
+        "open": "0700",
+        "close": "1700"
+      },
+      {
+        "day": 4,
+        "open": "0700",
+        "close": "1700"
+      },
+      {
+        "day": 5,
+        "open": "0700",
+        "close": "1800"
+      },
+      {
+        "day": 6,
+        "open": "0700",
+        "close": "1800"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Haas's Fine Ice Cream": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0000",
+        "close": "0000"
+      },
+      {
+        "day": 0,
+        "open": "1200",
+        "close": "2359"
+      },
+      {
+        "day": 1,
+        "open": "0000",
+        "close": "0000"
+      },
+      {
+        "day": 1,
+        "open": "1200",
+        "close": "2300"
+      },
+      {
+        "day": 2,
+        "open": "1200",
+        "close": "2300"
+      },
+      {
+        "day": 3,
+        "open": "1200",
+        "close": "2300"
+      },
+      {
+        "day": 4,
+        "open": "1200",
+        "close": "2300"
+      },
+      {
+        "day": 5,
+        "open": "1200",
+        "close": "2359"
+      },
+      {
+        "day": 6,
+        "open": "0000",
+        "close": "0000"
+      },
+      {
+        "day": 6,
+        "open": "1200",
+        "close": "2359"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Hook & Press Donuts": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0800",
+        "close": "1600"
+      },
+      {
+        "day": 1,
+        "open": "0800",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0800",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0800",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0800",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0800",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "0800",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "I.V. Deli Mart": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0000",
+        "close": "0300"
+      },
+      {
+        "day": 0,
+        "open": "0800",
+        "close": "2359"
+      },
+      {
+        "day": 1,
+        "open": "0000",
+        "close": "0100"
+      },
+      {
+        "day": 1,
+        "open": "0800",
+        "close": "2359"
+      },
+      {
+        "day": 2,
+        "open": "0000",
+        "close": "0100"
+      },
+      {
+        "day": 2,
+        "open": "0800",
+        "close": "2359"
+      },
+      {
+        "day": 3,
+        "open": "0000",
+        "close": "0100"
+      },
+      {
+        "day": 3,
+        "open": "0800",
+        "close": "2359"
+      },
+      {
+        "day": 4,
+        "open": "0000",
+        "close": "0100"
+      },
+      {
+        "day": 4,
+        "open": "0800",
+        "close": "2359"
+      },
+      {
+        "day": 5,
+        "open": "0000",
+        "close": "0100"
+      },
+      {
+        "day": 5,
+        "open": "0800",
+        "close": "2359"
+      },
+      {
+        "day": 6,
+        "open": "0000",
+        "close": "0300"
+      },
+      {
+        "day": 6,
+        "open": "0800",
+        "close": "2359"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Jonesy's Fried Chicken": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1130",
+        "close": "1900"
+      },
+      {
+        "day": 3,
+        "open": "1130",
+        "close": "1900"
+      },
+      {
+        "day": 4,
+        "open": "1130",
+        "close": "1900"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "2000"
+      },
+      {
+        "day": 6,
+        "open": "1130",
+        "close": "2000"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Lighthouse Coffee (Calle Real)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 1,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "0600",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Lighthouse Coffee (Chapala)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 1,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "0600",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Lighthouse Coffee (Cliff Dr)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 1,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "0600",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Lighthouse Coffee (E Haley)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0700",
+        "close": "1500"
+      },
+      {
+        "day": 1,
+        "open": "0700",
+        "close": "1500"
+      },
+      {
+        "day": 2,
+        "open": "0700",
+        "close": "1500"
+      },
+      {
+        "day": 3,
+        "open": "0700",
+        "close": "1500"
+      },
+      {
+        "day": 4,
+        "open": "0700",
+        "close": "1500"
+      },
+      {
+        "day": 5,
+        "open": "0700",
+        "close": "1500"
+      },
+      {
+        "day": 6,
+        "open": "0700",
+        "close": "1500"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Lighthouse Coffee (Turnpike)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 1,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0600",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "0600",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Mesa Burger": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 1,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Mission City Sandwich Shop": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Noe's Cafe": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0700",
+        "close": "1430"
+      },
+      {
+        "day": 1,
+        "open": "0700",
+        "close": "1430"
+      },
+      {
+        "day": 2,
+        "open": "0700",
+        "close": "1430"
+      },
+      {
+        "day": 3,
+        "open": "0700",
+        "close": "1430"
+      },
+      {
+        "day": 4,
+        "open": "0700",
+        "close": "1430"
+      },
+      {
+        "day": 5,
+        "open": "0700",
+        "close": "1430"
+      },
+      {
+        "day": 6,
+        "open": "0700",
+        "close": "1430"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Norton's Pastrami & Deli": {
+    "periods": [
+      {
+        "day": 1,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "1000",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Panino (Goleta)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "1500"
+      },
+      {
+        "day": 1,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "1030",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Panino (Montecito)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 1,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "1000",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "1000",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Panino (Santa Barbara)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "1500"
+      },
+      {
+        "day": 1,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "1030",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "1030",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Poke House": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 1,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Rinkside Cafe": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0800",
+        "close": "2300"
+      },
+      {
+        "day": 1,
+        "open": "1130",
+        "close": "2300"
+      },
+      {
+        "day": 2,
+        "open": "1130",
+        "close": "2300"
+      },
+      {
+        "day": 3,
+        "open": "1130",
+        "close": "2300"
+      },
+      {
+        "day": 4,
+        "open": "1130",
+        "close": "2359"
+      },
+      {
+        "day": 5,
+        "open": "0000",
+        "close": "0000"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "2359"
+      },
+      {
+        "day": 6,
+        "open": "0000",
+        "close": "0000"
+      },
+      {
+        "day": 6,
+        "open": "0800",
+        "close": "2200"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Santa Barbara Fish Market": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1000",
+        "close": "2000"
+      },
+      {
+        "day": 1,
+        "open": "1000",
+        "close": "2000"
+      },
+      {
+        "day": 2,
+        "open": "1000",
+        "close": "2000"
+      },
+      {
+        "day": 3,
+        "open": "1000",
+        "close": "2000"
+      },
+      {
+        "day": 4,
+        "open": "1000",
+        "close": "2000"
+      },
+      {
+        "day": 5,
+        "open": "1000",
+        "close": "2000"
+      },
+      {
+        "day": 6,
+        "open": "1000",
+        "close": "2000"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Santa Barbara Pizza House": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0000",
+        "close": "0130"
+      },
+      {
+        "day": 0,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 1,
+        "open": "1130",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1200",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1200",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1200",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "2359"
+      },
+      {
+        "day": 6,
+        "open": "0000",
+        "close": "0100"
+      },
+      {
+        "day": 6,
+        "open": "1130",
+        "close": "2359"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Shalhoob's (Funk Zone)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "1930"
+      },
+      {
+        "day": 1,
+        "open": "1100",
+        "close": "2000"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "2000"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "2000"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2000"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Shalhoob's (Goleta)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "2000"
+      },
+      {
+        "day": 1,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2030"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "South Coast Deli (Carrillo)": {
+    "periods": [
+      {
+        "day": 1,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "0900",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "South Coast Deli (Patterson)": {
+    "periods": [
+      {
+        "day": 1,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "South Coast Deli (Santa Barbara St)": {
+    "periods": [
+      {
+        "day": 1,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 2,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 3,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 4,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 5,
+        "open": "0900",
+        "close": "1600"
+      },
+      {
+        "day": 6,
+        "open": "0900",
+        "close": "1600"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "South Coast Deli (State St)": {
+    "periods": [
+      {
+        "day": 1,
+        "open": "0900",
+        "close": "1800"
+      },
+      {
+        "day": 2,
+        "open": "0900",
+        "close": "1800"
+      },
+      {
+        "day": 3,
+        "open": "0900",
+        "close": "1800"
+      },
+      {
+        "day": 4,
+        "open": "0900",
+        "close": "1800"
+      },
+      {
+        "day": 5,
+        "open": "0900",
+        "close": "1800"
+      },
+      {
+        "day": 6,
+        "open": "0900",
+        "close": "1800"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "The Blue Owl": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0000",
+        "close": "0100"
+      },
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2359"
+      },
+      {
+        "day": 6,
+        "open": "0000",
+        "close": "0100"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "2359"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "The Natural Cafe (Goleta)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 1,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "The Natural Cafe (Hitchcock)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 1,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "The Patio Cafe": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "0700",
+        "close": "1400"
+      },
+      {
+        "day": 1,
+        "open": "0700",
+        "close": "1400"
+      },
+      {
+        "day": 3,
+        "open": "0700",
+        "close": "1400"
+      },
+      {
+        "day": 4,
+        "open": "0700",
+        "close": "1400"
+      },
+      {
+        "day": 5,
+        "open": "0700",
+        "close": "1400"
+      },
+      {
+        "day": 6,
+        "open": "0700",
+        "close": "1400"
+      }
+    ],
+    "lunch": true,
+    "dinner": false
+  },
+  "Valentino's Take N' Bake Pizza": {
+    "periods": [
+      {
+        "day": 1,
+        "open": "1100",
+        "close": "1900"
+      },
+      {
+        "day": 2,
+        "open": "1100",
+        "close": "1900"
+      },
+      {
+        "day": 3,
+        "open": "1100",
+        "close": "1900"
+      },
+      {
+        "day": 4,
+        "open": "1100",
+        "close": "1900"
+      },
+      {
+        "day": 5,
+        "open": "1100",
+        "close": "1900"
+      },
+      {
+        "day": 6,
+        "open": "1100",
+        "close": "1900"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Validation Ale (De La Vina)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 1,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 2,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 3,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 4,
+        "open": "1130",
+        "close": "2200"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "2200"
+      },
+      {
+        "day": 6,
+        "open": "1130",
+        "close": "2200"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Validation Ale (Yanonali)": {
+    "periods": [
+      {
+        "day": 0,
+        "open": "1000",
+        "close": "2030"
+      },
+      {
+        "day": 1,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 2,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 3,
+        "open": "1130",
+        "close": "2030"
+      },
+      {
+        "day": 4,
+        "open": "1130",
+        "close": "2200"
+      },
+      {
+        "day": 5,
+        "open": "1130",
+        "close": "2200"
+      },
+      {
+        "day": 6,
+        "open": "1000",
+        "close": "2200"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  },
+  "Yellow Belly": {
+    "periods": [
+      {
+        "day": 1,
+        "open": "1600",
+        "close": "2030"
+      },
+      {
+        "day": 2,
+        "open": "1600",
+        "close": "2030"
+      },
+      {
+        "day": 3,
+        "open": "1600",
+        "close": "2030"
+      },
+      {
+        "day": 4,
+        "open": "1600",
+        "close": "2030"
+      },
+      {
+        "day": 5,
+        "open": "1600",
+        "close": "2100"
+      },
+      {
+        "day": 6,
+        "open": "1200",
+        "close": "2100"
+      }
+    ],
+    "lunch": true,
+    "dinner": true
+  }
+}
