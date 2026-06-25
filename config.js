@@ -25,7 +25,7 @@ const THEME = {
 
   // Header — link to the source article announcing your event
   sourceLabel: "Source: The Independent",
-  sourceUrl: "https://www.independent.com/2026/06/11/sandwich-week-2026/",
+  sourceUrl: "https://www.independent.com/2026/06/24/santa-barbaras-sandwich-week-returns/",
 
   // Venmo tip jar (set venmoUser to null to hide the tip jar entirely)
   venmoUser: "samgutentag",
@@ -78,10 +78,8 @@ const THEME = {
   // Example: if you define { key: "vegetarian", ... }, each restaurant needs vegetarian: true/false.
   // Icons can be emoji strings ("🌱") or SVG filenames ("icon-vegetarian.svg") in the repo root.
   tagFilters: [
-    // Define once you know what filters make sense for sandwiches
-    // { key: "hotSandwich", icon: "🔥", label: "Hot" },
-    // { key: "coldSandwich", icon: "🧊", label: "Cold" },
-    // { key: "vegetarian", icon: "🌱", label: "Vegetarian" },
+    { key: "vegetarian", icon: "icon-vegetarian.svg", label: "Vegetarian" },
+    { key: "glutenFree", icon: "icon-gf.svg", label: "Gluten-Free" },
   ],
 
   // Hours filters — time-of-day filters (hidden until hours.json loads, see README Step 11)

@@ -1,7 +1,7 @@
 // SB Sandwich Week 2026 — Restaurant Data (full)
 // Loads on/after dataLiveDate. Fill menuItems from the printed menu (out June 25).
 // Event: June 25–July 1, 2026
-const SOURCE_URL = "https://www.independent.com/2026/06/11/sandwich-week-2026/";
+const SOURCE_URL = "https://www.independent.com/2026/06/24/santa-barbaras-sandwich-week-returns/";
 
 const AREA_COLORS = {
   "Downtown": "#e63946",
@@ -32,7 +32,9 @@ const restaurants = [
     website: "https://www.bistroamasa.com/",
     phone: "805-500-7829",
     instagram: "bistroamasa",
-    menuItems: [],
+    menuItems: [
+      { name: "Fried Chicken Sandwich", description: "Buttermilk-brined, herb-breaded fried chicken thigh with dijonnaise, kale-apple slaw, and house-made pickles on a house-baked seed bun." },
+    ],
   },
   {
     name: "CAYA Restaurant and Bar",
@@ -45,7 +47,9 @@ const restaurants = [
     website: "https://www.cayarestaurant.com",
     phone: "805-964-1288",
     instagram: "cayarestaurant",
-    menuItems: [],
+    menuItems: [
+      { name: "Lazy Pig", description: "Slow-roasted pulled pork on a soft brioche bun with apple-mustard coleslaw, BBQ sauce, and pickles." },
+    ],
   },
   {
     name: "Corner Tap Bar & Eatery",
@@ -58,7 +62,9 @@ const restaurants = [
     website: "https://www.sbcornertap.com/",
     phone: "805-690-2739",
     instagram: "cornertapsb",
-    menuItems: [],
+    menuItems: [
+      { name: "Pulled Pork Sandwich", description: "Slow-roasted pork in chipotle BBQ sauce with fried onion strings and house ranch coleslaw on a ciabatta roll." },
+    ],
   },
   {
     name: "Cristino's Bakery",
@@ -71,7 +77,9 @@ const restaurants = [
     website: "https://www.cristinosbakery.com/",
     phone: "805-455-6900",
     instagram: "cristinosbakery",
-    menuItems: [],
+    menuItems: [
+      { name: "Tri-Tip Sandwich", description: "Roasted tomatoes, red onions, red peppers, pepper Jack, and whole-grain Dijon aioli on house-made ciabatta." },
+    ],
   },
   {
     name: "Crushcakes & Cafe (Anacapa)",
@@ -84,7 +92,9 @@ const restaurants = [
     website: "https://www.crushcakes.com/",
     phone: "805-963-9353",
     instagram: "crushcakescafe",
-    menuItems: [],
+    menuItems: [
+      { name: "Fried Egg I'm in Love", description: "Two runny organic fried eggs and chicken-apple-sage sausage with roasted red onions, parmesan, pesto, and aioli on grilled sourdough." },
+    ],
   },
   {
     name: "Crushcakes & Cafe (Goleta)",
@@ -97,7 +107,9 @@ const restaurants = [
     website: "https://www.crushcakes.com/",
     phone: "805-963-9353",
     instagram: "crushcakescafe",
-    menuItems: [],
+    menuItems: [
+      { name: "Fried Egg I'm in Love", description: "Two runny organic fried eggs and chicken-apple-sage sausage with roasted red onions, parmesan, pesto, and aioli on grilled sourdough." },
+    ],
   },
   {
     name: "Dutch Garden Restaurant",
@@ -110,7 +122,9 @@ const restaurants = [
     website: "https://www.dutchgardenrestaurant.com/",
     phone: "805-453-4556",
     instagram: "dutchgardensb",
-    menuItems: [],
+    menuItems: [
+      { name: "Reuben Sandwich", description: "Pastrami, Swiss, sauerkraut, and Russian dressing on grilled rye, with signature mustard on the side." },
+    ],
   },
   {
     name: "Etty's Jewish Deli & Bakery",
@@ -123,7 +137,9 @@ const restaurants = [
     website: "https://www.jewishsantabarbara.org/deli/",
     phone: "805-957-1115",
     instagram: "ettysdeli",
-    menuItems: [],
+    menuItems: [
+      { name: "The Hochman Hottie Pastrami", description: "Briny, peppery, tender pastrami with Russian dressing and crunchy kraut on house-baked rye; half sandwich with a dill pickle and side." },
+    ],
   },
   {
     name: "Fresco at the Market",
@@ -136,7 +152,9 @@ const restaurants = [
     website: "https://www.fresco-sb.com/",
     phone: "805-770-7994",
     instagram: "fresco_sb",
-    menuItems: [],
+    menuItems: [
+      { name: "The Grinder", description: "Green olives, pepperoncini, roasted red pepper, salami, ham, mortadella, provolone, tomatoes, red onion, and Italian dressing on a bolillo roll." },
+    ],
   },
   {
     name: "Gino's Sicilian Express",
@@ -149,7 +167,9 @@ const restaurants = [
     website: "https://www.ginospizzapies.com/",
     phone: "805-962-9442",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Meatball Panini", description: "All-beef meatball, oozing mozzarella, and marinara baked in pizza-oven dough." },
+    ],
   },
   {
     name: "Goodland Waffles and Melts",
@@ -162,7 +182,9 @@ const restaurants = [
     website: "https://www.goodlandwaffles.com/",
     phone: "805-259-4356",
     instagram: "goodlandwafflesandmelts",
-    menuItems: [],
+    menuItems: [
+      { name: "The Wake & Bacon Melt", description: "Scrambled eggs, cheddar Jack, crispy bacon, scallions, and house peach-chipotle cream cheese on grilled Texas toast." },
+    ],
   },
   {
     name: "Haas's Fine Ice Cream",
@@ -175,7 +197,9 @@ const restaurants = [
     website: null,
     phone: "805-793-1271",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Ice Cream Sandwich", description: "A hefty scoop of ice cream between two warm, house-baked chocolate chip cookies; 24 flavors to choose from." },
+    ],
   },
   {
     name: "Hook & Press Donuts",
@@ -188,7 +212,9 @@ const restaurants = [
     website: "https://www.hookandpressdonuts.com/",
     phone: "805-869-6635",
     instagram: "hookandpressdonuts",
-    menuItems: [],
+    menuItems: [
+      { name: "The GOAT", description: "Fluffy egg and bacon on a dense buttermilk biscuit with arugula, bourbon bacon jam, whipped goat cheese, and flaky salt." },
+    ],
   },
   {
     name: "I.V. Deli Mart",
@@ -201,7 +227,12 @@ const restaurants = [
     website: "https://ivdelimart.com/",
     phone: "805-562-8858",
     instagram: "ivdelimart",
-    menuItems: [],
+    vegetarian: true,
+    glutenFree: true,
+    menuItems: [
+      { name: "Turkey Presto Avocado Sandwich", description: "Turkey, lettuce, tomato, onion, avocado, mayo, and pesto on a French roll." },
+      { name: "Vegan Prime California Turkey Club", description: "Vegan bacon, vegan black-pepper turkey, veganaise, mustard, avocado, tomato, cucumber, bell peppers, onion, lettuce, and pepperoncini." },
+    ],
   },
   {
     name: "Jonesy's Fried Chicken",
@@ -214,7 +245,9 @@ const restaurants = [
     website: "https://jonesysfriedchicken.com/",
     phone: "805-571-7060",
     instagram: "jonesysfriedchicken",
-    menuItems: [],
+    menuItems: [
+      { name: "The JFC Original", description: "Crispy, tender chicken breast with zesty JFC sauce, shaved iceberg, and dill pickle on a fluffy French bun." },
+    ],
   },
   {
     name: "Lighthouse Coffee (Cliff Dr)",
@@ -227,7 +260,9 @@ const restaurants = [
     website: "https://www.lighthousecoffeesb.com/",
     phone: "805-679-5153",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Breakfast Sandwich", description: "Two scrambled eggs, three strips of bacon, avocado, grated cheddar, and tomato on an English muffin with mayo and lemon pepper." },
+    ],
   },
   {
     name: "Lighthouse Coffee (Chapala)",
@@ -240,7 +275,9 @@ const restaurants = [
     website: "https://www.lighthousecoffeesb.com/",
     phone: "805-679-5153",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Breakfast Sandwich", description: "Two scrambled eggs, three strips of bacon, avocado, grated cheddar, and tomato on an English muffin with mayo and lemon pepper." },
+    ],
   },
   {
     name: "Lighthouse Coffee (E Haley)",
@@ -253,7 +290,9 @@ const restaurants = [
     website: "https://www.lighthousecoffeesb.com/",
     phone: "805-679-5153",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Breakfast Sandwich", description: "Two scrambled eggs, three strips of bacon, avocado, grated cheddar, and tomato on an English muffin with mayo and lemon pepper." },
+    ],
   },
   {
     name: "Lighthouse Coffee (Turnpike)",
@@ -266,7 +305,9 @@ const restaurants = [
     website: "https://www.lighthousecoffeesb.com/",
     phone: "805-679-5153",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Breakfast Sandwich", description: "Two scrambled eggs, three strips of bacon, avocado, grated cheddar, and tomato on an English muffin with mayo and lemon pepper." },
+    ],
   },
   {
     name: "Lighthouse Coffee (Calle Real)",
@@ -279,7 +320,9 @@ const restaurants = [
     website: "https://www.lighthousecoffeesb.com/",
     phone: "805-679-5153",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Breakfast Sandwich", description: "Two scrambled eggs, three strips of bacon, avocado, grated cheddar, and tomato on an English muffin with mayo and lemon pepper." },
+    ],
   },
   {
     name: "Mesa Burger",
@@ -292,7 +335,10 @@ const restaurants = [
     website: "https://www.mesaburger.com/",
     phone: "805-963-7492",
     instagram: null,
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "Honey Spicy BBQ Crispy Sandwich", description: "Fried chicken on a toasted brioche bun with spicy honey-garlic BBQ sauce, mustard aioli, pickles, shredded lettuce, and blue cheese; vegan version available." },
+    ],
   },
   {
     name: "Mission City Sandwich Shop",
@@ -305,7 +351,10 @@ const restaurants = [
     website: "https://www.missioncitysandwichshop.com/",
     phone: "805-869-2253",
     instagram: "missioncity_sandwichshop",
-    menuItems: [],
+    menuItems: [
+      { name: "My Name Is Jeff", description: "Roasted chicken, bacon, pepper Jack, Duke's mayo, street-corn relish, avocado, iceberg, and cilantro on a toasted Dutch Crunch roll with guajillo-chipotle broth." },
+      { name: "The Whispers", description: "Roasted turkey, salami, Mama Lil's pepper muffuletta salad, red onion, romaine, parm-peppercorn dressing, and pesto on a toasted Dutch Crunch roll." },
+    ],
   },
   {
     name: "Noe's Cafe",
@@ -318,7 +367,14 @@ const restaurants = [
     website: null,
     phone: null,
     instagram: "noescafesb",
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "Tri-Tip", description: "Grilled onions, green chiles, lettuce, and Jack on a French roll." },
+      { name: "Tuna Melt", description: "Tuna and Jack on grilled sourdough." },
+      { name: "Chicken Pesto", description: "Chicken, arugula, onion, and Jack on ciabatta." },
+      { name: "Chicken BLT", description: "Chicken, bacon, cheddar, and chipotle aioli on ciabatta." },
+      { name: "Veggie", description: "Zucchini, bell pepper, grilled onions, avocado, Jack, and pesto on sourdough." },
+    ],
   },
   {
     name: "Norton's Pastrami & Deli",
@@ -331,7 +387,9 @@ const restaurants = [
     website: "https://nortonsdeli.com/",
     phone: "805-965-3210",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "\"The Best\" Hot Ham & Swiss", description: "Melted ham and Swiss with house chipotle mayo, fresh tomatoes, and house coleslaw; served with New York-style deli pickles." },
+    ],
   },
   {
     name: "Panino (Santa Barbara)",
@@ -344,7 +402,11 @@ const restaurants = [
     website: "https://www.paninorestaurants.com",
     phone: "805-963-3700",
     instagram: null,
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "#10 Roast Chicken", description: "Roasted chicken with sun-dried tomatoes, basil, provolone, red onion, greens, honey mustard, and mayo on your choice of bread." },
+      { name: "#22 Panino Caprese", description: "Fresh mozzarella, balsamic, extra-virgin olive oil, greens, sweet tomatoes, and basil." },
+    ],
   },
   {
     name: "Panino (Montecito)",
@@ -357,7 +419,11 @@ const restaurants = [
     website: "https://www.paninorestaurants.com",
     phone: "805-963-3700",
     instagram: null,
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "#10 Roast Chicken", description: "Roasted chicken with sun-dried tomatoes, basil, provolone, red onion, greens, honey mustard, and mayo on your choice of bread." },
+      { name: "#22 Panino Caprese", description: "Fresh mozzarella, balsamic, extra-virgin olive oil, greens, sweet tomatoes, and basil." },
+    ],
   },
   {
     name: "Panino (Goleta)",
@@ -370,7 +436,11 @@ const restaurants = [
     website: "https://www.paninorestaurants.com",
     phone: "805-963-3700",
     instagram: null,
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "#10 Roast Chicken", description: "Roasted chicken with sun-dried tomatoes, basil, provolone, red onion, greens, honey mustard, and mayo on your choice of bread." },
+      { name: "#22 Panino Caprese", description: "Fresh mozzarella, balsamic, extra-virgin olive oil, greens, sweet tomatoes, and basil." },
+    ],
   },
   {
     name: "Poke House",
@@ -383,7 +453,10 @@ const restaurants = [
     website: "https://www.poke.house",
     phone: "805-869-2722",
     instagram: "poke.house",
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "Spicy Salmon Sammich", description: "Spicy miso-marinated salmon with crispy nori and sushi-rice 'bread,' mixed greens, cucumber, grape tomatoes, furikake, and sriracha aioli; tofu option available." },
+    ],
   },
   {
     name: "'Que by Whiskey 'N Rye",
@@ -396,7 +469,9 @@ const restaurants = [
     website: "https://www.quesmokeshack.com",
     phone: "805-869-2193",
     instagram: "quesmokeshack",
-    menuItems: [],
+    menuItems: [
+      { name: "Carolina Pulled Pork Sando", description: "Hickory-smoked-overnight pork with crunchy dill coleslaw and pickled red onions on a soft potato bun." },
+    ],
   },
   {
     name: "Rinkside Cafe",
@@ -409,7 +484,10 @@ const restaurants = [
     website: "https://www.iceinparadise.org/rinkside-cafe",
     phone: "805-335-4521",
     instagram: "rinksidecafe",
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "Firecracker Banh Mi", description: "Toasted baguette with Szechuan-style hot-honey Firecracker Sauce, sriracha mayo, cucumber, jalapeno, scallions, pickled daikon and carrots, and fresh herbs; chicken thigh or tofu." },
+    ],
   },
   {
     name: "Santa Barbara Fish Market",
@@ -422,7 +500,9 @@ const restaurants = [
     website: "https://www.sbfish.com",
     phone: "805-965-9564",
     instagram: "sbfishmarket",
-    menuItems: [],
+    menuItems: [
+      { name: "Tuna Salad Sandwich", description: "Tuna with butter lettuce, in-house cured tomatoes, Dijon aioli, dill pickles, jalapeno, green onion, Castelvetrano olives, and mayo on toasted Breadbar sourdough." },
+    ],
   },
   {
     name: "Santa Barbara Pizza House",
@@ -435,7 +515,13 @@ const restaurants = [
     website: "https://www.sbpizzahouse.com",
     phone: "805-637-7721",
     instagram: null,
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "The Rincon", description: "House Nonna's meatballs in marinara with melted mozzarella and fresh basil on panunzzo pizza dough." },
+      { name: "The Shoreline", description: "Chicken, mozzarella, romaine, and Caesar dressing on focaccia." },
+      { name: "The Butterfly", description: "Eggplant dip, roasted red pepper, zucchini, yellow squash, mozzarella, mixed greens, and balsamic on focaccia." },
+      { name: "The Refugio", description: "Pesto, salami, capicola, provolone, lettuce, tomato, and Italian dressing on focaccia." },
+    ],
   },
   {
     name: "Shalhoob's (Funk Zone)",
@@ -448,7 +534,9 @@ const restaurants = [
     website: "https://shalhoob.com",
     phone: "805-256-7353",
     instagram: "shalhoobmeatco",
-    menuItems: [],
+    menuItems: [
+      { name: "Fried Chicken Sandwich", description: "Hand-battered fried chicken breast with honey-poppyseed slaw, bread-and-butter pickles, jalapenos, and hot honey on a brioche bun." },
+    ],
   },
   {
     name: "Shalhoob's (Goleta)",
@@ -461,7 +549,9 @@ const restaurants = [
     website: "https://shalhoob.com",
     phone: "805-256-7353",
     instagram: "shalhoobmeatco",
-    menuItems: [],
+    menuItems: [
+      { name: "Fried Chicken Sandwich", description: "Hand-battered fried chicken breast with honey-poppyseed slaw, bread-and-butter pickles, jalapenos, and hot honey on a brioche bun." },
+    ],
   },
   {
     name: "South Coast Deli (Carrillo)",
@@ -474,7 +564,9 @@ const restaurants = [
     website: "https://southcoastdeli.com/",
     phone: "805-845-4600",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "The Summer Abroad", description: "House-roasted pork loin with artichoke and roasted-garlic crema, mayo, marinated peppers and onions, kale in garlic dressing, and Pecorino." },
+    ],
   },
   {
     name: "South Coast Deli (Patterson)",
@@ -487,7 +579,9 @@ const restaurants = [
     website: "https://southcoastdeli.com/",
     phone: "805-845-4600",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "The Summer Abroad", description: "House-roasted pork loin with artichoke and roasted-garlic crema, mayo, marinated peppers and onions, kale in garlic dressing, and Pecorino." },
+    ],
   },
   {
     name: "South Coast Deli (State St)",
@@ -500,7 +594,9 @@ const restaurants = [
     website: "https://southcoastdeli.com/",
     phone: "805-845-4600",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "The Summer Abroad", description: "House-roasted pork loin with artichoke and roasted-garlic crema, mayo, marinated peppers and onions, kale in garlic dressing, and Pecorino." },
+    ],
   },
   {
     name: "South Coast Deli (Santa Barbara St)",
@@ -513,7 +609,9 @@ const restaurants = [
     website: "https://southcoastdeli.com/",
     phone: "805-845-4600",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "The Summer Abroad", description: "House-roasted pork loin with artichoke and roasted-garlic crema, mayo, marinated peppers and onions, kale in garlic dressing, and Pecorino." },
+    ],
   },
   {
     name: "The Blue Owl",
@@ -526,7 +624,11 @@ const restaurants = [
     website: "https://theblueowlsb.com/",
     phone: "805-705-0991",
     instagram: "blueowlsb",
-    menuItems: [],
+    vegetarian: true,
+    glutenFree: true,
+    menuItems: [
+      { name: "Banh Mi Sandwich", description: "Toasted D'Angelo Bakery baguette with oyster-chili mayo, shredded cabbage, pickled daikon and carrots, greens, cilantro, green onions, and chili sauce; pork, chicken, beef, tofu, or eggplant, with vegan and gluten-free options." },
+    ],
   },
   {
     name: "The Natural Cafe (Hitchcock)",
@@ -539,7 +641,10 @@ const restaurants = [
     website: "https://thenaturalcafe.com/",
     phone: "805-563-1163",
     instagram: null,
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "Portobello Sandwich", description: "Marinated, thinly sliced portobello with melted Jack, grilled onions, tomato, sprouts, pesto, and garlic mayo on nine-grain bread." },
+    ],
   },
   {
     name: "The Natural Cafe (Goleta)",
@@ -552,7 +657,10 @@ const restaurants = [
     website: "https://thenaturalcafe.com/",
     phone: "805-563-1163",
     instagram: null,
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "Portobello Sandwich", description: "Marinated, thinly sliced portobello with melted Jack, grilled onions, tomato, sprouts, pesto, and garlic mayo on nine-grain bread." },
+    ],
   },
   {
     name: "The Patio Cafe",
@@ -565,7 +673,10 @@ const restaurants = [
     website: "https://www.thepatiocafesb.com/",
     phone: "805-687-3663",
     instagram: "the.patiocafesb",
-    menuItems: [],
+    menuItems: [
+      { name: "Chicken Wrapped Nugget", description: "Sriracha-tossed chicken nuggets with guac, grilled onions, lettuce, and tomato in a flour tortilla." },
+      { name: "The Torta", description: "Louisiana sausage with pico de gallo, queso fresco, and sour cream, served open-faced." },
+    ],
   },
   {
     name: "Valentino's Take N' Bake Pizza",
@@ -578,7 +689,12 @@ const restaurants = [
     website: null,
     phone: "805-967-7338",
     instagram: "valentinos_sb",
-    menuItems: [],
+    vegetarian: true,
+    menuItems: [
+      { name: "The Tyler", description: "Diced chicken breast, crispy bacon, jalapenos, mozzarella, parmesan, ranch, avocado, and lettuce on a soft French roll." },
+      { name: "Veggie Sub", description: "Tomato, onion, pickle, cucumber, zucchini, mushrooms, black olives, lettuce, provolone, mozzarella, and marinated red onions with Italian vinaigrette, mayo, and mustard." },
+      { name: "Italian Sub", description: "Provolone, mozzarella, capicola ham, cotto and dry salami, tomatoes, onions, lettuce, pepperoncini, and Italian dressing." },
+    ],
   },
   {
     name: "Validation Ale (Yanonali)",
@@ -591,7 +707,9 @@ const restaurants = [
     website: "https://www.validationale.com/",
     phone: "805-500-3111",
     instagram: "validationsb",
-    menuItems: [],
+    menuItems: [
+      { name: "Gochujang Fried Chicken", description: "Fried chicken in tangy gochujang sauce with crisp coleslaw, brined pickles, and cilantro on a brioche bun." },
+    ],
   },
   {
     name: "Validation Ale (De La Vina)",
@@ -604,7 +722,9 @@ const restaurants = [
     website: "https://www.validationale.com/",
     phone: "805-500-3111",
     instagram: "validationsb",
-    menuItems: [],
+    menuItems: [
+      { name: "Gochujang Fried Chicken", description: "Fried chicken in tangy gochujang sauce with crisp coleslaw, brined pickles, and cilantro on a brioche bun." },
+    ],
   },
   {
     name: "Yellow Belly",
@@ -617,7 +737,9 @@ const restaurants = [
     website: "https://www.yellowbellytap.com/",
     phone: "805-770-5694",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Chipotle Chicken Tinga Sammie", description: "Slow-cooked chicken tinga on a toasted brioche bun with iceberg, avocado, pico de gallo, and cotija." },
+    ],
   },
   {
     name: "Dave's Drip House",
@@ -630,6 +752,9 @@ const restaurants = [
     website: "https://www.davesdriphouse.com",
     phone: "805-869-2128",
     instagram: null,
-    menuItems: [],
+    menuItems: [
+      { name: "Mac Crack Sandwich", description: "Fried chicken tender (mild to inferno spice levels) on a split brioche bun with mac 'n' cheese and house pink sauce." },
+      { name: "Chipotle Chicken Sandwich", description: "Deep-fried chicken strip with melted Jack, bacon, jalapenos, and chipotle aioli on grilled sourdough." },
+    ],
   },
 ];
