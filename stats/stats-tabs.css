@@ -1,3 +1,42 @@
+/* Date-range filter row */
+
+.date-filter-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.date-filter-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #888;
+  margin-right: 2px;
+}
+
+.date-filter-btn {
+  padding: 5px 13px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  background: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.date-filter-btn:hover {
+  background: #f0f0f0;
+}
+
+.date-filter-btn.active {
+  background: var(--dark, #2b2b2b);
+  color: #fff;
+  border-color: transparent;
+}
+
 /* Tab bar styles */
 
 .tab-bar {

@@ -428,8 +428,9 @@
   var __eventConcluded = __statsEventState === "post-event" || __statsEventState === "off-season";
 
   function hourlyDateParams() {
-    if (THEME.eventStartDate && THEME.eventEndDate) {
-      return "&start=" + encodeURIComponent(THEME.eventStartDate) + "&end=" + encodeURIComponent(THEME.eventEndDate);
+    var r = StatsUtils.getActiveRange();
+    if (r.start && r.end) {
+      return "&start=" + encodeURIComponent(r.start) + "&end=" + encodeURIComponent(r.end);
     }
     return "";
   }
@@ -835,7 +836,7 @@
   if (typeof TRACKING_SNAPSHOT !== "undefined" && TRACKING_SNAPSHOT.detail) {
     render(TRACKING_SNAPSHOT.detail);
   } else if (THEME.trackUrl) {
-    fetch(THEME.trackUrl + "?detail=true", { method: "GET" })
+    fetch(THEME.trackUrl + "?detail=true" + hourlyDateParams(), { method: "GET" })
       .then(function (resp) {
         return resp.json();
       })

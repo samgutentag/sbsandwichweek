@@ -77,8 +77,9 @@
     }
     if (!THEME.trackUrl) return Promise.resolve(null);
     var dateParams = "";
-    if (THEME.eventStartDate && THEME.eventEndDate) {
-      dateParams = "&start=" + encodeURIComponent(THEME.eventStartDate) + "&end=" + encodeURIComponent(THEME.eventEndDate);
+    var r = StatsUtils.getActiveRange();
+    if (r.start && r.end) {
+      dateParams = "&start=" + encodeURIComponent(r.start) + "&end=" + encodeURIComponent(r.end);
     }
     return fetch(THEME.trackUrl + "?hourly=true" + dateParams, { method: "GET" })
       .then(function (resp) { return resp.ok ? resp.json() : null; })

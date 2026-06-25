@@ -12,6 +12,31 @@
     if (peBtn) peBtn.style.display = "none";
   }
 
+  // Date-range filter row. Presets drive the ?range= param; changing it reloads
+  // so all five lazy-loaded tabs re-window consistently — no per-tab re-render.
+  (function () {
+    var row = document.getElementById("dateFilterRow");
+    if (!row) return;
+    var active =
+      window.StatsUtils && StatsUtils.getActiveRange
+        ? StatsUtils.getActiveRange().preset
+        : "all";
+    row.querySelectorAll(".date-filter-btn").forEach(function (btn) {
+      if (btn.getAttribute("data-range") === active) btn.classList.add("active");
+      btn.addEventListener("click", function () {
+        var r = btn.getAttribute("data-range");
+        if (r === active) return;
+        var params = new URLSearchParams(window.location.search);
+        if (r === "all") params.delete("range");
+        else params.set("range", r);
+        var qs = params.toString();
+        // Preserve the active tab (hash) across the reload.
+        window.location.href =
+          window.location.pathname + (qs ? "?" + qs : "") + window.location.hash;
+      });
+    });
+  })();
+
   // Lazy-load CSS and JS for a tab
   function loadTab(name) {
     if (loaded[name]) return Promise.resolve();
