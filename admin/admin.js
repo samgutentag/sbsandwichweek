@@ -56,7 +56,7 @@
         tableBody.innerHTML = html;
         totalCount.textContent = total.toLocaleString();
 
-        fetchViewports();
+        fetchAuxStats();
       })
       .catch(function () {
         authError.textContent = "Network error. Try again.";
@@ -64,9 +64,57 @@
       });
   }
 
-  // Screen Widths — viewport-bucket samples pulled from the public aggregate.
-  function fetchViewports() {
+  // Auxiliary admin breakdowns pulled from the public aggregate: screen widths
+  // (viewport buckets) and traffic sources (the ?src= tag on inbound links).
+  function fetchAuxStats() {
     if (!THEME.trackUrl) return;
+    fetch(THEME.trackUrl + "?detail=true")
+      .then(function (resp) { return resp.ok ? resp.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+        renderViewports(data);
+        renderSources(data);
+      })
+      .catch(function () {});
+  }
+
+  // Sum an action's counts across all aggregate entries.
+  function sumByAction(data, action) {
+    var counts = {};
+    var total = 0;
+    Object.keys(data).forEach(function (name) {
+      var v = data[name] && data[name][action];
+      if (v) {
+        counts[name] = (counts[name] || 0) + v;
+        total += v;
+      }
+    });
+    return { counts: counts, total: total };
+  }
+
+  // Render rows of label / count / share into a table body.
+  function renderRows(bodyId, keys, counts, total, decorate) {
+    document.getElementById(bodyId).innerHTML = keys
+      .map(function (k) {
+        var c = counts[k];
+        var share = total > 0 ? Math.round((c / total) * 100) + "%" : "0%";
+        var d = decorate ? decorate(k) : { label: k, cls: "" };
+        return (
+          "<tr" + (d.cls ? ' class="' + d.cls + '"' : "") + ">" +
+          "<td>" + escapeHtml(d.label) + "</td>" +
+          '<td class="col-count">' + c.toLocaleString() + "</td>" +
+          '<td class="col-count">' + share + "</td>" +
+          "</tr>"
+        );
+      })
+      .join("");
+  }
+
+  function show(ids) {
+    ids.forEach(function (id) { document.getElementById(id).style.display = ""; });
+  }
+
+  function renderViewports(data) {
     var ORDER = ["<400", "400-599", "600-767", "768-1023", "1024-1439", "1440+"];
     var LABELS = {
       "<400": "≤ 399px — small phone",
@@ -78,48 +126,26 @@
     };
     var MOBILE = { "<400": 1, "400-599": 1, "600-767": 1 };
 
-    fetch(THEME.trackUrl + "?detail=true")
-      .then(function (resp) { return resp.ok ? resp.json() : null; })
-      .then(function (data) {
-        if (!data) return;
-        var counts = {};
-        var total = 0;
-        Object.keys(data).forEach(function (name) {
-          var v = data[name] && data[name].viewport;
-          if (v) {
-            counts[name] = (counts[name] || 0) + v;
-            total += v;
-          }
-        });
-        if (total === 0) return;
+    var r = sumByAction(data, "viewport");
+    if (r.total === 0) return;
+    var keys = ORDER.filter(function (k) { return r.counts[k]; });
+    Object.keys(r.counts).forEach(function (k) {
+      if (ORDER.indexOf(k) === -1) keys.push(k);
+    });
+    renderRows("viewportBody", keys, r.counts, r.total, function (k) {
+      return { label: (LABELS[k] || k) + (MOBILE[k] ? " 📱" : ""), cls: MOBILE[k] ? "vp-mobile" : "" };
+    });
+    document.getElementById("viewportTotal").textContent = r.total.toLocaleString();
+    show(["viewportTitle", "viewportTotalRow", "viewportTable", "viewportNote"]);
+  }
 
-        var keys = ORDER.filter(function (k) { return counts[k]; });
-        Object.keys(counts).forEach(function (k) {
-          if (ORDER.indexOf(k) === -1) keys.push(k);
-        });
-
-        var html = keys
-          .map(function (k) {
-            var c = counts[k];
-            var share = total > 0 ? Math.round((c / total) * 100) + "%" : "0%";
-            return (
-              "<tr" + (MOBILE[k] ? ' class="vp-mobile"' : "") + ">" +
-              "<td>" + escapeHtml(LABELS[k] || k) + (MOBILE[k] ? " 📱" : "") + "</td>" +
-              '<td class="col-count">' + c.toLocaleString() + "</td>" +
-              '<td class="col-count">' + share + "</td>" +
-              "</tr>"
-            );
-          })
-          .join("");
-
-        document.getElementById("viewportBody").innerHTML = html;
-        document.getElementById("viewportTotal").textContent = total.toLocaleString();
-        document.getElementById("viewportTitle").style.display = "";
-        document.getElementById("viewportTotalRow").style.display = "";
-        document.getElementById("viewportTable").style.display = "";
-        document.getElementById("viewportNote").style.display = "";
-      })
-      .catch(function () {});
+  function renderSources(data) {
+    var r = sumByAction(data, "source");
+    if (r.total === 0) return;
+    var keys = Object.keys(r.counts).sort(function (a, b) { return r.counts[b] - r.counts[a]; });
+    renderRows("sourceBody", keys, r.counts, r.total);
+    document.getElementById("sourceTotal").textContent = r.total.toLocaleString();
+    show(["sourceTitle", "sourceTotalRow", "sourceTable", "sourceNote"]);
   }
 
   function escapeHtml(str) {

@@ -244,6 +244,26 @@
           One sample per visit · all collected data · mobile widths shaded
         </p>
 
+        <h2 class="section-title" id="sourceTitle" style="display: none">
+          Traffic Sources
+        </h2>
+        <p class="stat-total" id="sourceTotalRow" style="display: none">
+          Tagged visits: <strong id="sourceTotal">—</strong>
+        </p>
+        <table id="sourceTable" style="display: none">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th class="col-count">Visits</th>
+              <th class="col-count">Share</th>
+            </tr>
+          </thead>
+          <tbody id="sourceBody"></tbody>
+        </table>
+        <p class="footer-note" id="sourceNote" style="display: none">
+          From the ?src= tag on inbound links (e.g. embed) · untagged visits not counted
+        </p>
+
         <h2 class="section-title">Search Queries</h2>
         <p class="stat-total">
           Total searches (last 7 days): <strong id="totalCount">—</strong>

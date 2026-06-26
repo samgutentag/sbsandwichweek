@@ -25,7 +25,7 @@
   }
   var embedFullMapLink = document.getElementById("embedFullMapLink");
   if (embedFullMapLink) {
-    embedFullMapLink.href = THEME.siteUrl + "/";
+    embedFullMapLink.href = THEME.siteUrl + "/?src=embed";
   }
 
   // ── Apply theme to About modal ─────────────────

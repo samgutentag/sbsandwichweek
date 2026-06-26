@@ -143,7 +143,7 @@
         document.getElementById("embedShowcaseTitle").textContent = "Embed the " + t.eventName + " Map";
         document.getElementById("embedPreview").title = mapTitle;
         var mobileLink = document.getElementById("mobileFullMapLink");
-        if (mobileLink) mobileLink.href = t.siteUrl + "/";
+        if (mobileLink) mobileLink.href = t.siteUrl + "/?src=embed";
         var embedContact = document.getElementById("embedContact");
         if (embedContact && t.contactDomain) {
           var year = new Date().getFullYear();

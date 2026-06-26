@@ -33,6 +33,17 @@
       sessionStorage.setItem("vp-sampled", "1");
     }
   } catch (e) {}
+
+  // One traffic-source sample per session from the ?src= param (e.g. links from
+  // the article embed carry ?src=embed), so we can attribute where visits come
+  // from without any third-party analytics.
+  try {
+    var src = new URLSearchParams(location.search).get("src");
+    if (src && !sessionStorage.getItem("src-sampled")) {
+      window.track("source", src.slice(0, 40));
+      sessionStorage.setItem("src-sampled", "1");
+    }
+  } catch (e) {}
 })();
 
 // Cloudflare Web Analytics (RUM) beacon — powers the live-visitor counts.
