@@ -526,7 +526,7 @@
     // Hours line in popup (rendered dynamically, populated after hoursData loads)
     popupHtml += '<div class="popup-hours" data-hours-name="' + escapeHtml(r.name) + '"></div>';
 
-    var shareUrl = THEME.siteUrl + "/#" + slugify(r.name);
+    var shareUrl = THEME.siteUrl + "/?src=share#" + slugify(r.name);
     popupHtml +=
       '<div class="popup-section popup-section-directions">' +
       '<div class="popup-section-heading">Address</div>' +
@@ -1675,7 +1675,7 @@
     if (tipShareBtn) {
       tipShareBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        var shareUrl = THEME.siteUrl + "/";
+        var shareUrl = THEME.siteUrl + "/?src=share";
         var shareTitle = THEME.eventName + " Map";
         if (typeof window.track === "function")
           window.track("tip-share", "tip-jar");
