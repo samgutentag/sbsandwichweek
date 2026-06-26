@@ -1,9 +1,13 @@
 name: Snapshot Tracking Data
 
 on:
-  # Daily snapshot to capture residual post-event usage
-  # schedule:
-  #   - cron: "0 14 * * *"  # Daily at 7am PT (14:00 UTC)
+  # Daily at 7am PT (14:00 UTC) across the event window: data-live through a
+  # few days after the event (Jun 22 – Jul 5, 2026). Two crons for the month
+  # boundary. These daily snapshots feed the Insights / Trends / Restaurants
+  # tabs. Disable again after the event.
+  schedule:
+    - cron: "0 14 22-30 6 *"
+    - cron: "0 14 1-5 7 *"
   workflow_dispatch:
 
 permissions:
