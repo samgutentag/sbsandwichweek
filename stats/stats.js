@@ -240,8 +240,6 @@
 
     currentRows = rows;
 
-    renderViewports(data);
-
     // Summary cards
     document.getElementById("totalViews").textContent =
       totalViews.toLocaleString();
@@ -327,58 +325,6 @@
         '<span class="bar-value">' + e.count.toLocaleString() + '</span>';
       container.appendChild(row);
     });
-  }
-
-  // ── Screen Widths (viewport buckets) ─────────
-  var VIEWPORT_ORDER = ["<400", "400-599", "600-767", "768-1023", "1024-1439", "1440+"];
-  var VIEWPORT_LABELS = {
-    "<400": "≤ 399px — small phone",
-    "400-599": "400–599px — phone",
-    "600-767": "600–767px — large phone",
-    "768-1023": "768–1023px — tablet",
-    "1024-1439": "1024–1439px — laptop",
-    "1440+": "1440px+ — desktop",
-  };
-  var VIEWPORT_MOBILE = { "<400": 1, "400-599": 1, "600-767": 1 };
-
-  function renderViewports(data) {
-    var container = document.getElementById("viewportBars");
-    if (!container) return;
-    var counts = {};
-    var total = 0;
-    Object.keys(data).forEach(function (name) {
-      var v = data[name] && data[name].viewport;
-      if (v) {
-        counts[name] = (counts[name] || 0) + v;
-        total += v;
-      }
-    });
-    if (total === 0) return;
-
-    // Known buckets in width order, then any unexpected ones.
-    var keys = VIEWPORT_ORDER.filter(function (k) { return counts[k]; });
-    Object.keys(counts).forEach(function (k) {
-      if (VIEWPORT_ORDER.indexOf(k) === -1) keys.push(k);
-    });
-    var max = 0;
-    keys.forEach(function (k) { if (counts[k] > max) max = counts[k]; });
-
-    container.innerHTML = "";
-    keys.forEach(function (k) {
-      var c = counts[k];
-      var widthPct = max > 0 ? (c / max * 100) : 0;
-      var sharePct = total > 0 ? (c / total * 100) : 0;
-      var row = document.createElement("div");
-      row.className = "bar-row";
-      row.innerHTML =
-        '<span class="bar-label">' + escapeHtml(VIEWPORT_LABELS[k] || k) + "</span>" +
-        '<div class="bar-track"><div class="bar-fill' +
-        (VIEWPORT_MOBILE[k] ? " bar-fill-mobile" : "") +
-        '" style="width:' + widthPct.toFixed(1) + '%"></div></div>' +
-        '<span class="bar-value">' + c.toLocaleString() + " (" + sharePct.toFixed(0) + "%)</span>";
-      container.appendChild(row);
-    });
-    document.getElementById("viewportSection").style.display = "";
   }
 
   function renderPlatform(data) {
@@ -606,7 +552,7 @@
 
   // Plain-language "what this counts" captions, keyed by the card's data-metric.
   var METRIC_CAPTIONS = {
-    view: "Someone opened this restaurant's pin on the map.",
+    view: "Map views — how often a restaurant's pin was opened.",
     "directions-apple": "Someone tapped the Apple Maps button for directions.",
     "directions-google": "Someone tapped the Google Maps button for directions.",
     website: "Someone tapped through to the restaurant's website.",

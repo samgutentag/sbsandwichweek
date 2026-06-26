@@ -182,6 +182,20 @@
         font-size: 13px;
         margin-top: 24px;
       }
+      .section-title {
+        margin: 36px 0 14px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .section-title-first {
+        margin-top: 8px;
+      }
+      tr.vp-mobile td {
+        background: #f0faf7;
+      }
+      tr.vp-mobile:hover td {
+        background: #e6f5ef;
+      }
     </style>
   </head>
   <body>
@@ -210,6 +224,27 @@
       </div>
 
       <div class="data-view" id="dataView">
+        <h2 class="section-title section-title-first" id="viewportTitle" style="display: none">
+          Screen Widths
+        </h2>
+        <p class="stat-total" id="viewportTotalRow" style="display: none">
+          Total samples: <strong id="viewportTotal">—</strong>
+        </p>
+        <table id="viewportTable" style="display: none">
+          <thead>
+            <tr>
+              <th>Screen Width</th>
+              <th class="col-count">Visits</th>
+              <th class="col-count">Share</th>
+            </tr>
+          </thead>
+          <tbody id="viewportBody"></tbody>
+        </table>
+        <p class="footer-note" id="viewportNote" style="display: none">
+          One sample per visit · all collected data · mobile widths shaded
+        </p>
+
+        <h2 class="section-title">Search Queries</h2>
         <p class="stat-total">
           Total searches (last 7 days): <strong id="totalCount">—</strong>
         </p>

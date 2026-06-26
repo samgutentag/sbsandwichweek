@@ -6,12 +6,6 @@
   var panels = document.querySelectorAll(".tab-panel");
   var loaded = { activity: true }; // Activity tab always loaded
 
-  // Hide Post-Event tab in off-season
-  if (typeof getEventState === "function" && getEventState() === "off-season") {
-    var peBtn = document.querySelector('.tab-btn[data-tab="post-event"]');
-    if (peBtn) peBtn.style.display = "none";
-  }
-
   // Date-range filter row. Presets drive the ?range= param; changing it reloads
   // so all five lazy-loaded tabs re-window consistently — no per-tab re-render.
   (function () {
@@ -46,13 +40,11 @@
       insights: "insights/insights.css",
       trends: "trends/trends.css",
       restaurants: "restaurant/restaurant.css",
-      "post-event": "post-event/post-event.css",
     };
     var jsMap = {
       insights: "insights/insights-tab.js",
       trends: "trends/trends-tab.js",
       restaurants: "restaurant/restaurant-tab.js",
-      "post-event": "post-event/post-event-tab.js",
     };
 
     // Load CSS
@@ -115,12 +107,7 @@
     var tabName = parts[0];
 
     // Map valid tab names
-    var validTabs = { activity: 1, insights: 1, trends: 1, restaurants: 1, "post-event": 1 };
-    // Redirect post-event to activity in off-season
-    if (tabName === "post-event" && typeof getEventState === "function" && getEventState() === "off-season") {
-      tabName = "activity";
-      window.location.hash = "";
-    }
+    var validTabs = { activity: 1, insights: 1, trends: 1, restaurants: 1 };
     if (validTabs[tabName]) {
       switchTab(tabName);
     } else {

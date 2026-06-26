@@ -52,7 +52,7 @@ var StatsUtils = (function () {
     var preset = "all";
     try {
       var p = new URLSearchParams(window.location.search).get("range");
-      if (p === "event" || p === "pre" || p === "all") preset = p;
+      if (p === "event" || p === "pre" || p === "post" || p === "all") preset = p;
     } catch (e) {}
     var live = THEME.dataLiveDate || THEME.eventStartDate || todayStr();
     var start = live;
@@ -63,6 +63,9 @@ var StatsUtils = (function () {
     } else if (preset === "pre") {
       start = live;
       end = THEME.eventStartDate ? addDays(THEME.eventStartDate, -1) : todayStr();
+    } else if (preset === "post") {
+      start = THEME.eventEndDate ? addDays(THEME.eventEndDate, 1) : live;
+      end = todayStr();
     }
     return { preset: preset, start: start, end: end };
   }
@@ -91,20 +94,23 @@ var StatsUtils = (function () {
   }
 
   // Fetch all daily snapshots within a date range (defaults to active range).
+  // Snapshot files are named with the UTC date, so iterate UTC date strings
+  // (not local Date objects) and add a one-day buffer — otherwise a behind-UTC
+  // timezone misses the current day's snapshot.
   function fetchAllSnapshots(basePath, range) {
     basePath = basePath || "../snapshots/";
     range = range || getActiveRange();
     var startStr = range.start || THEME.dataLiveDate || THEME.eventStartDate;
-    var today = new Date();
-    var endCap = today;
-    if (range.end) {
-      var rangeEnd = new Date(range.end + "T00:00:00");
-      rangeEnd.setDate(rangeEnd.getDate() + 1);
-      if (rangeEnd < today) endCap = rangeEnd;
-    }
+    var todayUTC = todayStr();
+    var endStr = range.end && range.end < todayUTC ? range.end : todayUTC;
+    endStr = addDays(endStr, 1); // buffer for UTC/local boundary
     var dates = [];
-    for (var d = new Date(startStr + "T00:00:00"); d <= endCap; d.setDate(d.getDate() + 1)) {
-      dates.push(d.toISOString().slice(0, 10));
+    var d = startStr;
+    var guard = 0;
+    while (d <= endStr && guard < 400) {
+      dates.push(d);
+      d = addDays(d, 1);
+      guard++;
     }
 
     var fetches = dates.map(function (ds) {

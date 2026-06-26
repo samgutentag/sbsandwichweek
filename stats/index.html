@@ -33,15 +33,15 @@
       <div class="date-filter-row" id="dateFilterRow">
         <span class="date-filter-label">Range</span>
         <button class="date-filter-btn" data-range="all">All time</button>
-        <button class="date-filter-btn" data-range="event">Event week</button>
         <button class="date-filter-btn" data-range="pre">Pre-event</button>
+        <button class="date-filter-btn" data-range="event">During</button>
+        <button class="date-filter-btn" data-range="post">Post-event</button>
       </div>
       <div class="tab-bar">
         <button class="tab-btn active" data-tab="activity">Activity</button>
         <button class="tab-btn" data-tab="insights">Insights</button>
         <button class="tab-btn" data-tab="trends">Trends</button>
         <button class="tab-btn" data-tab="restaurants">Restaurants</button>
-        <button class="tab-btn" data-tab="post-event">Post-Event</button>
       </div>
 
       <div class="tab-panel active" id="tab-activity">
@@ -115,15 +115,6 @@
           <div class="filter-stats-grid" id="filterStatsGrid"></div>
         </div>
 
-        <div class="leaderboard-section" id="viewportSection" style="display: none">
-          <h2>Screen Widths</h2>
-          <p class="leaderboard-hint">
-            Viewport width when the map loads — one sample per visit. Mobile
-            widths are highlighted.
-          </p>
-          <div class="viewport-bars" id="viewportBars"></div>
-        </div>
-
         <div class="leaderboard-section" id="platformSection" style="display: none">
           <h2>Platform & Device</h2>
           <p class="leaderboard-hint">Visitor breakdown from the last 7 days</p>
@@ -166,7 +157,6 @@
       <div class="tab-panel" id="tab-insights"></div>
       <div class="tab-panel" id="tab-trends"></div>
       <div class="tab-panel" id="tab-restaurants"></div>
-      <div class="tab-panel" id="tab-post-event"></div>
 
       <p class="footer-note" id="footerNote">Loading data…</p>
     </main>
