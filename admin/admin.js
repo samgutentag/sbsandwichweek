@@ -74,6 +74,8 @@
         if (!data) return;
         renderViewports(data);
         renderSources(data);
+        renderDrawer(data);
+        renderEmptySearches(data);
       })
       .catch(function () {});
   }
@@ -146,6 +148,31 @@
     renderRows("sourceBody", keys, r.counts, r.total);
     document.getElementById("sourceTotal").textContent = r.total.toLocaleString();
     show(["sourceTitle", "sourceTotalRow", "sourceTable", "sourceNote"]);
+  }
+
+  function renderDrawer(data) {
+    var ORDER = ["half", "full"];
+    var LABELS = { half: "Expanded to half", full: "Expanded to full" };
+    var r = sumByAction(data, "drawer-expand");
+    if (r.total === 0) return;
+    var keys = ORDER.filter(function (k) { return r.counts[k]; });
+    Object.keys(r.counts).forEach(function (k) {
+      if (ORDER.indexOf(k) === -1) keys.push(k);
+    });
+    renderRows("drawerBody", keys, r.counts, r.total, function (k) {
+      return { label: LABELS[k] || k, cls: "" };
+    });
+    document.getElementById("drawerTotal").textContent = r.total.toLocaleString();
+    show(["drawerTitle", "drawerTotalRow", "drawerTable", "drawerNote"]);
+  }
+
+  function renderEmptySearches(data) {
+    var r = sumByAction(data, "search-empty");
+    if (r.total === 0) return;
+    var keys = Object.keys(r.counts).sort(function (a, b) { return r.counts[b] - r.counts[a]; });
+    renderRows("emptyBody", keys, r.counts, r.total);
+    document.getElementById("emptyTotal").textContent = r.total.toLocaleString();
+    show(["emptyTitle", "emptyTotalRow", "emptyTable", "emptyNote"]);
   }
 
   function escapeHtml(str) {

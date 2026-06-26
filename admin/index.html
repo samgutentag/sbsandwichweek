@@ -264,6 +264,27 @@
           From the ?src= tag on inbound links (e.g. embed) · untagged visits not counted
         </p>
 
+        <h2 class="section-title" id="drawerTitle" style="display: none">
+          Drawer Engagement (mobile)
+        </h2>
+        <p class="stat-total" id="drawerTotalRow" style="display: none">
+          Sessions that opened the drawer: <strong id="drawerTotal">—</strong>
+        </p>
+        <table id="drawerTable" style="display: none">
+          <thead>
+            <tr>
+              <th>Reached</th>
+              <th class="col-count">Sessions</th>
+              <th class="col-count">Share</th>
+            </tr>
+          </thead>
+          <tbody id="drawerBody"></tbody>
+        </table>
+        <p class="footer-note" id="drawerNote" style="display: none">
+          First drawer expansion per session · phones only · low numbers mean the
+          list/filters go unseen on mobile
+        </p>
+
         <h2 class="section-title">Search Queries</h2>
         <p class="stat-total">
           Total searches (last 7 days): <strong id="totalCount">—</strong>
@@ -279,6 +300,27 @@
           <tbody id="tableBody"></tbody>
         </table>
         <p class="footer-note">Last 7 days · Top 500 queries</p>
+
+        <h2 class="section-title" id="emptyTitle" style="display: none">
+          Empty Searches
+        </h2>
+        <p class="stat-total" id="emptyTotalRow" style="display: none">
+          Searches with no results: <strong id="emptyTotal">—</strong>
+        </p>
+        <table id="emptyTable" style="display: none">
+          <thead>
+            <tr>
+              <th>Query</th>
+              <th class="col-count">Count</th>
+              <th class="col-count">Share</th>
+            </tr>
+          </thead>
+          <tbody id="emptyBody"></tbody>
+        </table>
+        <p class="footer-note" id="emptyNote" style="display: none">
+          Searches that returned zero matches — missing spots, name mismatches,
+          or features people expect
+        </p>
       </div>
     </main>
 

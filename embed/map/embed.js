@@ -921,14 +921,17 @@
   var searchBox = document.getElementById("searchBox");
 
   var searchTrackTimer = null;
+  var lastFilteredCount = 0;
   searchBox.addEventListener("input", function () {
     searchTerm = this.value.toLowerCase().trim();
     renderList();
-    // Track search queries (debounced, 2+ chars)
+    // Track search queries (debounced, 2+ chars). Also flag zero-result
+    // searches — they reveal missing spots, name mismatches, or feature gaps.
     clearTimeout(searchTrackTimer);
     if (searchTerm.length >= 2 && typeof window.track === "function") {
       searchTrackTimer = setTimeout(function () {
         window.track("search", searchTerm);
+        if (lastFilteredCount === 0) window.track("search-empty", searchTerm);
       }, 800);
     }
   });
@@ -974,6 +977,8 @@
     filtered.sort(function (a, b) {
       return a.name.localeCompare(b.name);
     });
+
+    lastFilteredCount = filtered.length;
 
     if (checklistMode) {
       var checkedCount = filtered.filter(function (r) {
