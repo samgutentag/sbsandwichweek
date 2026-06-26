@@ -998,6 +998,24 @@
   });
   filtersEl.appendChild(hoursFilterSpan);
 
+  // Horizontal-scroll fade hints: fade whichever edge has more off-screen chips
+  // so the rows read as scrollable rather than a complete short list.
+  var filterRowEls = filtersEl.querySelectorAll(".filter-row");
+  function refreshFilterScrollHints() {
+    filterRowEls.forEach(function (row) {
+      var scrollable = row.scrollWidth - row.clientWidth > 2;
+      var atStart = row.scrollLeft <= 1;
+      var atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 1;
+      row.classList.toggle("fade-left", scrollable && !atStart);
+      row.classList.toggle("fade-right", scrollable && !atEnd);
+    });
+  }
+  filterRowEls.forEach(function (row) {
+    row.addEventListener("scroll", refreshFilterScrollHints, { passive: true });
+  });
+  window.addEventListener("resize", refreshFilterScrollHints);
+  requestAnimationFrame(refreshFilterScrollHints);
+
   var activeArea = null;
   var activeTag = null;
 
@@ -1084,6 +1102,8 @@
     if (willOpen && window.innerWidth <= 768 && currentStop < 2) {
       snapDrawerTo(2);
     }
+    // Rows have zero size while the panel is hidden, so refresh hints on open.
+    if (willOpen) requestAnimationFrame(refreshFilterScrollHints);
   });
 
   // ── Zoom reset control (below +/- buttons) ────

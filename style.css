@@ -320,6 +320,12 @@ header h1 span {
   background: #f0f0f0;
 }
 
+.area-btn:focus-visible,
+.sidebar-upvote:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 1px;
+}
+
 .area-btn.active {
   color: #fff;
   border-color: transparent;
@@ -1503,9 +1509,51 @@ header h1 span {
     padding: 14px 16px;
   }
 
+  /* Filters become horizontal scrolling chip strips: no truncation, and far
+     less vertical space than the wrapping 3-column grid at phone widths. */
+  .filter-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 2px;
+  }
+  .filter-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Fade the edge that has more off-screen chips, so the row reads as
+     scrollable instead of a complete short list. Toggled in app.js. */
+  .filter-row.fade-right:not(.fade-left) {
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent);
+  }
+  .filter-row.fade-left:not(.fade-right) {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 48px);
+    mask-image: linear-gradient(90deg, transparent, #000 48px);
+  }
+  .filter-row.fade-left.fade-right {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+  }
+
   .area-btn {
-    padding: 8px 14px;
-    min-height: 36px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 9px 14px;
+    min-height: 44px;
+    font-size: 0.8rem;
+  }
+
+  /* The list upvote was a ~20px target; make it a real 44px tap area. */
+  .sidebar-upvote {
+    min-height: 44px;
+    padding: 4px 12px;
     font-size: 0.8rem;
   }
 
