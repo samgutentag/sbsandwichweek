@@ -3,11 +3,9 @@
 (function () {
   "use strict";
 
-  // ── Redirect mobile users to full map ─────────────
-  if (window.innerWidth <= 600) {
-    window.location.replace(THEME.siteUrl + "/embed/");
-    return;
-  }
+  // On small screens the embed renders a map-only layout (sidebar hidden via
+  // CSS) with a floating "Open full map" CTA, so phone readers still get an
+  // interactive map inline instead of being bounced off the article.
 
   // ── Apply theme to page ──────────────────────────
   document.title = THEME.eventName + " Map";
@@ -23,9 +21,9 @@
       THEME.eventDates +
       "</span>";
   }
-  var embedFullMapLink = document.getElementById("embedFullMapLink");
-  if (embedFullMapLink) {
-    embedFullMapLink.href = THEME.siteUrl + "/?src=embed";
+  var embedFooterCta = document.getElementById("embedFooterCta");
+  if (embedFooterCta) {
+    embedFooterCta.href = THEME.siteUrl + "/?src=embed";
   }
 
   // ── Apply theme to About modal ─────────────────

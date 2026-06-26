@@ -265,7 +265,8 @@ body {
 
 .app {
   display: flex;
-  height: calc(100% - 36px);
+  /* header (36px) + footer CTA (36px) */
+  height: calc(100% - 72px);
   overflow: hidden;
 }
 
@@ -822,6 +823,46 @@ body {
 #map {
   flex: 1;
   z-index: 1;
+}
+
+/* Footer CTA bar — full-width, links to the full searchable map. */
+.embed-footer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 36px;
+  flex-shrink: 0;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
+}
+.embed-footer-cta:active {
+  background: #c62d3a;
+}
+
+/* ── Mobile: map-only embed ─────────────────────────
+   Phone readers get a full-bleed interactive map (sidebar hidden) above the
+   footer CTA, instead of being redirected off the article. */
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+  #map {
+    width: 100%;
+  }
+  .embed-dates {
+    display: none;
+  }
+  .embed-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 /* ── Popup styling ─────────────────────────── */
