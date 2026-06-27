@@ -75,6 +75,13 @@
         renderViewports(data);
         renderSources(data);
         renderDrawer(data);
+        // Which filters people actually use (by label).
+        renderRanked(data, "filter-area", "faTitle", "faTable", "faBody", "faNote");
+        renderRanked(data, "filter-tag", "ftTitle", "ftTable", "ftBody", "ftNote", tagLabel);
+        renderRanked(data, "filter-hours", "fhTitle", "fhTable", "fhBody", "fhNote", hoursLabel);
+        // Sharing & word of mouth.
+        renderRanked(data, "share", "shareTitle", "shareTable", "shareBody", "shareNote");
+        renderRanked(data, "deeplink", "dlTitle", "dlTable", "dlBody", "dlNote");
         renderEmptySearches(data);
       })
       .catch(function () {});
@@ -114,6 +121,27 @@
 
   function show(ids) {
     ids.forEach(function (id) { document.getElementById(id).style.display = ""; });
+  }
+
+  // Filter-key → human label, from the theme config.
+  var __tagLabels = {};
+  (THEME.tagFilters || []).forEach(function (t) { __tagLabels[t.key] = t.label; });
+  function tagLabel(k) { return __tagLabels[k] || k; }
+  var __hoursLabels = {};
+  (THEME.hoursFilters || []).forEach(function (h) { __hoursLabels[h.key] = h.label; });
+  function hoursLabel(k) { return __hoursLabels[k] || k; }
+
+  // Render a count-ranked table for an action, hidden until it has data.
+  function renderRanked(data, action, titleId, tableId, bodyId, noteId, labelOf) {
+    var r = sumByAction(data, action);
+    if (r.total === 0) return;
+    var keys = Object.keys(r.counts).sort(function (a, b) {
+      return r.counts[b] - r.counts[a];
+    });
+    renderRows(bodyId, keys, r.counts, r.total, labelOf
+      ? function (k) { return { label: labelOf(k), cls: "" }; }
+      : null);
+    show([titleId, tableId, noteId]);
   }
 
   function renderViewports(data) {
