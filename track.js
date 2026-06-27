@@ -1,12 +1,25 @@
 // Lightweight event tracker — sends fire-and-forget beacons to a Cloudflare Worker.
 // Set THEME.trackUrl to the worker URL to enable, or leave null to disable.
+
+// Treat localhost and private LAN ranges as dev hosts, so on-device testing
+// over the LAN never pollutes production analytics.
+function isDevHost(h) {
+  return (
+    h === "localhost" ||
+    h === "127.0.0.1" ||
+    h === "0.0.0.0" ||
+    /\.local$/.test(h) ||
+    /^10\./.test(h) ||
+    /^192\.168\./.test(h) ||
+    /^172\.(1[6-9]|2\d|3[01])\./.test(h)
+  );
+}
+
 (function () {
   var url = typeof THEME !== "undefined" && THEME.trackUrl;
   if (!url) return;
 
-  // Skip tracking on localhost / local dev
-  var h = location.hostname;
-  if (h === "localhost" || h === "127.0.0.1" || h === "0.0.0.0") return;
+  if (isDevHost(location.hostname)) return;
 
   window.track = function (action, label) {
     if (navigator.sendBeacon) {
@@ -52,8 +65,7 @@
 (function () {
   var token = typeof THEME !== "undefined" && THEME.cfAnalyticsToken;
   if (!token) return;
-  var h = location.hostname;
-  if (h === "localhost" || h === "127.0.0.1" || h === "0.0.0.0") return;
+  if (isDevHost(location.hostname)) return;
   var s = document.createElement("script");
   s.defer = true;
   s.src = "https://static.cloudflareinsights.com/beacon.min.js";
