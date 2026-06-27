@@ -147,6 +147,19 @@
       <button class="mobile-toggle" id="mobileToggle">
         Show Restaurant List
       </button>
+
+      <!-- Mobile restaurant detail sheet — half height, map stays visible above -->
+      <div class="detail-sheet" id="detailSheet" aria-hidden="true">
+        <div class="detail-sheet-handle" id="detailSheetHandle"></div>
+        <button
+          class="detail-sheet-close"
+          id="detailSheetClose"
+          aria-label="Close detail"
+        >
+          &times;
+        </button>
+        <div class="detail-sheet-content" id="detailSheetContent"></div>
+      </div>
     </div>
 
     <!-- About modal -->

@@ -90,6 +90,16 @@
     return [shifted.lat, shifted.lng];
   }
 
+  // Place a pin in the visible strip above the detail sheet (sheet covers the
+  // bottom ~58%, so pull the marker up into the top ~28% of the map).
+  function sheetOffsetLatLng(lat, lng, zoom) {
+    var mapHeight = map.getSize().y;
+    var point = map.project([lat, lng], zoom);
+    point.y += mapHeight * 0.28;
+    var shifted = map.unproject(point, zoom);
+    return [shifted.lat, shifted.lng];
+  }
+
   var tileLayer = L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
     {
@@ -600,18 +610,26 @@
       "<span>Share this spot</span></a>";
     popupHtml += "</div>";
 
-    var popupMaxWidth = window.innerWidth > 768 ? 360 : 280;
-    marker.bindPopup(popupHtml, {
-      maxWidth: popupMaxWidth,
-      offset: [0, -4],
-      closeButton: false,
-    });
+    // Stash the detail markup so the mobile sheet can reuse it verbatim.
+    marker._detailHtml = popupHtml;
 
-    // Show popup and emoji overlay on hover
-    marker.on("mouseover", function () {
-      showEmojiOverlay([r.lat, r.lng]);
-      this.openPopup();
-    });
+    if (window.innerWidth <= 768) {
+      // Mobile: tap raises the half-height detail sheet; map stays visible.
+      marker.on("click", function () {
+        openDetailSheet(r, "map");
+      });
+    } else {
+      marker.bindPopup(popupHtml, {
+        maxWidth: 360,
+        offset: [0, -4],
+        closeButton: false,
+      });
+      // Show popup and emoji overlay on hover
+      marker.on("mouseover", function () {
+        showEmojiOverlay([r.lat, r.lng]);
+        this.openPopup();
+      });
+    }
 
     clusterGroup.addLayer(marker);
     markerMap.set(r.name, marker);
@@ -703,24 +721,7 @@
     }
 
     // Populate hours in popup
-    if (hoursLoaded) {
-      var hoursEl = popupEl && popupEl.querySelector(".popup-hours");
-      if (hoursEl) {
-        var hName = hoursEl.getAttribute("data-hours-name");
-        if (hName && hoursData[hName]) {
-          var popupStatus = getOpenStatus(hName);
-          var dot = popupStatus === "open" ? "🟢" : popupStatus === "closing-soon" ? "🟡" : "🔴";
-          var statusText = popupStatus === "open" ? "Open" : popupStatus === "closing-soon" ? "Closing Soon" : "Closed";
-          var todayStr = formatTodayHours(hName);
-          hoursEl.innerHTML =
-            '<span class="popup-hours-dot">' + dot + "</span> " +
-            "<strong>" + statusText + "</strong> · Today: " + todayStr;
-        } else if (hName && hoursData[hName] === null) {
-          hoursEl.innerHTML =
-            '<span class="popup-hours-dot">⚪</span> Hours not available';
-        }
-      }
-    }
+    populateHoursIn(popupEl);
 
     // Refresh upvote button state in the newly opened popup
     refreshOpenPopupUpvote();
@@ -763,6 +764,56 @@
     items.forEach(function (item) {
       item.classList.remove("active");
     });
+  });
+
+  // ── Mobile detail sheet ────────────────────────
+  // Reuses each marker's stashed detail markup. Every interactive control in
+  // that markup is document-delegated, so directions/share/upvote work here
+  // unchanged; only the hours line and upvote state need re-running per open.
+  var sheetOpenedAt = 0;
+  function openDetailSheet(r, source) {
+    var marker = markerMap.get(r.name);
+    var html = marker && marker._detailHtml;
+    var sheet = document.getElementById("detailSheet");
+    var content = document.getElementById("detailSheetContent");
+    if (!html || !sheet || !content) return;
+    content.innerHTML = html;
+    content.scrollTop = 0;
+    if (typeof window.track === "function") {
+      window.track(source === "sidebar" ? "sidebar-view" : "view", r.name);
+    }
+    populateHoursIn(content);
+    refreshUpvoteIn(content);
+    sheet.classList.add("open");
+    sheet.setAttribute("aria-hidden", "false");
+    sheetOpenedAt = Date.now();
+    showEmojiOverlay([r.lat, r.lng]);
+    snapDrawerTo(0); // tuck the list drawer to peek behind the sheet
+    var z = Math.max(map.getZoom(), 15);
+    map.flyTo(sheetOffsetLatLng(r.lat, r.lng, z), z, { duration: 0.4 });
+  }
+
+  function closeDetailSheet() {
+    var sheet = document.getElementById("detailSheet");
+    if (!sheet || !sheet.classList.contains("open")) return;
+    sheet.classList.remove("open");
+    sheet.setAttribute("aria-hidden", "true");
+    removeEmojiOverlay();
+  }
+
+  var detailSheetCloseBtn = document.getElementById("detailSheetClose");
+  if (detailSheetCloseBtn) {
+    detailSheetCloseBtn.addEventListener("click", closeDetailSheet);
+  }
+  // Leaflet bubbles a marker click up to the map's "click", so ignore the map
+  // click that fires in the same gesture that opened the sheet — otherwise the
+  // sheet would close the instant it opens. Later map taps still dismiss it.
+  map.on("click", function () {
+    if (Date.now() - sheetOpenedAt < 400) return;
+    closeDetailSheet();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeDetailSheet();
   });
 
   // Popup link click handler (delegated) — track directions, website, phone
@@ -855,8 +906,34 @@
     updateSidebarUpvoteBadge(name);
   });
 
+  // Populate the hours line inside any container holding the detail markup
+  // (Leaflet popup or the mobile detail sheet).
+  function populateHoursIn(container) {
+    if (!hoursLoaded || !container) return;
+    var hoursEl = container.querySelector(".popup-hours");
+    if (!hoursEl) return;
+    var hName = hoursEl.getAttribute("data-hours-name");
+    if (hName && hoursData[hName]) {
+      var status = getOpenStatus(hName);
+      var dot = status === "open" ? "🟢" : status === "closing-soon" ? "🟡" : "🔴";
+      var statusText =
+        status === "open" ? "Open" : status === "closing-soon" ? "Closing Soon" : "Closed";
+      var todayStr = formatTodayHours(hName);
+      hoursEl.innerHTML =
+        '<span class="popup-hours-dot">' + dot + "</span> " +
+        "<strong>" + statusText + "</strong> · Today: " + todayStr;
+    } else if (hName && hoursData[hName] === null) {
+      hoursEl.innerHTML =
+        '<span class="popup-hours-dot">⚪</span> Hours not available';
+    }
+  }
+
   function refreshOpenPopupUpvote() {
-    var btn = document.querySelector(".leaflet-popup .upvote-btn");
+    refreshUpvoteIn(document.querySelector(".leaflet-popup"));
+  }
+
+  function refreshUpvoteIn(container) {
+    var btn = container && container.querySelector(".upvote-btn");
     if (!btn) return;
     var name = btn.getAttribute("data-name");
     if (!name) return;
@@ -1355,10 +1432,10 @@
 
       li.addEventListener("click", function () {
         map._viewSource = "sidebar";
-        var isMobile = window.innerWidth <= 768;
-        if (isMobile) {
-          // Snap drawer to peek so user can see the map and popup
-          snapDrawerTo(0);
+        if (window.innerWidth <= 768) {
+          // Mobile: open the detail sheet (it centers the pin and tucks the list)
+          openDetailSheet(r, "sidebar");
+          return;
         }
         map.flyTo(mobileOffsetLatLng(r.lat, r.lng, 17), 17, { duration: 0.8 });
 
@@ -2231,7 +2308,8 @@
     if (typeof window.track === "function") window.track("deeplink", r.name);
 
     if (window.innerWidth <= 768) {
-      snapDrawerTo(0);
+      openDetailSheet(r, "map");
+      return;
     }
     map.flyTo(mobileOffsetLatLng(r.lat, r.lng, 17), 17, { duration: 0.8 });
     // Short delay for cluster to resolve at new zoom
