@@ -74,6 +74,7 @@
         if (!data) return;
         renderViewports(data);
         renderSources(data);
+        renderRanked(data, "user-area", "uaTitle", "uaTable", "uaBody", "uaNote");
         renderDrawer(data);
         // Which filters people actually use (by label).
         renderRanked(data, "filter-area", "faTitle", "faTable", "faBody", "faNote");

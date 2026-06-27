@@ -624,23 +624,33 @@
   var EYES_WINDOW_MS = 10 * 60 * 1000;
   var simViews = {}; // name -> [timestamps], dev simulation only
 
+  var lastEyeCounts = {};
   function renderEyes(counts) {
+    if (counts) lastEyeCounts = counts;
+    counts = lastEyeCounts;
     eyesLayer.clearLayers();
     var totalViews = 0; // a view = a person looking; sum is the "recent" count
+    var placed = {}; // one eye per visible cluster/pin, so eyes cluster with pins
     Object.keys(counts).forEach(function (name) {
       var c = counts[name];
       if (!c) return;
       var marker = markerMap.get(name);
       if (!marker) return;
       totalViews += c;
-      // One eye per pin (presence) regardless of how many views it has.
+      // Pin the eye to whatever's actually visible — the marker if unclustered,
+      // or its cluster if it's bundled — and only one eye per visible thing.
+      var visible = clusterGroup.getVisibleParent(marker);
+      if (!visible) return;
+      var id = L.Util.stamp(visible);
+      if (placed[id]) return;
+      placed[id] = true;
       var icon = L.divIcon({
         className: "eye-badge-wrap",
         html: '<span class="eye-badge">👀</span>',
         iconSize: [0, 0],
         iconAnchor: [0, 24],
       });
-      L.marker(marker.getLatLng(), {
+      L.marker(visible.getLatLng(), {
         icon: icon,
         interactive: false,
         keyboard: false,
@@ -706,6 +716,10 @@
   if (__eyesDevHost) seedAmbientSimViews();
   fetchEyes();
   setInterval(fetchEyes, __eyesDevHost ? 5000 : 30000);
+  // Re-place eyes when clustering changes so they stay attached to what's
+  // visible (a cluster, or an individual pin) rather than scattering.
+  map.on("zoomend moveend", function () { renderEyes(); });
+  clusterGroup.on("animationend", function () { renderEyes(); });
 
   // ── Cluster hover tooltip ────────────────────
 
@@ -788,6 +802,9 @@
       var source = map._viewSource || "map";
       map._viewSource = null;
       window.track(source === "sidebar" ? "sidebar-view" : "view", h3.textContent);
+      if (currentUserArea) {
+        window.track("geo-view", currentUserArea + " | " + h3.textContent);
+      }
     }
 
     // Populate hours in popup
@@ -853,6 +870,11 @@
       window.track(source === "sidebar" ? "sidebar-view" : "view", r.name);
     }
     noteLocalView(r.name); // dev sim: your tap lights up an eye on this pin
+    if (currentUserArea && typeof window.track === "function") {
+      // Neighborhood → restaurant pair (timestamped by the worker), for later
+      // "which areas want which spots" analysis.
+      window.track("geo-view", currentUserArea + " | " + r.name);
+    }
     populateHoursIn(content);
     refreshUpvoteIn(content);
     sheet.classList.add("open");
@@ -1279,6 +1301,85 @@
     },
   });
   new L.Control.ZoomReset().addTo(map);
+
+  // ── "Use my location" control (nav arrow, below the reset button) ──
+  var userLocLayer = L.layerGroup().addTo(map);
+  var currentUserArea = null;
+  try {
+    currentUserArea = sessionStorage.getItem("user-area-val") || null;
+  } catch (e) {}
+
+  // Bucket a location to the nearest restaurant's neighborhood — coarse, never
+  // stored as raw coordinates. Far-off visitors bucket to "Outside SB".
+  function nearestUserArea(latlng) {
+    var bestArea = null;
+    var bestD = Infinity;
+    restaurants.forEach(function (r) {
+      var d = map.distance(latlng, [r.lat, r.lng]);
+      if (d < bestD) {
+        bestD = d;
+        bestArea = r.area;
+      }
+    });
+    return bestD > 8000 ? "Outside SB" : bestArea;
+  }
+
+  map.on("locationfound", function (e) {
+    userLocLayer.clearLayers();
+    L.circle(e.latlng, {
+      radius: Math.min(e.accuracy || 60, 400),
+      color: "#2a7de1",
+      weight: 1,
+      fillColor: "#2a7de1",
+      fillOpacity: 0.1,
+    }).addTo(userLocLayer);
+    L.circleMarker(e.latlng, {
+      radius: 7,
+      color: "#fff",
+      weight: 2,
+      fillColor: "#2a7de1",
+      fillOpacity: 1,
+    }).addTo(userLocLayer);
+
+    // Coarse, consented, anonymous: record only the neighborhood bucket, once
+    // per session. Also keep it for geo-view pair logging on subsequent views.
+    var area = nearestUserArea(e.latlng);
+    currentUserArea = area;
+    try {
+      sessionStorage.setItem("user-area-val", area);
+      if (!sessionStorage.getItem("ua-sampled") && typeof window.track === "function") {
+        window.track("user-area", area);
+        sessionStorage.setItem("ua-sampled", "1");
+      }
+    } catch (err) {}
+  });
+
+  map.on("locationerror", function () {
+    /* permission denied or unavailable — quietly no-op, button can be retried */
+  });
+
+  L.Control.Locate = L.Control.extend({
+    options: { position: "topleft" },
+    onAdd: function () {
+      var container = L.DomUtil.create("div", "leaflet-bar leaflet-control");
+      var btn = L.DomUtil.create("a", "", container);
+      btn.href = "#";
+      btn.title = "Use my location";
+      btn.setAttribute("role", "button");
+      btn.setAttribute("aria-label", "Use my location");
+      btn.innerHTML =
+        '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>';
+      btn.style.lineHeight = "30px";
+      btn.style.textAlign = "center";
+      L.DomEvent.disableClickPropagation(container);
+      L.DomEvent.on(btn, "click", function (ev) {
+        L.DomEvent.preventDefault(ev);
+        map.locate({ setView: true, maxZoom: 15, enableHighAccuracy: true });
+      });
+      return container;
+    },
+  });
+  new L.Control.Locate().addTo(map);
 
   function updateFilterBtnState() {
     var hasActiveFilters = activeArea || activeTag || activeHoursFilter || checklistMode;
