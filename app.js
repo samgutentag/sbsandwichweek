@@ -220,33 +220,9 @@
   var __showUpvotes = __eventState !== "off-season";
   var __canVote = canCastVotes();
 
-  // ── Live-visitor header chip (during the event window only) ──
-  function updateLiveChip() {
-    var chip = document.getElementById("liveChip");
-    if (!chip || !THEME.trackUrl) return;
-    fetch(THEME.trackUrl + "?active=true", { method: "GET" })
-      .then(function (resp) {
-        return resp.json();
-      })
-      .then(function (data) {
-        // Prefer RUM visitors (last hour); fall back to recent interactions
-        // so the chip works immediately even before RUM data ingests.
-        var n = (data && (data.visitors1h || data.recentActions)) || 0;
-        if (n > 0) {
-          document.getElementById("liveChipCount").textContent = n.toLocaleString();
-          chip.style.display = "";
-        } else {
-          chip.style.display = "none";
-        }
-      })
-      .catch(function () {
-        /* leave hidden */
-      });
-  }
-  // Poll in every state — people browse the map before the event goes live.
-  // The chip self-hides when there are no recent visitors, so off-season is fine.
-  updateLiveChip();
-  setInterval(updateLiveChip, 30000);
+  // The header "recent" chip is driven by the live eyes layer below (it shows
+  // the number of restaurants with eyes on the map), so the tile and the map
+  // always agree. See updateRecentChip().
 
   // ── Hours data ─────────────────────────────
   var hoursData = {};
@@ -637,6 +613,100 @@
 
   map.addLayer(clusterGroup);
 
+  // ── Live "eyes" layer — who's looking at each restaurant ───────
+  // A 10-minute sliding window of recent views per restaurant, shown as a
+  // pulsing 👀 badge over the pin (each new view keeps it alive another 10
+  // min). On dev hosts (LAN testing) it runs off a local simulation fed by
+  // your own taps plus a little ambient activity, since LAN views aren't
+  // logged. On prod it polls the worker's ?eyes=true endpoint.
+  var eyesLayer = L.layerGroup().addTo(map);
+  var __eyesDevHost = typeof isDevHost === "function" && isDevHost(location.hostname);
+  var EYES_WINDOW_MS = 10 * 60 * 1000;
+  var simViews = {}; // name -> [timestamps], dev simulation only
+
+  function renderEyes(counts) {
+    eyesLayer.clearLayers();
+    var totalViews = 0; // a view = a person looking; sum is the "recent" count
+    Object.keys(counts).forEach(function (name) {
+      var c = counts[name];
+      if (!c) return;
+      var marker = markerMap.get(name);
+      if (!marker) return;
+      totalViews += c;
+      // One eye per pin (presence) regardless of how many views it has.
+      var icon = L.divIcon({
+        className: "eye-badge-wrap",
+        html: '<span class="eye-badge">👀</span>',
+        iconSize: [0, 0],
+        iconAnchor: [0, 24],
+      });
+      L.marker(marker.getLatLng(), {
+        icon: icon,
+        interactive: false,
+        keyboard: false,
+        zIndexOffset: 2000,
+      }).addTo(eyesLayer);
+    });
+    updateRecentChip(totalViews);
+  }
+
+  // Header tile shows total recent restaurant views (last 10 min) — a faked
+  // "people looking" count off the rolling window. Self-hides when zero.
+  function updateRecentChip(n) {
+    var chip = document.getElementById("liveChip");
+    if (!chip) return;
+    var countEl = document.getElementById("liveChipCount");
+    if (n > 0) {
+      if (countEl) countEl.textContent = n;
+      chip.style.display = "";
+    } else {
+      chip.style.display = "none";
+    }
+  }
+
+  // Dev-only: record a local view so eyes appear while experimenting on the LAN.
+  function noteLocalView(name) {
+    if (!__eyesDevHost || !name) return;
+    (simViews[name] = simViews[name] || []).push(Date.now());
+  }
+
+  function getSimEyeCounts() {
+    var now = Date.now();
+    var out = {};
+    Object.keys(simViews).forEach(function (name) {
+      simViews[name] = simViews[name].filter(function (t) {
+        return now - t < EYES_WINDOW_MS;
+      });
+      if (simViews[name].length) out[name] = simViews[name].length;
+      else delete simViews[name];
+    });
+    return out;
+  }
+
+  function seedAmbientSimViews() {
+    var n = 1 + Math.floor(Math.random() * 2);
+    for (var i = 0; i < n; i++) {
+      noteLocalView(restaurants[Math.floor(Math.random() * restaurants.length)].name);
+    }
+  }
+
+  function fetchEyes() {
+    if (__eyesDevHost) {
+      if (Math.random() < 0.35) seedAmbientSimViews();
+      renderEyes(getSimEyeCounts());
+      return;
+    }
+    if (!THEME.trackUrl) return;
+    fetch(THEME.trackUrl + "?eyes=true", { method: "GET" })
+      .then(function (resp) { return resp.json(); })
+      .then(function (data) { renderEyes(data || {}); })
+      .catch(function () {});
+  }
+
+  if (__eyesDevHost) seedAmbientSimViews();
+  fetchEyes();
+  setInterval(fetchEyes, __eyesDevHost ? 5000 : 30000);
+
   // ── Cluster hover tooltip ────────────────────
 
   clusterGroup.on("clustermouseover", function (e) {
@@ -782,6 +852,7 @@
     if (typeof window.track === "function") {
       window.track(source === "sidebar" ? "sidebar-view" : "view", r.name);
     }
+    noteLocalView(r.name); // dev sim: your tap lights up an eye on this pin
     populateHoursIn(content);
     refreshUpvoteIn(content);
     sheet.classList.add("open");

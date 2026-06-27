@@ -86,6 +86,51 @@ export default {
         }
       }
 
+      // Live "eyes" — restaurant view counts in the last 10 minutes. A new
+      // view keeps a restaurant in the window for another 10 min, so this is a
+      // self-resetting "who's looking right now" signal for the map.
+      if (url.searchParams.get("eyes") === "true") {
+        try {
+          const resp = await fetch(
+            `https://api.cloudflare.com/client/v4/accounts/${env.ACCOUNT_ID}/analytics_engine/sql`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${env.CF_API_TOKEN}`,
+                "Content-Type": "text/plain",
+              },
+              body: `SELECT blob2 AS name, SUM(1) AS views
+                     FROM sbsandwichweek
+                     WHERE (blob1 = 'view' OR blob1 = 'sidebar-view')
+                       AND timestamp >= NOW() - INTERVAL '10' MINUTE
+                     GROUP BY name
+                     ORDER BY views DESC
+                     LIMIT 500`,
+            },
+          );
+
+          if (!resp.ok) {
+            return new Response("{}", {
+              headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=20" },
+            });
+          }
+
+          const data = await resp.json();
+          const result = {};
+          (data.data || []).forEach(function (row) {
+            if (row.name) result[row.name] = Number(row.views) || 0;
+          });
+
+          return new Response(JSON.stringify(result), {
+            headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=20" },
+          });
+        } catch (e) {
+          return new Response("{}", {
+            headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=20" },
+          });
+        }
+      }
+
       // Admin — search query aggregates (token-protected)
       if (url.searchParams.get("admin") === "true") {
         const token = url.searchParams.get("token") || "";
