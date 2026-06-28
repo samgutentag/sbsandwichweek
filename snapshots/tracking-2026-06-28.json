@@ -1,0 +1,682 @@
+{
+  "detail": {
+    "'Que by Whiskey 'N Rye": {
+      "deeplink": 1,
+      "sidebar-view": 7,
+      "view": 114
+    },
+    "1024-1439": {
+      "viewport": 19
+    },
+    "1435 de la vina": {
+      "search": 1
+    },
+    "1435 de la vina st": {
+      "search": 1
+    },
+    "1440+": {
+      "viewport": 55
+    },
+    "400-599": {
+      "viewport": 216
+    },
+    "529 tila": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "529 tila pl": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "600-767": {
+      "viewport": 8
+    },
+    "768-1023": {
+      "viewport": 24
+    },
+    "93013": {
+      "search": 1
+    },
+    "93111": {
+      "search": 1
+    },
+    "<400": {
+      "viewport": 306
+    },
+    "All": {
+      "filter-area": 3
+    },
+    "Bistro Amasa": {
+      "deeplink": 4,
+      "directions-google": 8,
+      "instagram": 1,
+      "phone": 2,
+      "share": 2,
+      "sidebar-view": 16,
+      "view": 278,
+      "website": 4
+    },
+    "CAYA Restaurant and Bar": {
+      "deeplink": 3,
+      "directions-apple": 1,
+      "directions-google": 1,
+      "instagram": 3,
+      "share": 1,
+      "sidebar-view": 18,
+      "un-upvote": 4,
+      "upvote": 7,
+      "view": 314,
+      "website": 7
+    },
+    "Corner Tap Bar & Eatery": {
+      "deeplink": 1,
+      "phone": 1,
+      "share": 4,
+      "sidebar-view": 4,
+      "view": 147
+    },
+    "Cristino's Bakery": {
+      "deeplink": 10,
+      "directions-apple": 2,
+      "directions-google": 2,
+      "phone": 1,
+      "restaurant-detail": 1,
+      "sidebar-view": 7,
+      "view": 396,
+      "website": 3
+    },
+    "Crushcakes & Cafe (Anacapa)": {
+      "deeplink": 3,
+      "instagram": 1,
+      "share": 1,
+      "sidebar-view": 5,
+      "view": 221
+    },
+    "Crushcakes & Cafe (Goleta)": {
+      "deeplink": 4,
+      "instagram": 1,
+      "sidebar-view": 5,
+      "upvote": 1,
+      "view": 250,
+      "website": 1
+    },
+    "Dave's Drip House": {
+      "directions-google": 1,
+      "sidebar-view": 8,
+      "view": 72,
+      "website": 1
+    },
+    "Downtown": {
+      "filter-area": 21,
+      "user-area": 1
+    },
+    "Downtown | Bistro Amasa": {
+      "geo-view": 1
+    },
+    "Downtown | Crushcakes & Cafe (Anacapa)": {
+      "geo-view": 1
+    },
+    "Downtown | Goodland Waffles and Melts": {
+      "geo-view": 1
+    },
+    "Downtown | Noe's Cafe": {
+      "geo-view": 1
+    },
+    "Dutch Garden Restaurant": {
+      "deeplink": 3,
+      "directions-google": 1,
+      "instagram": 1,
+      "share": 1,
+      "sidebar-view": 7,
+      "view": 218,
+      "website": 3
+    },
+    "Eastside": {
+      "filter-area": 6
+    },
+    "Etty's Jewish Deli & Bakery": {
+      "deeplink": 12,
+      "directions-apple": 1,
+      "directions-google": 4,
+      "share": 3,
+      "sidebar-view": 9,
+      "view": 270,
+      "website": 5
+    },
+    "Fresco at the Market": {
+      "deeplink": 1,
+      "share": 1,
+      "sidebar-view": 8,
+      "view": 83
+    },
+    "Funk Zone": {
+      "filter-area": 8
+    },
+    "Gino's Sicilian Express": {
+      "sidebar-view": 7,
+      "view": 217,
+      "website": 2
+    },
+    "Goleta": {
+      "filter-area": 20
+    },
+    "Goodland Waffles and Melts": {
+      "deeplink": 1,
+      "directions-google": 1,
+      "share": 1,
+      "sidebar-view": 5,
+      "view": 281,
+      "website": 3
+    },
+    "Haas's Fine Ice Cream": {
+      "deeplink": 2,
+      "directions-google": 2,
+      "sidebar-view": 4,
+      "view": 244
+    },
+    "Hook & Press Donuts": {
+      "instagram": 1,
+      "sidebar-view": 6,
+      "view": 293,
+      "website": 2
+    },
+    "I.V. Deli Mart": {
+      "deeplink": 4,
+      "directions-google": 1,
+      "share": 1,
+      "sidebar-view": 5,
+      "un-upvote": 1,
+      "upvote": 3,
+      "view": 260,
+      "website": 2
+    },
+    "Isla Vista": {
+      "filter-area": 8
+    },
+    "Jonesy's Fried Chicken": {
+      "deeplink": 11,
+      "directions-apple": 1,
+      "directions-google": 2,
+      "instagram": 2,
+      "phone": 1,
+      "restaurant-detail": 1,
+      "share": 1,
+      "sidebar-view": 6,
+      "un-upvote": 1,
+      "upvote": 3,
+      "view": 364,
+      "website": 4
+    },
+    "Lighthouse Coffee (Calle Real)": {
+      "deeplink": 3,
+      "sidebar-view": 6,
+      "un-upvote": 2,
+      "upvote": 3,
+      "view": 208
+    },
+    "Lighthouse Coffee (Chapala)": {
+      "deeplink": 2,
+      "phone": 1,
+      "share": 1,
+      "sidebar-view": 3,
+      "un-upvote": 1,
+      "upvote": 1,
+      "view": 248,
+      "website": 1
+    },
+    "Lighthouse Coffee (Cliff Dr)": {
+      "sidebar-view": 3,
+      "un-upvote": 1,
+      "upvote": 1,
+      "view": 138
+    },
+    "Lighthouse Coffee (E Haley)": {
+      "deeplink": 1,
+      "sidebar-view": 1,
+      "view": 224,
+      "website": 2
+    },
+    "Lighthouse Coffee (Turnpike)": {
+      "phone": 2,
+      "view": 38
+    },
+    "Mesa Burger": {
+      "deeplink": 4,
+      "directions-google": 1,
+      "sidebar-view": 6,
+      "view": 175,
+      "website": 4
+    },
+    "Mission City Sandwich Shop": {
+      "deeplink": 2,
+      "directions-google": 2,
+      "instagram": 1,
+      "sidebar-view": 10,
+      "upvote": 1,
+      "view": 142,
+      "website": 2
+    },
+    "Montecito": {
+      "filter-area": 2
+    },
+    "Noe's Cafe": {
+      "deeplink": 10,
+      "directions-apple": 1,
+      "directions-google": 4,
+      "instagram": 1,
+      "share": 1,
+      "sidebar-view": 7,
+      "view": 298
+    },
+    "Noleta": {
+      "filter-area": 5,
+      "user-area": 3
+    },
+    "Norton's Pastrami & Deli": {
+      "deeplink": 3,
+      "directions-apple": 2,
+      "share": 3,
+      "sidebar-view": 4,
+      "view": 194,
+      "website": 1
+    },
+    "Panino (Goleta)": {
+      "deeplink": 1,
+      "sidebar-view": 4,
+      "un-upvote": 3,
+      "upvote": 3,
+      "view": 255,
+      "website": 3
+    },
+    "Panino (Montecito)": {
+      "deeplink": 2,
+      "directions-google": 1,
+      "view": 168,
+      "website": 2
+    },
+    "Panino (Santa Barbara)": {
+      "deeplink": 8,
+      "directions-google": 4,
+      "phone": 2,
+      "sidebar-view": 6,
+      "view": 357,
+      "website": 5
+    },
+    "Poke House": {
+      "deeplink": 4,
+      "directions-apple": 1,
+      "directions-google": 1,
+      "share": 1,
+      "sidebar-view": 5,
+      "view": 299,
+      "website": 5
+    },
+    "Rinkside Cafe": {
+      "deeplink": 1,
+      "directions-apple": 1,
+      "directions-google": 1,
+      "instagram": 1,
+      "sidebar-view": 2,
+      "view": 286,
+      "website": 1
+    },
+    "Santa Barbara Fish Market": {
+      "deeplink": 3,
+      "instagram": 2,
+      "sidebar-view": 4,
+      "view": 284
+    },
+    "Santa Barbara Pizza House": {
+      "deeplink": 1,
+      "directions-google": 1,
+      "sidebar-view": 11,
+      "view": 453,
+      "website": 2
+    },
+    "Shalhoob's (Funk Zone)": {
+      "deeplink": 1,
+      "sidebar-view": 3,
+      "view": 235,
+      "website": 1
+    },
+    "Shalhoob's (Goleta)": {
+      "deeplink": 3,
+      "directions-google": 2,
+      "sidebar-view": 3,
+      "view": 297,
+      "website": 1
+    },
+    "South Coast Deli (Carrillo)": {
+      "deeplink": 3,
+      "sidebar-view": 4,
+      "view": 342,
+      "website": 2
+    },
+    "South Coast Deli (Patterson)": {
+      "deeplink": 1,
+      "directions-google": 1,
+      "sidebar-view": 5,
+      "view": 258,
+      "website": 1
+    },
+    "South Coast Deli (Santa Barbara St)": {
+      "deeplink": 1,
+      "sidebar-view": 5,
+      "upvote": 1,
+      "view": 229,
+      "website": 2
+    },
+    "South Coast Deli (State St)": {
+      "deeplink": 6,
+      "directions-google": 1,
+      "share": 1,
+      "sidebar-view": 2,
+      "view": 266,
+      "website": 2
+    },
+    "The Blue Owl": {
+      "deeplink": 1,
+      "sidebar-view": 9,
+      "view": 291,
+      "website": 6
+    },
+    "The Mesa": {
+      "filter-area": 8
+    },
+    "The Natural Cafe (Goleta)": {
+      "view": 281
+    },
+    "The Natural Cafe (Hitchcock)": {
+      "deeplink": 1,
+      "directions-google": 2,
+      "share": 1,
+      "sidebar-view": 2,
+      "view": 262
+    },
+    "The Patio Cafe": {
+      "directions-google": 2,
+      "sidebar-view": 2,
+      "view": 225,
+      "website": 3
+    },
+    "Upper State": {
+      "filter-area": 8
+    },
+    "Valentino's Take N' Bake Pizza": {
+      "directions-google": 1,
+      "instagram": 1,
+      "share": 1,
+      "sidebar-view": 4,
+      "view": 401
+    },
+    "Validation Ale (De La Vina)": {
+      "deeplink": 2,
+      "directions-apple": 1,
+      "directions-google": 2,
+      "instagram": 1,
+      "phone": 2,
+      "sidebar-view": 5,
+      "un-upvote": 1,
+      "upvote": 1,
+      "view": 264
+    },
+    "Validation Ale (Yanonali)": {
+      "directions-apple": 1,
+      "directions-google": 1,
+      "sidebar-view": 1,
+      "view": 239,
+      "website": 1
+    },
+    "Yellow Belly": {
+      "deeplink": 8,
+      "directions-google": 3,
+      "phone": 3,
+      "share": 2,
+      "sidebar-view": 5,
+      "view": 304,
+      "website": 2
+    },
+    "ama": {
+      "search": 1
+    },
+    "apple": {
+      "search": 2
+    },
+    "apple stor": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "betty": {
+      "search": 1
+    },
+    "bhan": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "bhanmi": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "bistro": {
+      "search": 1
+    },
+    "bo": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "bon": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "bre": {
+      "search": 1
+    },
+    "break": {
+      "search": 1
+    },
+    "carpinteria": {
+      "search": 1
+    },
+    "carpinteria, ca": {
+      "search": 1
+    },
+    "corner": {
+      "search": 1
+    },
+    "corner ta": {
+      "search": 1
+    },
+    "dav": {
+      "search": 1
+    },
+    "dave's": {
+      "search": 1
+    },
+    "daves": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "dinner": {
+      "filter-hours": 11
+    },
+    "dutch gar": {
+      "search": 1
+    },
+    "egg": {
+      "search": 2
+    },
+    "embed": {
+      "source": 200
+    },
+    "etty": {
+      "search": 2
+    },
+    "fl": {
+      "search": 1
+    },
+    "fre": {
+      "search": 1
+    },
+    "fresco": {
+      "search": 1
+    },
+    "full": {
+      "drawer-expand": 45
+    },
+    "gino": {
+      "search": 2
+    },
+    "gluten": {
+      "search": 1
+    },
+    "gluten free": {
+      "search": 2,
+      "search-empty": 1
+    },
+    "glutenFree": {
+      "filter-tag": 13
+    },
+    "goodland": {
+      "search": 1
+    },
+    "half": {
+      "drawer-expand": 30
+    },
+    "hoo": {
+      "search": 1
+    },
+    "hook": {
+      "search": 2
+    },
+    "jill": {
+      "search": 1
+    },
+    "jonesy's fried": {
+      "search": 1
+    },
+    "lunch": {
+      "filter-hours": 7
+    },
+    "meat": {
+      "search": 1
+    },
+    "mesa": {
+      "search": 3
+    },
+    "mesa bu": {
+      "search": 1
+    },
+    "mission city": {
+      "search": 1
+    },
+    "noe's cafe": {
+      "search": 1
+    },
+    "open": {
+      "filter-hours": 46
+    },
+    "pa": {
+      "search": 2
+    },
+    "pan": {
+      "search": 2
+    },
+    "pani": {
+      "search": 1
+    },
+    "po": {
+      "search": 1
+    },
+    "pok": {
+      "search": 2
+    },
+    "poke": {
+      "search": 1
+    },
+    "qs": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "que": {
+      "search": 1
+    },
+    "shal": {
+      "search": 1
+    },
+    "shalhoo": {
+      "search": 1
+    },
+    "shalhoob": {
+      "search": 1
+    },
+    "share": {
+      "source": 6
+    },
+    "south": {
+      "search": 3
+    },
+    "south co": {
+      "search": 1
+    },
+    "stats": {
+      "insights-view": 19,
+      "restaurants-view": 13,
+      "stats-view": 32,
+      "trends-view": 14
+    },
+    "the patio": {
+      "search": 1
+    },
+    "tino": {
+      "search": 1
+    },
+    "tinos": {
+      "search": 1
+    },
+    "tip-jar": {
+      "tip-jar-open": 73,
+      "tip-l": 3
+    },
+    "va": {
+      "search": 1
+    },
+    "val8": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "valen": {
+      "search": 1
+    },
+    "vali": {
+      "search": 2
+    },
+    "validation": {
+      "search": 1
+    },
+    "vegetarian": {
+      "filter-tag": 50,
+      "search": 1,
+      "search-empty": 1
+    },
+    "white": {
+      "search": 1,
+      "search-empty": 1
+    },
+    "yell": {
+      "search": 1
+    },
+    "yellow bell": {
+      "search": 1
+    }
+  },
+  "timestamp": "2026-06-28T15:20:53Z",
+  "upvotes": {
+    "CAYA Restaurant and Bar": 3,
+    "Crushcakes & Cafe (Goleta)": 1,
+    "I.V. Deli Mart": 2,
+    "Jonesy's Fried Chicken": 2,
+    "Lighthouse Coffee (Calle Real)": 1,
+    "Mission City Sandwich Shop": 1,
+    "South Coast Deli (Santa Barbara St)": 1
+  }
+}
