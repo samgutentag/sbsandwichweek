@@ -75,6 +75,7 @@
         renderViewports(data);
         renderSources(data);
         renderRanked(data, "user-area", "uaTitle", "uaTable", "uaBody", "uaNote");
+        renderRanked(data, "geo-view", "gvTitle", "gvTable", "gvBody", "gvNote");
         renderDrawer(data);
         // Which filters people actually use (by label).
         renderRanked(data, "filter-area", "faTitle", "faTable", "faBody", "faNote");
