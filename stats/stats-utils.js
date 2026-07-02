@@ -33,13 +33,20 @@ var StatsUtils = (function () {
     return map;
   }
 
+  // Today's date on the event's clock (en-CA locale formats as YYYY-MM-DD)
   function todayStr() {
-    return new Date().toISOString().slice(0, 10);
+    try {
+      return new Date().toLocaleDateString("en-CA", { timeZone: THEME.timeZone });
+    } catch (e) {
+      return new Date().toISOString().slice(0, 10);
+    }
   }
 
+  // Pure date-string arithmetic — pinned to UTC so the viewer's timezone
+  // can't shift the result across a day boundary
   function addDays(ds, n) {
-    var d = new Date(ds + "T00:00:00");
-    d.setDate(d.getDate() + n);
+    var d = new Date(ds + "T00:00:00Z");
+    d.setUTCDate(d.getUTCDate() + n);
     return d.toISOString().slice(0, 10);
   }
 
@@ -76,16 +83,12 @@ var StatsUtils = (function () {
     if (!hourlyData) return hourlyData;
     range = range || getActiveRange();
     if (!range.start && !range.end) return hourlyData;
-    var start = range.start ? new Date(range.start + "T00:00:00") : null;
-    var end = null;
-    if (range.end) {
-      end = new Date(range.end + "T00:00:00");
-      end.setDate(end.getDate() + 1);
-      end.setHours(6, 0, 0, 0);
-    }
+    // Range bounds are event-timezone days; hourly keys from the worker are UTC
+    var start = range.start ? eventDate(range.start, "00:00:00") : null;
+    var end = range.end ? eventDate(addDays(range.end, 1), "06:00:00") : null;
     var filtered = {};
     Object.keys(hourlyData).forEach(function (key) {
-      var d = new Date(key.replace(" ", "T"));
+      var d = new Date(key.replace(" ", "T") + "Z");
       if ((!start || d >= start) && (!end || d <= end)) {
         filtered[key] = hourlyData[key];
       }

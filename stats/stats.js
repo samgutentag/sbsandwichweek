@@ -473,20 +473,24 @@
       .catch(function () { return null; });
   }
 
+  // Worker hour keys ("YYYY-MM-DD HH:MM:SS") are UTC; charts label them on the event's clock
+  function parseHourKey(h) {
+    return new Date(String(h).replace(" ", "T") + "Z");
+  }
+
   function formatHourLabel(h) {
-    var d = new Date(h);
-    var mon = d.getMonth() + 1;
-    var day = d.getDate();
-    var hr = d.getHours();
-    var ampm = hr >= 12 ? "p" : "a";
-    var h12 = hr % 12 || 12;
-    return mon + "/" + day + " " + h12 + ampm;
+    var out = {};
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: THEME.timeZone,
+      month: "numeric", day: "numeric", hour: "numeric", hour12: true,
+    }).formatToParts(parseHourKey(h)).forEach(function (p) { out[p.type] = p.value; });
+    return out.month + "/" + out.day + " " + out.hour + (out.dayPeriod === "AM" ? "a" : "p");
   }
 
   function formatHourTooltip(h) {
-    var d = new Date(h);
-    return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }) + " " +
-      d.toLocaleTimeString("en-US", { hour: "numeric", hour12: true });
+    var d = parseHourKey(h);
+    return d.toLocaleDateString("en-US", { timeZone: THEME.timeZone, weekday: "short", month: "short", day: "numeric" }) + " " +
+      d.toLocaleTimeString("en-US", { timeZone: THEME.timeZone, hour: "numeric", hour12: true });
   }
 
   // opts: { cumulative: bool }
@@ -655,12 +659,16 @@
 
     hourlyData = StatsUtils.filterHourlyToEvent(hourlyData);
     var dayMap = {};
+    // Bucket by event-timezone day/hour so the heatmap reads the same for every viewer
+    var bucketFmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: THEME.timeZone,
+      year: "numeric", month: "2-digit", day: "2-digit", hour: "numeric", hour12: false,
+    });
     Object.keys(hourlyData).forEach(function (hour) {
-      var d = new Date(hour.replace(" ", "T") + "Z");
-      var localDate = d.getFullYear() + "-" +
-        String(d.getMonth() + 1).padStart(2, "0") + "-" +
-        String(d.getDate()).padStart(2, "0");
-      var localHour = d.getHours();
+      var parts = {};
+      bucketFmt.formatToParts(parseHourKey(hour)).forEach(function (p) { parts[p.type] = p.value; });
+      var localDate = parts.year + "-" + parts.month + "-" + parts.day;
+      var localHour = parseInt(parts.hour, 10) % 24;
       if (!dayMap[localDate]) dayMap[localDate] = {};
       var total = 0;
       actionKeys.forEach(function (k) { total += hourlyData[hour][k] || 0; });
