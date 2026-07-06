@@ -59,7 +59,13 @@ def parse_area_names(repo, event_start):
             continue
         m = re.search(r'AREA_COLORS\s*=\s*\{(.*?)\}', candidate.read_text(), re.S)
         if m:
-            return re.findall(r'"([^"]+)"\s*:', m.group(1))
+            block = m.group(1)
+            # keys may be quoted ("Funk Zone":) or bare identifiers (Downtown:)
+            names = re.findall(r'["\']([^"\']+)["\']\s*:', block)
+            for bare in re.findall(r'(?:^|,)\s*(\w+)\s*:', block):
+                if bare not in names:
+                    names.append(bare)
+            return names
     return []
 
 
@@ -70,7 +76,7 @@ def fetch_json(url):
         with urllib.request.urlopen(req, timeout=30) as resp:
             return json.loads(resp.read().decode("utf-8"))
     except (urllib.error.URLError, json.JSONDecodeError) as e:
-        sys.exit(f"Worker request failed ({url}): {e}")
+        raise RuntimeError(f"Worker request failed ({url}): {e}") from e
 
 
 def main():
@@ -88,7 +94,10 @@ def main():
     base = cfg["trackUrl"] + "/?hourly=true"
 
     print(f"Fetching hourly data from {cfg['trackUrl']} ({start} → {end})")
-    events = fetch_json(base + window)
+    try:
+        events = fetch_json(base + window)
+    except RuntimeError as e:
+        sys.exit(str(e))
     if not events:
         sys.exit("Worker returned no hourly data — check trackUrl and the date range")
 
@@ -97,7 +106,11 @@ def main():
         sys.exit("No filter labels found (AREA_COLORS / tagFilters / hoursFilters) — check config.js and the data file")
     by_label = {}
     for label in labels:
-        data = fetch_json(base + "&label=" + urllib.parse.quote(label) + window)
+        try:
+            data = fetch_json(base + "&label=" + urllib.parse.quote(label) + window)
+        except RuntimeError as e:
+            print(f"  {label}: failed ({e}) — continuing")
+            continue
         if data:
             by_label[label] = data
         print(f"  {label}: {sum(data.values()) if data else 0} events")

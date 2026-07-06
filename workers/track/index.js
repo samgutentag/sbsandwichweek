@@ -34,7 +34,7 @@ export default {
                   Authorization: `Bearer ${env.CF_API_TOKEN}`,
                   "Content-Type": "text/plain",
                 },
-                body: `SELECT SUM(1) AS total FROM sbsandwichweek WHERE timestamp >= NOW() - INTERVAL '5' MINUTE AND blob1 != 'test'`,
+                body: `SELECT SUM(_sample_interval) AS total FROM ${env.DATASET_NAME} WHERE timestamp >= NOW() - INTERVAL '5' MINUTE AND blob1 != 'test'`,
               },
             ),
             fetch("https://api.cloudflare.com/client/v4/graphql", {
@@ -99,8 +99,8 @@ export default {
                 Authorization: `Bearer ${env.CF_API_TOKEN}`,
                 "Content-Type": "text/plain",
               },
-              body: `SELECT blob2 AS name, SUM(1) AS views
-                     FROM sbsandwichweek
+              body: `SELECT blob2 AS name, SUM(_sample_interval) AS views
+                     FROM ${env.DATASET_NAME}
                      WHERE (blob1 = 'view' OR blob1 = 'sidebar-view')
                        AND timestamp >= NOW() - INTERVAL '10' MINUTE
                      GROUP BY name
@@ -147,7 +147,7 @@ export default {
                 Authorization: `Bearer ${env.CF_API_TOKEN}`,
                 "Content-Type": "text/plain",
               },
-              body: `SELECT blob2 AS query, SUM(1) AS count FROM sbsandwichweek WHERE blob1 = 'search' AND timestamp >= NOW() - INTERVAL '7' DAY GROUP BY query ORDER BY count DESC LIMIT 500`,
+              body: `SELECT blob2 AS query, SUM(_sample_interval) AS count FROM ${env.DATASET_NAME} WHERE blob1 = 'search' AND timestamp >= NOW() - INTERVAL '7' DAY GROUP BY query ORDER BY count DESC LIMIT 500`,
             },
           );
 
@@ -209,14 +209,17 @@ export default {
           });
 
           if (!gqlResp.ok) {
-            return new Response(JSON.stringify({ devices: {}, browsers: {}, os: {} }), {
+            console.log(`rum: GraphQL HTTP ${gqlResp.status}`);
+            return new Response(JSON.stringify({ devices: {}, browsers: {}, os: {}, error: `GraphQL HTTP ${gqlResp.status}` }), {
               headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=900" },
             });
           }
 
           const gql = await gqlResp.json();
+          if (gql.errors) console.log("rum: GraphQL errors: " + JSON.stringify(gql.errors));
           const acct = gql.data && gql.data.viewer && gql.data.viewer.accounts && gql.data.viewer.accounts[0];
           const result = { devices: {}, browsers: {}, os: {} };
+          if (gql.errors) result.error = "GraphQL errors — check RUM_SITE_TAG (see wrangler.toml comment)";
 
           if (acct) {
             (acct.devices || []).forEach(function (r) {
@@ -237,7 +240,8 @@ export default {
             headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=900" },
           });
         } catch (e) {
-          return new Response(JSON.stringify({ devices: {}, browsers: {}, os: {} }), {
+          console.log("rum: " + (e && e.message ? e.message : e));
+          return new Response(JSON.stringify({ devices: {}, browsers: {}, os: {}, error: String(e && e.message ? e.message : e) }), {
             headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=900" },
           });
         }
@@ -270,12 +274,14 @@ export default {
           });
 
           if (!gqlResp.ok) {
+            console.log(`rum-hourly: GraphQL HTTP ${gqlResp.status}`);
             return new Response("{}", {
               headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=300" },
             });
           }
 
           const gql = await gqlResp.json();
+          if (gql.errors) console.log("rum-hourly: GraphQL errors: " + JSON.stringify(gql.errors));
           const acct = gql.data && gql.data.viewer && gql.data.viewer.accounts && gql.data.viewer.accounts[0];
           const result = {};
 
@@ -292,6 +298,7 @@ export default {
             headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=300" },
           });
         } catch (e) {
+          console.log("rum-hourly: " + (e && e.message ? e.message : e));
           return new Response("{}", {
             headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=300" },
           });
@@ -309,14 +316,14 @@ export default {
             ? `timestamp >= toDateTime('${startParam.replace(/'/g, "''")} 00:00:00') AND timestamp <= toDateTime('${endParam.replace(/'/g, "''")} 23:59:59')`
             : `timestamp >= NOW() - INTERVAL '7' DAY`;
           const sql = label
-            ? `SELECT toStartOfHour(timestamp) AS hour, blob2 AS label, SUM(1) AS count
-               FROM sbsandwichweek
-               WHERE ${timeFilter} AND blob1 != 'test' AND blob2 = '${label.replace(/'/g, "''")}'
+            ? `SELECT toStartOfHour(timestamp) AS hour, blob2 AS label, SUM(_sample_interval) AS count
+               FROM ${env.DATASET_NAME}
+               WHERE ${timeFilter} AND blob1 LIKE 'filter-%' AND blob2 = '${label.replace(/'/g, "''")}'
                GROUP BY hour, label
                ORDER BY hour ASC
                LIMIT 5000`
-            : `SELECT toStartOfHour(timestamp) AS hour, blob1 AS action, SUM(1) AS count
-               FROM sbsandwichweek
+            : `SELECT toStartOfHour(timestamp) AS hour, blob1 AS action, SUM(_sample_interval) AS count
+               FROM ${env.DATASET_NAME}
                WHERE ${timeFilter} AND blob1 != 'test'
                GROUP BY hour, action
                ORDER BY hour ASC
@@ -382,15 +389,15 @@ export default {
       try {
         const sql = upvotes
           ? `SELECT blob2 AS name,
-             SUM(IF(blob1 = 'upvote', 1, 0)) - SUM(IF(blob1 = 'un-upvote', 1, 0)) AS net
-             FROM sbsandwichweek
+             SUM(IF(blob1 = 'upvote', _sample_interval, 0)) - SUM(IF(blob1 = 'un-upvote', _sample_interval, 0)) AS net
+             FROM ${env.DATASET_NAME}
              WHERE ${upvoteWhere}
              GROUP BY blob2
              HAVING net > 0
              ORDER BY net DESC
              LIMIT 500`
-          : `SELECT blob2 AS name, blob1 AS action, SUM(1) AS count
-             FROM sbsandwichweek
+          : `SELECT blob2 AS name, blob1 AS action, SUM(_sample_interval) AS count
+             FROM ${env.DATASET_NAME}
              WHERE ${aggWhere}
              GROUP BY blob2, blob1
              ORDER BY count DESC
@@ -450,6 +457,17 @@ export default {
     // POST — record a tracking event
     if (request.method !== "POST") {
       return new Response("Method not allowed", { status: 405 });
+    }
+
+    // Writes self-disable after the event ends plus the 5-day like-grace
+    // window (plus a 24h cushion for the event-local timezone). Wind-down
+    // never needs to edit or redeploy this code — only EVENT_END in
+    // wrangler.toml controls it. No EVENT_END = writes stay open (dev).
+    if (env.EVENT_END) {
+      const cutoff = Date.parse(env.EVENT_END + "T23:59:59Z") + 6 * 24 * 60 * 60 * 1000;
+      if (!Number.isNaN(cutoff) && Date.now() > cutoff) {
+        return new Response("ok", { headers: corsHeaders });
+      }
     }
 
     try {

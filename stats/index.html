@@ -9,6 +9,7 @@
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥪</text></svg>"
     />
     <script src="../config.js"></script>
+    <script src="../event-state.js"></script>
     <script>
       document.title = "Stats — " + THEME.eventName + " Map";
     </script>
@@ -191,9 +192,15 @@
             src = "../data.js";
           }
         }
-        var err = __dataYearOverride
-          ? ' onerror="window.location.replace(window.location.pathname)"'
-          : "";
+        var err;
+        if (__dataYearOverride) {
+          err = ' onerror="window.location.replace(window.location.pathname)"';
+        } else if (src !== "../data.js") {
+          // this year's data file may not exist yet — fall back to the skeleton
+          err = " onerror=\"document.write('\\x3Cscript src=&quot;../data.js&quot;>\\x3C/script>')\"";
+        } else {
+          err = "";
+        }
         document.write(
           '<script src="' + src + '"' + err + "></" + "script>"
         );

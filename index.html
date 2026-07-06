@@ -37,6 +37,7 @@
 
     <!-- Theme config — populates meta tags, title, favicon -->
     <script src="config.js"></script>
+    <script src="event-state.js"></script>
     <script>
       (function () {
         var t = THEME;
@@ -178,7 +179,7 @@
           <a
             id="aboutSource"
             class="about-link-card"
-            href="https://www.independent.com/2026/06/11/sandwich-week-2026/"
+            href="https://www.independent.com/2026/06/24/santa-barbaras-sandwich-week-returns/"
             target="_blank"
             rel="noopener"
           >
@@ -344,9 +345,15 @@
             src = "data.js";
           }
         }
-        var err = __dataYearOverride
-          ? ' onerror="window.location.replace(window.location.pathname)"'
-          : "";
+        var err;
+        if (__dataYearOverride) {
+          err = ' onerror="window.location.replace(window.location.pathname)"';
+        } else if (src !== "data.js") {
+          // this year's data file may not exist yet — fall back to the skeleton
+          err = " onerror=\"document.write('\\x3Cscript src=&quot;data.js&quot;>\\x3C/script>')\"";
+        } else {
+          err = "";
+        }
         document.write('<script src="' + src + '"' + err + "></" + "script>");
       })();
     </script>
@@ -355,6 +362,11 @@
     <script src="app.js"></script>
 
     <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "bae17b8a85d54610965c8c8662738354"}'
+    ></script>
     <!-- End Cloudflare Web Analytics -->
   </body>
 </html>

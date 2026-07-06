@@ -1,13 +1,11 @@
 name: Snapshot Tracking Data
 
+# Permanent daily cron — scripts/workflow-gate.py decides whether today is
+# inside the event window (from config.js), so starting or stopping an event
+# never edits this file. Manual dispatch always runs.
 on:
-  # Daily at 7am PT (14:00 UTC) across the event window: data-live through a
-  # few days after the event (Jun 22 – Jul 5, 2026). Two crons for the month
-  # boundary. These daily snapshots feed the Insights / Trends / Restaurants
-  # tabs. Disable again after the event.
   schedule:
-    - cron: "0 14 22-30 6 *"
-    - cron: "0 14 1-5 7 *"
+    - cron: "0 14 * * *" # Daily at 7am PT (14:00 UTC)
   workflow_dispatch:
 
 permissions:
@@ -19,17 +17,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check event window
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            python3 scripts/workflow-gate.py snapshot >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Fetch tracking data and save snapshot
+        if: steps.gate.outputs.active == 'true'
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
           python3 << 'PYEOF'
-          import json, os, urllib.request, datetime
+          import json, os, re, urllib.request, datetime
 
           account_id = os.environ["CF_ACCOUNT_ID"]
           api_token = os.environ["CF_API_TOKEN"]
           api_url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/analytics_engine/sql"
+
+          # Dataset name from wrangler.toml, event window from config.js —
+          # this workflow never carries event-specific values itself.
+          toml = open("workers/track/wrangler.toml").read()
+          dataset = re.search(r'^DATASET_NAME\s*=\s*"([^"]+)"', toml, re.M).group(1)
+          config = open("config.js").read()
+          def scalar(name):
+              m = re.search(r'^\s*' + name + r':\s*"([^"]+)"', config, re.M)
+              return m.group(1) if m else None
+          start = scalar("dataLiveDate") or scalar("eventStartDate") or "2000-01-01"
+          # capture a few pre-launch days so pre-event browsing is in the archive
+          start_dt = datetime.date.fromisoformat(start) - datetime.timedelta(days=7)
 
           def query(sql):
               req = urllib.request.Request(api_url, data=sql.encode(), method="POST")
@@ -38,11 +58,13 @@ jobs:
               with urllib.request.urlopen(req) as resp:
                   return json.loads(resp.read())
 
-          # Detail breakdown (same query as the Worker ?detail=true)
-          detail_sql = """
-            SELECT blob2 AS name, blob1 AS action, SUM(1) AS count
-            FROM sbsandwichweek
-            WHERE timestamp >= toDateTime('2026-06-25 09:00:00')
+          # Detail breakdown (same query as the Worker ?detail=true).
+          # SUM(_sample_interval), not SUM(1): counts stay true if Analytics
+          # Engine sampling kicks in.
+          detail_sql = f"""
+            SELECT blob2 AS name, blob1 AS action, SUM(_sample_interval) AS count
+            FROM {dataset}
+            WHERE timestamp >= toDateTime('{start_dt} 00:00:00')
               AND blob1 != 'test'
             GROUP BY blob2, blob1
             ORDER BY count DESC
@@ -59,11 +81,11 @@ jobs:
               detail[name][row["action"]] = int(row.get("count", 0))
 
           # Upvote counts (same query as the Worker ?upvotes=true)
-          upvote_sql = """
+          upvote_sql = f"""
             SELECT blob2 AS name,
-              SUM(IF(blob1 = 'upvote', 1, 0)) - SUM(IF(blob1 = 'un-upvote', 1, 0)) AS net
-            FROM sbsandwichweek
-            WHERE timestamp >= toDateTime('2026-06-25 09:00:00')
+              SUM(IF(blob1 = 'upvote', _sample_interval, 0)) - SUM(IF(blob1 = 'un-upvote', _sample_interval, 0)) AS net
+            FROM {dataset}
+            WHERE timestamp >= toDateTime('{start_dt} 00:00:00')
               AND (blob1 = 'upvote' OR blob1 = 'un-upvote')
             GROUP BY blob2
             HAVING net > 0
@@ -98,6 +120,7 @@ jobs:
           PYEOF
 
       - name: Commit snapshot if changed
+        if: steps.gate.outputs.active == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

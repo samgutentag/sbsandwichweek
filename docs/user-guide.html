@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SB Food Week Template: User Guide</title>
+<style>
+  :root {
+    --ink:#1a1a1a; --mute:#555; --faint:#888; --rule:#ddd;
+    --accent:#c14f33; --code:#f4f5f7; --warn:#b2741a; --ok:#1d7a4d;
+    --callout:#fbeee9;
+  }
+  * { box-sizing:border-box; }
+  body {
+    font:16px/1.65 Georgia,"Iowan Old Style","Times New Roman",serif;
+    color:var(--ink); max-width:50rem; margin:0 auto; padding:2.5rem 1.5rem 5rem;
+  }
+  h1,h2,h3,h4,th,.lbl,nav,.tag { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; }
+  h1 { font-size:2rem; margin:0 0 .2rem; line-height:1.15; }
+  .subtitle { color:var(--mute); font-style:italic; margin:0 0 1.5rem; }
+  h2 { font-size:1.35rem; margin:2.4rem 0 .6rem; padding-top:1.1rem; border-top:2px solid var(--rule); }
+  h3 { font-size:1.08rem; margin:1.5rem 0 .35rem; }
+  p { margin:.6rem 0; }
+  ul,ol { margin:.5rem 0; padding-left:1.4rem; } li { margin:.4rem 0; }
+  code { font-family:"SF Mono",ui-monospace,Menlo,monospace; font-size:.82em; background:var(--code); padding:.1em .35em; border-radius:3px; }
+  pre { background:var(--code); border:1px solid var(--rule); border-radius:6px; padding:.85rem 1rem; overflow-x:auto; font-size:.8rem; line-height:1.5; font-family:"SF Mono",ui-monospace,Menlo,monospace; }
+  pre code { background:none; padding:0; }
+  table { border-collapse:collapse; width:100%; margin:.8rem 0; font-size:.9rem; }
+  th,td { text-align:left; padding:.42rem .55rem; border-bottom:1px solid var(--rule); vertical-align:top; }
+  th { font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); }
+  .note { border-left:3px solid var(--accent); background:var(--callout); padding:.55rem .9rem; margin:.9rem 0; font-size:.95rem; }
+  .warn { border-left:3px solid var(--warn); background:#fdf7ec; padding:.55rem .9rem; margin:.9rem 0; font-size:.95rem; }
+  .ok { border-left:3px solid var(--ok); background:#f1f8f3; padding:.55rem .9rem; margin:.9rem 0; font-size:.95rem; }
+  nav { background:var(--code); border:1px solid var(--rule); border-radius:8px; padding:1rem 1.25rem; margin:1.5rem 0 2rem; font-size:.9rem; }
+  nav h2 { border:none; padding:0; margin:0 0 .5rem; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); }
+  nav ol { margin:0; padding-left:1.3rem; columns:2; column-gap:2rem; }
+  nav a { color:var(--accent); text-decoration:none; }
+  nav a:hover { text-decoration:underline; }
+  .tag { display:inline-block; font-size:.66rem; text-transform:uppercase; letter-spacing:.05em; background:var(--accent); color:#fff; padding:.08rem .42rem; border-radius:3px; vertical-align:middle; margin-left:.4rem; }
+  .defn { margin:.5rem 0; }
+  .defn dt { font-family:-apple-system,system-ui,sans-serif; font-weight:600; font-size:.92rem; }
+  .defn dd { margin:.1rem 0 .7rem; color:var(--ink); }
+  hr.soft { border:none; border-top:1px solid var(--rule); margin:1.6rem 0; }
+  figure { margin:1.6rem 0; }
+  figure .diagram { border:1px solid var(--rule); border-radius:8px; padding:1.1rem 1rem; background:#fff; }
+  figure svg { display:block; max-width:100%; height:auto; margin:0 auto; }
+  figcaption { font-family:-apple-system,system-ui,sans-serif; font-size:.8rem; color:var(--mute); margin-top:.55rem; text-align:center; }
+  .svg-label { font-family:-apple-system,"Segoe UI",system-ui,sans-serif; }
+  .updated { color:var(--faint); font-size:.8rem; font-family:-apple-system,system-ui,sans-serif; }
+  @media print {
+    body { max-width:none; font-size:11.5pt; }
+    nav { break-inside:avoid; }
+    h2 { break-after:avoid; }
+    table,.note,.warn,.ok,figure { break-inside:avoid; }
+    a { color:inherit; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>SB Food Week Template: User Guide</h1>
+<p class="subtitle">How to run a food week map from this template, start to finish. Written to be read cold, with no prior knowledge of the repos assumed.</p>
+
+<nav>
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#what">What this is</a></li>
+    <li><a href="#vocab">Words you need first</a></li>
+    <li><a href="#prereqs">Prerequisites</a></li>
+    <li><a href="#lifecycle">The life of an event</a></li>
+    <li><a href="#start">Starting an event</a></li>
+    <li><a href="#site">The site your visitors see</a></li>
+    <li><a href="#tracking">Tracking, honestly</a></li>
+    <li><a href="#sync">Keeping repos in sync</a></li>
+    <li><a href="#registry">The restaurant registry</a></li>
+    <li><a href="#winddown">Winding down &amp; the report</a></li>
+    <li><a href="#faq">Good to know</a></li>
+  </ol>
+</nav>
+
+<h2 id="what">1. What this is</h2>
+<p>This repo is the source of truth for the Santa Barbara food week maps (Burger Week, Coffee Week, Sandwich Week, and whatever comes next). Each event gets its own repo, created from this one with GitHub's "Use this template" button, and each event site is a static page on GitHub Pages: an interactive Leaflet map of participating restaurants with menus, filters, directions links, a public stats dashboard, and a lightweight click tracker running on one Cloudflare Worker.</p>
+<p>It is not a CMS and there are no accounts, databases, or servers to babysit. The only live infrastructure per event is the Worker (tracking) and two scheduled GitHub Actions, and all three turn themselves off when the event ends.</p>
+<p>What's ahead: the vocabulary, the event lifecycle, the two scripted transitions (start and wind-down), a tour of the visitor-facing screens, how tracking works, how code flows from this template to the event repos, and the shared restaurant registry that means you never hunt down an Apple Maps link twice.</p>
+
+<h2 id="vocab">2. Words you need first</h2>
+<dl class="defn">
+  <dt>Template-owned vs event-owned</dt>
+  <dd>Every file belongs to exactly one side. Template-owned files (the app code, stats, worker logic, scripts) are copied wholesale from this repo into event repos and must never be edited there. Event-owned files (<code>config.js</code>, data files, <code>wrangler.toml</code>, snapshots) belong to the event and are never touched by a sync. The boundary is written down in <code>template-manifest.json</code>.</dd>
+  <dt>THEME / config.js</dt>
+  <dd>The single per-event configuration object: name, emoji, dates, timezone, filters, URLs. Values only. The functions that interpret those values live in template-owned <code>event-state.js</code>, so a config file can never drift behaviorally.</dd>
+  <dt>Event state</dt>
+  <dd>One of <code>off-season</code>, <code>pre-event</code>, <code>during</code>, <code>post-event</code>, computed from the config dates <em>on the event's clock</em> (<code>timeZone</code>, normally America/Los_Angeles), never the viewer's. A wound-down event sets <code>archived: true</code>, which forces off-season permanently.</dd>
+  <dt>Skeleton vs full data</dt>
+  <dd><code>data.js</code> is the pre-launch skeleton (restaurants on the map, menus empty). <code>data-&lt;year&gt;.js</code> is the full file with menus, loaded once <code>dataLiveDate</code> arrives (at 12:01 AM). Same restaurant list in both.</dd>
+  <dt>The registry</dt>
+  <dd><code>registry/restaurants.json</code>, in this repo only: every venue ever seen across events, with coordinates, contacts, Google and Apple Maps links, and participation history. New events pull from it; concluded events write back to it.</dd>
+  <dt>Snapshot</dt>
+  <dd>A committed JSON copy of tracking data. Daily snapshots accumulate during the event; the wind-down bakes a final one into <code>tracking-snapshot.js</code>. Snapshots are the permanent record, because the raw analytics rows expire (about 90 days).</dd>
+  <dt>The Worker</dt>
+  <dd>One Cloudflare Worker per event (<code>workers/track/</code>). Visitors' clicks POST to it; it writes to a Cloudflare Analytics Engine dataset and serves the aggregate numbers the stats pages read.</dd>
+</dl>
+
+<h2 id="prereqs">3. Prerequisites</h2>
+<p>Everything runs from a Mac with:</p>
+<pre><code>brew install imagemagick        # og-image rendering (optional, apply-theme skips if absent)
+npm install -g wrangler         # Cloudflare Worker deploys
+# plus: python3 and node, both already used by every script</code></pre>
+<p>Per event you also need: a domain (the <code>sb&lt;thing&gt;weekmap.com</code> convention), Cloudflare DNS, three GitHub repo secrets (<code>GOOGLE_PLACES_API_KEY</code>, <code>CF_ACCOUNT_ID</code>, <code>CF_API_TOKEN</code>), and two Worker secrets set with <code>wrangler secret put</code> (<code>CF_API_TOKEN</code>, <code>ADMIN_TOKEN</code>). The README's setup guide walks each one.</p>
+
+<h2 id="lifecycle">4. The life of an event</h2>
+<p>The site changes itself as the config dates pass. You set three dates once; everything else is automatic, including the shutdowns.</p>
+
+<figure>
+  <div class="diagram">
+  <svg viewBox="0 0 640 210" role="img" aria-label="Timeline of an event: off-season, then pre-event at the data live date, during between start and end, post-event with a five day voting grace window, then archived. Automatic gates hang below the timeline.">
+    <line x1="30" y1="70" x2="610" y2="70" stroke="#bbb" stroke-width="2"/>
+    <rect x="30" y="55" width="110" height="30" rx="6" fill="#f4f5f7" stroke="#999"/>
+    <text x="85" y="74" text-anchor="middle" class="svg-label" font-size="11" font-weight="700" fill="#555">off-season</text>
+    <rect x="150" y="55" width="120" height="30" rx="6" fill="#fbeee9" stroke="#c14f33"/>
+    <text x="210" y="74" text-anchor="middle" class="svg-label" font-size="11" font-weight="700" fill="#c14f33">pre-event</text>
+    <rect x="280" y="55" width="130" height="30" rx="6" fill="#c14f33" stroke="#9c3d26"/>
+    <text x="345" y="74" text-anchor="middle" class="svg-label" font-size="11" font-weight="800" fill="#fff">during</text>
+    <rect x="420" y="55" width="120" height="30" rx="6" fill="#fbeee9" stroke="#c14f33"/>
+    <text x="480" y="74" text-anchor="middle" class="svg-label" font-size="11" font-weight="700" fill="#c14f33">post-event</text>
+    <rect x="550" y="55" width="60" height="30" rx="6" fill="#f4f5f7" stroke="#999"/>
+    <text x="580" y="74" text-anchor="middle" class="svg-label" font-size="10" font-weight="700" fill="#555">archived</text>
+    <text x="150" y="45" text-anchor="middle" class="svg-label" font-size="9.5" fill="#555">dataLiveDate 12:01am</text>
+    <text x="280" y="45" text-anchor="middle" class="svg-label" font-size="9.5" fill="#555">eventStartDate</text>
+    <text x="420" y="45" text-anchor="middle" class="svg-label" font-size="9.5" fill="#555">eventEndDate 11:59pm</text>
+    <text x="550" y="45" text-anchor="middle" class="svg-label" font-size="9.5" fill="#555">wind-down.py</text>
+    <line x1="480" y1="98" x2="480" y2="112" stroke="#1d7a4d" stroke-width="1.5"/>
+    <text x="480" y="126" text-anchor="middle" class="svg-label" font-size="10" font-weight="700" fill="#1d7a4d">votes close: end + 5 days</text>
+    <line x1="510" y1="140" x2="510" y2="154" stroke="#b2741a" stroke-width="1.5"/>
+    <text x="510" y="168" text-anchor="middle" class="svg-label" font-size="10" font-weight="700" fill="#b2741a">Worker stops recording: end + 6 days</text>
+    <text x="320" y="196" text-anchor="middle" class="svg-label" font-size="9.5" fill="#888">All boundaries are computed on the event's timezone, not the visitor's clock.</text>
+  </svg>
+  </div>
+  <figcaption>The two closures nobody has to remember: thumbs-up voting stays open 5 days past the end date (late diners still get a vote), and the Worker refuses new writes a day after that. Neither requires touching code.</figcaption>
+</figure>
+
+<p>Three more things run on this calendar without help. The hours-refresh Action runs daily at 6am PT but only inside the window 3 days before <code>dataLiveDate</code> through 1 day after the end. The snapshot Action runs daily at 7am PT from 1 day before <code>dataLiveDate</code> through 5 days after the end. Both read the dates from <code>config.js</code> at runtime, so the workflow files themselves never change. Manual runs from the Actions tab always work, window or not.</p>
+
+<h2 id="start">5. Starting an event <span class="tag">scripts/</span></h2>
+<p>The full timeline with lead times lives in <code>docs/event-runbook.md</code> (and the <code>/foodweek-tickets</code> skill turns it into dated Linear tickets). The short version:</p>
+<ol>
+  <li><strong>Create the repo</strong> from this template, fill <code>config.js</code> identity fields, and set <code>DATASET_NAME</code> (plus the matching <code>dataset</code> binding) in <code>workers/track/wrangler.toml</code>.</li>
+  <li><strong>Pull the roster.</strong> Put one venue name per line in a text file, then
+    <pre><code>python3 scripts/registry.py pull --roster roster.txt --year 2027</code></pre>
+    Known venues arrive with coordinates, contacts, and both map links filled. Unknown ones get a stub with a Google Maps search fallback, and <code>fetch-place-ids.py</code> / <code>fetch-details.py</code> / <code>fetch-hours.py</code> fill the gaps from the Places API.</li>
+  <li><strong>Validate and launch.</strong>
+    <pre><code>python3 scripts/start-event.py</code></pre>
+    It refuses to pass with placeholder values, mismatched dataset names, missing tag booleans, or areas that aren't in <code>AREA_COLORS</code>, then runs <code>apply-theme.py</code> and prints the short manual list that remains (secrets, <code>wrangler deploy</code>, DNS, Pages).</li>
+</ol>
+<div class="note"><code>apply-theme.py</code> is the re-branding step: it rewrites the HTML shells, og-image, CNAME, README badges, and the Worker's event-window vars from <code>config.js</code>. Run it after any config change. It is safe to run repeatedly.</div>
+
+<h2 id="site">6. The site your visitors see</h2>
+<h3>The map <span class="tag alt">/</span></h3>
+<p>Sidebar list plus Leaflet map, one pin per physical location (multi-location restaurants split into "Name (Location)" pins). Visitors can search, filter by area chips, dietary tags, and hours ("Open Now" / "Lunch" / "Dinner", which appear only once <code>hours.json</code> exists), get directions (Apple or Google), call, share, and thumbs-up a restaurant. On phones the restaurant detail opens as a half-height sheet so the map stays visible. Restaurants that participated in a previous year show a returning badge once they hit 2+ years, driven by <code>THEME.firstYearByName</code>.</p>
+<p>During the event a live "eyes" layer marks restaurants people are looking at right now: it counts views in the last 10 minutes, and the header chip totals them. On localhost the eyes are simulated so you can develop the feature without traffic.</p>
+<h3>Stats <span class="tag alt">/stats</span></h3>
+<p>Public dashboard, four tabs (Activity, Insights, Trends, Restaurants) with an All time / Pre-event / During / Post-event range filter. The leaderboard score weighs intent: (Directions + Phone) &times; 3, (Direct links + Shares + Likes) &times; 2, (Website + Instagram + Views) &times; 1. While the event is live the numbers come from the Worker; after wind-down they come from the committed snapshots, forever.</p>
+<h3>Admin <span class="tag alt">/admin</span></h3>
+<p>Token-protected extras: search-query leaderboard, zero-result searches, screen widths, traffic sources, geo demand. The token is the Worker's <code>ADMIN_TOKEN</code> secret.</p>
+<h3>Embed <span class="tag alt">/embed</span></h3>
+<p>An iframe-ready map for the organizer's article, with copy-paste instructions at <code>/embed</code>. On phones the embed renders a map-only layout instead of redirecting. Embed traffic tags itself with <code>?src=embed</code> so you can attribute it later.</p>
+
+<h2 id="tracking">7. Tracking, honestly</h2>
+<p>Every tracked interaction is a single POST of <code>{action, label}</code>, nothing else. No cookies, no user IDs, no precise location, and traffic from LAN/localhost hosts is dropped client-side so testing never pollutes the numbers. "Use my location" is opt-in and coarse (nearest neighborhood only). Counts are actions, not unique people.</p>
+<div class="warn">Two lessons are baked in and worth remembering. Analytics Engine <em>samples</em> under load, so every query uses <code>SUM(_sample_interval)</code>; a plain count silently ran ~10% low during Sandwich Week. And the Web Analytics <code>RUM_SITE_TAG</code> is not the beacon token from <code>config.js</code>; the discovery query lives in the <code>wrangler.toml</code> comment. Get it wrong and the audience numbers are silently empty.</div>
+
+<h2 id="sync">8. Keeping repos in sync</h2>
+<p>Event repos share no git history with this template ("Use this template" squashes it), so sync is file-based, and the direction is always the same: build features here, push them outward.</p>
+
+<figure>
+  <div class="diagram">
+  <svg viewBox="0 0 640 230" role="img" aria-label="The template repo at the top syncs template-owned files down to the event repos, which re-brand them from their own config. The frozen state shows the template above three event repos with arrows down.">
+    <rect x="170" y="16" width="300" height="46" rx="9" fill="#fbeee9" stroke="#c14f33" stroke-width="2"/>
+    <text x="320" y="36" text-anchor="middle" class="svg-label" font-size="12.5" font-weight="800" fill="#c14f33">sbfoodweek-template</text>
+    <text x="320" y="52" text-anchor="middle" class="svg-label" font-size="9.5" fill="#555">features + fixes are built and committed HERE</text>
+    <line x1="200" y1="62" x2="115" y2="140" stroke="#c9a08f" stroke-width="2" stroke-dasharray="3 3"/>
+    <line x1="320" y1="62" x2="320" y2="140" stroke="#c9a08f" stroke-width="2" stroke-dasharray="3 3"/>
+    <line x1="440" y1="62" x2="525" y2="140" stroke="#c9a08f" stroke-width="2" stroke-dasharray="3 3"/>
+    <rect x="30" y="142" width="170" height="52" rx="9" fill="#f1f8f3" stroke="#1d7a4d"/>
+    <text x="115" y="163" text-anchor="middle" class="svg-label" font-size="11" font-weight="700" fill="#1d7a4d">sbburgerweek</text>
+    <text x="115" y="180" text-anchor="middle" class="svg-label" font-size="9" fill="#555">sync-from-template.py</text>
+    <rect x="235" y="142" width="170" height="52" rx="9" fill="#f1f8f3" stroke="#1d7a4d"/>
+    <text x="320" y="163" text-anchor="middle" class="svg-label" font-size="11" font-weight="700" fill="#1d7a4d">sbsandwichweek</text>
+    <text x="320" y="180" text-anchor="middle" class="svg-label" font-size="9" fill="#555">sync-from-template.py</text>
+    <rect x="440" y="142" width="170" height="52" rx="9" fill="#f1f8f3" stroke="#1d7a4d"/>
+    <text x="525" y="163" text-anchor="middle" class="svg-label" font-size="11" font-weight="700" fill="#1d7a4d">sbburritoweek</text>
+    <text x="525" y="180" text-anchor="middle" class="svg-label" font-size="9" fill="#555">sync-from-template.py</text>
+    <text x="320" y="216" text-anchor="middle" class="svg-label" font-size="9.5" fill="#888">config.js, data files, wrangler.toml, snapshots never travel: they are event-owned.</text>
+    <rect x="30" y="142" width="170" height="52" rx="9" fill="#1d7a4d" opacity="0">
+      <animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;0;0.35;0;0;0" keyTimes="0;0.32;0.42;0.55;0.99;1"/>
+    </rect>
+    <rect x="235" y="142" width="170" height="52" rx="9" fill="#1d7a4d" opacity="0">
+      <animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;0;0.35;0;0;0" keyTimes="0;0.36;0.46;0.59;0.99;1"/>
+    </rect>
+    <rect x="440" y="142" width="170" height="52" rx="9" fill="#1d7a4d" opacity="0">
+      <animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;0;0.35;0;0;0" keyTimes="0;0.40;0.50;0.63;0.99;1"/>
+    </rect>
+    <circle cx="320" cy="16" r="5" fill="none" stroke="#c14f33" stroke-width="2" opacity="0">
+      <animate attributeName="r" dur="5s" repeatCount="indefinite" values="5;22;22" keyTimes="0;0.14;1"/>
+      <animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0.9;0;0" keyTimes="0;0.14;1"/>
+    </circle>
+    <circle r="5" fill="#c14f33" opacity="0">
+      <animateMotion dur="5s" repeatCount="indefinite" path="M200,62 L115,140" keyPoints="0;0;1;1" keyTimes="0;0.12;0.36;1" calcMode="linear"/>
+      <animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.12;0.36;0.4;1"/>
+    </circle>
+    <circle r="5" fill="#c14f33" opacity="0">
+      <animateMotion dur="5s" repeatCount="indefinite" path="M320,62 L320,140" keyPoints="0;0;1;1" keyTimes="0;0.16;0.40;1" calcMode="linear"/>
+      <animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.16;0.40;0.44;1"/>
+    </circle>
+    <circle r="5" fill="#c14f33" opacity="0">
+      <animateMotion dur="5s" repeatCount="indefinite" path="M440,62 L525,140" keyPoints="0;0;1;1" keyTimes="0;0.20;0.44;1" calcMode="linear"/>
+      <animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.20;0.44;0.48;1"/>
+    </circle>
+  </svg>
+  </div>
+  <figcaption>A commit lands in the template, then each event repo pulls it with one command. The green flash is apply-theme re-branding the copied shells with that event's own name and emoji.</figcaption>
+</figure>
+
+<p>The workflow when you build a new feature:</p>
+<ol>
+  <li>Build and test it <strong>in this repo</strong> (<code>python3 -m http.server 8000 --bind 127.0.0.1</code>; skeleton data renders out of the box, or copy <code>mock_data.js</code> over a <code>data-&lt;year&gt;.js</code>).</li>
+  <li>If you added a file, put it in <code>template-manifest.json</code>: <code>files</code> for shared code, <code>themed</code> if apply-theme brands it, nowhere if it's event content.</li>
+  <li>Commit and push here (safe: nothing deploys from the template).</li>
+  <li>In each event repo: <code>python3 sync-from-template.py</code>, review <code>git diff</code>, push.</li>
+</ol>
+<div class="warn">Never patch template-owned code inside an event repo. If a live event forces a hotfix, fine, but port it to the template immediately after, or the next sync erases it. The tripwire is <code>python3 sync-from-template.py --check</code>: it exits nonzero on any drift.</div>
+<p>If the feature needs a new <code>config.js</code> key, write the code to default sensibly when the key is missing, because config is event-owned and won't be updated by sync. Add the key to each event repo's config by hand.</p>
+
+<h2 id="registry">9. The restaurant registry <span class="tag">registry/</span></h2>
+<p>Venues repeat across events, and the painful parts of venue data (hand-captured Apple Maps links, verified coordinates) should be captured exactly once. The registry keeps every venue seen across all events, keyed by a stable slug, with multi-location support, name variants, contacts, and participation history. Participation history also generates each event's <code>firstYearByName</code>, so returning badges come for free.</p>
+<table>
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>registry.py pull --roster f --year Y</code></td><td>Roster of names in, prefilled <code>data-Y.js</code> + <code>data.js</code> out, plus the firstYearByName block for config.</td></tr>
+    <tr><td><code>registry.py writeback --event e --year Y</code></td><td>Merges a concluded event's data file back in. Part of wind-down. Safe to re-run.</td></tr>
+    <tr><td><code>registry.py check</code></td><td>Integrity: canonical areas, coordinates present, no name collisions.</td></tr>
+    <tr><td><code>registry.py seed --repos ...</code></td><td>The one-time build from existing repos. Already done; you shouldn't need it again.</td></tr>
+  </tbody>
+</table>
+<div class="ok">Merge policy worth knowing: newer events win field conflicts, but a curated share link (maps.app.goo.gl or maps.apple) is never overwritten by an auto-generated search-URL fallback.</div>
+
+<h2 id="winddown">10. Winding down &amp; the report</h2>
+<p>One command, and the order matters enough that the script enforces it:</p>
+<pre><code>python3 scripts/wind-down.py</code></pre>
+<p>It archives hourly data and bakes the final <code>tracking-snapshot.js</code> <em>before</em> disabling anything (the raw analytics rows expire after roughly 90 days; the committed snapshots are what keep the stats dashboard alive forever), then sets <code>archived: true</code>, nulls the analytics beacon, and re-themes. The Worker and the scheduled Actions turn themselves off on their own schedule; <code>trackUrl</code> stays set so the stats pages keep reading historical aggregates.</p>
+<p>Then generate the organizer report:</p>
+<pre><code>python3 scripts/generate_report.py</code></pre>
+<p>It builds a print-ready event report plus a one-pager per restaurant, entirely from the committed archives, into <code>report/</code>. Review before committing: on a live Pages domain, committing publishes it at <code>/report/</code>.</p>
+
+<h2 id="faq">11. Good to know</h2>
+<dl class="defn">
+  <dt>The event ended but people can still thumbs-up. Bug?</dt>
+  <dd>No. Voting stays open for 5 days after the end date so late diners get their vote in, then closes on its own. The Worker stops recording a day after that.</dd>
+  <dt>Months later the stats page is empty. What happened?</dt>
+  <dd>The event was probably wound down without baking <code>tracking-snapshot.js</code>, and the raw analytics expired. The current <code>wind-down.py</code> bakes it automatically; for an already-expired event, bake from the newest committed daily snapshot in <code>snapshots/</code>.</dd>
+  <dt>Does the map track visitors?</dt>
+  <dd>Only anonymous action counts (see section 7). No identifiers, no precise location, and localhost/LAN traffic never counts.</dd>
+  <dt>How do I preview the pre-launch skeleton after launch?</dt>
+  <dd>Add <code>?year=9999</code> to the URL. And <code>?year=2026</code> forces a specific year's data file.</dd>
+  <dt>Can I edit app.js in an event repo just this once?</dt>
+  <dd>You can, and the next <code>sync-from-template.py</code> will erase it. Make the change in the template and sync it out; that's the whole system.</dd>
+  <dt>What does an archived event cost to keep running?</dt>
+  <dd>Effectively nothing. GitHub Pages is free, the Worker only serves cached reads, the Actions gate themselves off, and the Places API is only called inside the event window.</dd>
+  <dt>Is it safe to re-run the scripts?</dt>
+  <dd>Yes by design: <code>apply-theme.py</code>, <code>sync-from-template.py</code>, and <code>registry.py writeback</code> are idempotent, and <code>wind-down.py</code> refuses to run twice.</dd>
+</dl>
+
+<hr class="soft">
+<p class="updated">Companion guide to sbfoodweek-template. If it behaves differently from this guide, the code is the source of truth.</p>
+
+<script>
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('svg').forEach(function (s) { if (s.pauseAnimations) s.pauseAnimations(); });
+  }
+</script>
+
+</body>
+</html>

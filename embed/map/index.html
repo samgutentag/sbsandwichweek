@@ -63,7 +63,7 @@
           Tap the printer icon to select favorites and print a custom list.
         </p>
         <div class="about-links">
-          <a id="aboutSource" class="about-link-card" href="https://www.independent.com/2026/06/11/sandwich-week-2026/" target="_blank" rel="noopener">
+          <a id="aboutSource" class="about-link-card" href="https://www.independent.com/2026/06/24/santa-barbaras-sandwich-week-returns/" target="_blank" rel="noopener">
             <span class="about-link-icon">📰</span>
             <span class="about-link-label">Source</span>
             <span class="about-link-desc">The Independent</span>
@@ -210,6 +210,7 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.min.js" crossorigin></script>
 
     <script src="../../config.js"></script>
+    <script src="../../event-state.js"></script>
     <script>
       var __dataYearOverride =
         new URLSearchParams(window.location.search).get("year");
@@ -225,9 +226,15 @@
             src = "../../data.js";
           }
         }
-        var err = __dataYearOverride
-          ? ' onerror="window.location.replace(window.location.pathname)"'
-          : "";
+        var err;
+        if (__dataYearOverride) {
+          err = ' onerror="window.location.replace(window.location.pathname)"';
+        } else if (src !== "../../data.js") {
+          // this year's data file may not exist yet — fall back to the skeleton
+          err = " onerror=\"document.write('\\x3Cscript src=&quot;../../data.js&quot;>\\x3C/script>')\"";
+        } else {
+          err = "";
+        }
         document.write(
           "<script src=\"" + src + "\"" + err + "></" + "script>"
         );

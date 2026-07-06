@@ -1,0 +1,46 @@
+{
+  "comment": "Template-owned paths, copied wholesale into event repos by sync-from-template.py. 'themed' files are also template-owned but re-branded by apply-theme.py after every sync, so --check skips byte-comparing them. Everything not listed is event-owned.",
+  "files": [
+    "app.js",
+    "track.js",
+    "event-state.js",
+    "style.css",
+    "apply-theme.py",
+    "fetch-hours.py",
+    "fetch-place-ids.py",
+    "fetch-details.py",
+    "snapshot-hourly.py",
+    "snapshot-hourly.sh",
+    "data-template.js",
+    "mock_data.js",
+    "icon-fries.svg",
+    "icon-gf.svg",
+    "icon-vegetarian.svg",
+    "template-manifest.json",
+    "sync-from-template.py",
+    "workers/track/index.js",
+    ".github/workflows/fetch-hours.yml",
+    ".github/workflows/snapshot-tracking.yml",
+    ".github/TEMPLATE_SETUP.md"
+  ],
+  "dirs": [
+    "stats",
+    "admin",
+    "embed",
+    "scripts",
+    "docs"
+  ],
+  "delete": [
+    "stats/restaurant/restaurant.js",
+    "stats/insights/insights.js",
+    "stats/trends/trends.js"
+  ],
+  "note_event_owned": "config.js, data.js, data-<year>.js, hours.json, place-ids.json, tracking-snapshot.js (baked at wind-down), workers/track/wrangler.toml, CNAME, og-image.*, venmo_qr.png, snapshots/, CLAUDE.md, registry/ (template repo only)",
+  "themed": [
+    "index.html",
+    "embed/index.html",
+    "embed/map/index.html",
+    "admin/index.html",
+    "stats/index.html"
+  ]
+}

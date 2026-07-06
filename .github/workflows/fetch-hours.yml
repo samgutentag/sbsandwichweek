@@ -1,12 +1,11 @@
 name: Fetch Restaurant Hours
 
+# Permanent daily cron — scripts/workflow-gate.py decides whether today is
+# inside the event window (from config.js), so starting or stopping an event
+# never edits this file. Manual dispatch always runs.
 on:
-  # Daily at 6am PT (13:00 UTC) across the event window: 2 days before
-  # through 1 day after (event runs Jun 25–Jul 1, 2026). Two crons because
-  # the window straddles the month boundary. Disable again after the event.
   schedule:
-    - cron: "0 13 23-30 6 *"
-    - cron: "0 13 1-2 7 *"
+    - cron: "0 13 * * *" # Daily at 6am PT (13:00 UTC)
   workflow_dispatch:
 
 permissions:
@@ -18,22 +17,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Resolve Google Place IDs (incremental)
-        env:
-          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
-        run: python3 fetch-place-ids.py
+      - name: Check event window
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            python3 scripts/workflow-gate.py fetch-hours >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Fetch hours from Google Places API
+        if: steps.gate.outputs.active == 'true'
         env:
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
         run: python3 fetch-hours.py
 
-      - name: Commit place-ids.json and hours.json if changed
+      - name: Commit hours.json if changed
+        if: steps.gate.outputs.active == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add place-ids.json hours.json
-          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git add hours.json
+          git diff --cached --quiet && echo "No changes to hours.json" && exit 0
           git commit -m "Update restaurant hours $(date -u +%Y-%m-%d) [skip ci]"
           git pull --rebase
           git push
