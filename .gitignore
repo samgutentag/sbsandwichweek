@@ -1,3 +1,6 @@
 .DS_Store
 .wrangler/
 tracking_data.json
+# wrangler local secrets — CF_API_TOKEN lives here, never commit
+.dev.vars
+workers/track/.dev.vars

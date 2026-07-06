@@ -9,9 +9,10 @@ DATASET_NAME = "sbsandwichweek"
 # Write cutoff — POSTs self-disable after EVENT_END + like-grace window.
 EVENT_START = "2026-06-25"
 EVENT_END = "2026-07-01"
-# Cloudflare Web Analytics site tag (same value as config.js cfAnalyticsToken).
-# Required by the RUM GraphQL queries for device/browser/OS + live visitors.
-RUM_SITE_TAG = "bae17b8a85d54610965c8c8662738354"
+# Cloudflare Web Analytics site tag — NOT the beacon token from config.js
+# cfAnalyticsToken (those differ for this site; see snapshots/rum-2026-07-02.json
+# meta note). Required by the RUM GraphQL queries for device/browser/OS.
+RUM_SITE_TAG = "584145a2cc5c423f84890c1f76a17081"
 
 [[analytics_engine_datasets]]
 binding = "TRACKER"
