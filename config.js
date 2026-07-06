@@ -67,6 +67,10 @@ const THEME = {
   // Format: "YYYY-MM-DD" in local time, activates at 12:01 AM. Set null to always load full data.
   dataLiveDate: "2026-06-22",
 
+  // Archived — event is wound down; drives the off-season state while
+  // trackUrl stays set so stats/admin keep reading historical data.
+  archived: false,
+
   // Event tracking — Cloudflare Worker URL (null to disable, see README Step 9)
   trackUrl: "https://sbsandwichweek-track.developer-95b.workers.dev",
 
