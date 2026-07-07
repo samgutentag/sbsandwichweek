@@ -19,6 +19,12 @@ function isDevHost(h) {
   var url = typeof THEME !== "undefined" && THEME.trackUrl;
   if (!url) return;
 
+  // Archived events send nothing: trackUrl stays set so the stats pages can
+  // read historical aggregates, but window.track must never exist. Without
+  // this, every visit to a wound-down map keeps POSTing beacons the Worker
+  // will refuse anyway.
+  if (THEME.archived) return;
+
   if (isDevHost(location.hostname)) return;
 
   window.track = function (action, label) {

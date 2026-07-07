@@ -706,7 +706,9 @@
       renderEyes(getSimEyeCounts());
       return;
     }
-    if (!THEME.trackUrl) return;
+    // Archived events never poll: trackUrl stays set for the stats pages'
+    // historical reads, but the map itself must be fully dark.
+    if (THEME.archived || !THEME.trackUrl) return;
     fetch(THEME.trackUrl + "?eyes=true", { method: "GET" })
       .then(function (resp) { return resp.json(); })
       .then(function (data) { renderEyes(data || {}); })

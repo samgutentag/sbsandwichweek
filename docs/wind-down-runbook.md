@@ -28,9 +28,9 @@ Every outbound call is gated. After wind-down, confirm each guard:
 
 | Component | File | Guard |
 |---|---|---|
-| Tracking beacon | `track.js` | `THEME.trackUrl` null → `window.track` never defined; LAN hosts always skipped |
+| Tracking beacon | `track.js` | `THEME.trackUrl` null **or `THEME.archived`** → `window.track` never defined; LAN hosts always skipped |
 | Upvote fetch (map + embed) | `app.js`, `embed/map/embed.js` | `if (THEME.trackUrl)` |
-| Live activity / eyes polls | `app.js`, `stats/stats.js` | `if (!THEME.trackUrl) return` + event-state gating |
+| Live activity / eyes polls | `app.js`, `stats/stats.js` | `THEME.archived \|\| !THEME.trackUrl` → no poll; stats also event-state gated |
 | Hourly chart fetches | `stats/stats.js`, `stats/trends/trends-tab.js` | concluded events read `snapshots/hourly-*.json` instead of the Worker |
 | Detail/RUM/admin fetches | `stats/stats.js`, `admin/admin.js` | `if (!THEME.trackUrl) return` |
 | CF Web Analytics beacon | all `*.html` | removed by `apply-theme.py` when `cfAnalyticsToken` is null |
