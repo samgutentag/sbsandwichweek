@@ -7,7 +7,7 @@ Outputs (print-ready HTML, no external assets):
 
 Reads:
   snapshots/raw-events-2026.json  — raw Analytics Engine dump (weighted rows)
-  snapshots/rum-2026-07-02.json   — Cloudflare Web Analytics aggregates
+  snapshots/rum-2026-07-07.json   — Cloudflare Web Analytics aggregates
   data-2026.js + config.js        — restaurant metadata (dumped to JSON via node)
 
 All counts are weighted by _sample_interval, so they reflect true event counts,
@@ -87,7 +87,11 @@ class Aggregates:
                 self.daily_by_restaurant[label][day] += w
             if action in RESTAURANT_ACTIONS:
                 if label in names:
-                    if in_event:
+                    # Likes count through the 5-day post-event grace window
+                    # (canCastVotes stayed true until July 6), matching the map
+                    # and the baked tracking-snapshot. Everything else stays
+                    # event-week scoped.
+                    if in_event or action in ("upvote", "un-upvote"):
                         self.by_restaurant[label][action] += w
                 else:
                     self.unmatched[label] += w
@@ -261,7 +265,7 @@ def main():
     restaurants = meta["restaurants"]
     first_year = meta["firstYearByName"]
     raw = json.load(open(REPO / "snapshots" / "raw-events-2026.json"))
-    rum = json.load(open(REPO / "snapshots" / "rum-2026-07-02.json"))
+    rum = json.load(open(REPO / "snapshots" / "rum-2026-07-07.json"))
     agg = Aggregates(raw["events"], restaurants)
 
     if agg.unmatched:
@@ -302,7 +306,7 @@ def main():
     body = f"""
 <h1>SB Sandwich Week 2026: What the Map Saw</h1>
 <p class="subtitle">Engagement report from sbsandwichweekmap.com, the interactive restaurant map ·
-June 25 to July 1, 2026 · prepared July 2, 2026</p>
+June 25 to July 1, 2026 · prepared July 7, 2026</p>
 
 <p>Santa Barbara Sandwich Week ran for seven days with {len(restaurants)} participating restaurants.
 The companion map let readers browse every sandwich, filter by neighborhood and dietary needs, and
@@ -333,7 +337,7 @@ desktop): people deciding where to eat, close to when they eat.</p>
 
 <h2>Where Readers Came From</h2>
 <figure class="fig">{svg_hbars(referers)}
-<figcaption>Site visits by referrer, June 15 to July 2 (Cloudflare Web Analytics).</figcaption></figure>
+<figcaption>Site visits by referrer, June 15 to July 7 (Cloudflare Web Analytics).</figcaption></figure>
 <p>The Independent's article and embedded map were the front door: the overwhelming majority of
 visits arrived from independent.com. Reddit chatter added a real secondary audience, and the
 remainder came direct (bookmarks, messages, typed URLs). For next year, the lesson is simple: the
@@ -372,9 +376,10 @@ twice). Analytics sampling was corrected by weighting, so totals are true estima
 within about one percent. Site visits and device split come from Cloudflare Web Analytics, a
 separate sampled system. Location-based figures cover only visitors who tapped "use my location,"
 a small and self-selected group, and are directional only. Views from the article embed and the
-full map are counted together. Like counts allowed un-liking, and beacon-based tracking loses a
-small number of events by design. The event tracker recorded {fmt(sum(agg.action_totals.values()))}
-weighted actions during event week.</p>
+full map are counted together. Like counts allowed un-liking and stayed open through a five-day
+post-event grace window (through July 6), so they run slightly past the event-week scope of every
+other number here. Beacon-based tracking loses a small number of events by design. The event
+tracker recorded {fmt(sum(agg.action_totals.values()))} weighted actions during event week.</p>
 
 <h2 class="break">Appendix: All Restaurants</h2>
 <table>
@@ -387,7 +392,7 @@ weighted actions during event week.</p>
 </table>
 
 <div class="footer">SB Sandwich Week 2026 map &amp; report · sbsandwichweekmap.com · data archived
-from Cloudflare Analytics Engine and Web Analytics on July 2, 2026 · built by Sam Gutentag</div>
+from Cloudflare Analytics Engine and Web Analytics on July 7, 2026 · built by Sam Gutentag</div>
 """
     OUT.mkdir(exist_ok=True)
     (OUT / "index.html").write_text(page("SB Sandwich Week 2026 — Map Engagement Report", body))
@@ -432,7 +437,7 @@ restaurants{f", and {d['intent_rate']:.1f}% of its views turned into an intent t
 
 <p class="note">Counts are actions, not unique visitors, adjusted for analytics sampling.
 Full methodology in the event-wide report.</p>
-<div class="footer">SB Sandwich Week 2026 · sbsandwichweekmap.com · prepared July 2, 2026</div>
+<div class="footer">SB Sandwich Week 2026 · sbsandwichweekmap.com · prepared July 7, 2026</div>
 """
         (OUT / "restaurants" / f"{slugify(name)}.html").write_text(page(f"{name} — Sandwich Week 2026", body))
     print(f"wrote {len(restaurants)} one-pagers to report/restaurants/")

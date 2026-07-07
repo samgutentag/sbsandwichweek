@@ -1,0 +1,2305 @@
+{
+ "meta": {
+  "pulled_at_utc": "2026-07-07",
+  "site": "sbsandwichweekmap.com",
+  "siteTag": "584145a2cc5c423f84890c1f76a17081",
+  "note": "Cloudflare Web Analytics (RUM), 2026-06-15..2026-07-07. Sampled pageload stream. Pulled via GraphQL."
+ },
+ "devices": [
+  {
+   "count": 12210,
+   "dimensions": {
+    "deviceType": "mobile"
+   },
+   "sum": {
+    "visits": 11360
+   }
+  },
+  {
+   "count": 7460,
+   "dimensions": {
+    "deviceType": "desktop"
+   },
+   "sum": {
+    "visits": 7120
+   }
+  },
+  {
+   "count": 320,
+   "dimensions": {
+    "deviceType": "tablet"
+   },
+   "sum": {
+    "visits": 310
+   }
+  }
+ ],
+ "browsers": [
+  {
+   "count": 7060,
+   "dimensions": {
+    "userAgentBrowser": "MobileSafari"
+   }
+  },
+  {
+   "count": 5110,
+   "dimensions": {
+    "userAgentBrowser": "Chrome"
+   }
+  },
+  {
+   "count": 4270,
+   "dimensions": {
+    "userAgentBrowser": "ChromeMobile"
+   }
+  },
+  {
+   "count": 1260,
+   "dimensions": {
+    "userAgentBrowser": "Safari"
+   }
+  },
+  {
+   "count": 730,
+   "dimensions": {
+    "userAgentBrowser": "Edge"
+   }
+  },
+  {
+   "count": 380,
+   "dimensions": {
+    "userAgentBrowser": "Unknown"
+   }
+  },
+  {
+   "count": 340,
+   "dimensions": {
+    "userAgentBrowser": "Firefox"
+   }
+  },
+  {
+   "count": 310,
+   "dimensions": {
+    "userAgentBrowser": "MobileSafariWebview"
+   }
+  },
+  {
+   "count": 130,
+   "dimensions": {
+    "userAgentBrowser": "ChromeMobileWebview"
+   }
+  },
+  {
+   "count": 110,
+   "dimensions": {
+    "userAgentBrowser": "BingBot"
+   }
+  },
+  {
+   "count": 90,
+   "dimensions": {
+    "userAgentBrowser": "SamsungInternet"
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "userAgentBrowser": "Facebook"
+   }
+  },
+  {
+   "count": 60,
+   "dimensions": {
+    "userAgentBrowser": "FirefoxMobile"
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "userAgentBrowser": "Instagram"
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "userAgentBrowser": "Silk"
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "userAgentBrowser": "Opera"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "userAgentBrowser": "ChromeDerivative"
+   }
+  }
+ ],
+ "os": [
+  {
+   "count": 9240,
+   "dimensions": {
+    "userAgentOS": "iOS"
+   }
+  },
+  {
+   "count": 3860,
+   "dimensions": {
+    "userAgentOS": "Windows"
+   }
+  },
+  {
+   "count": 3250,
+   "dimensions": {
+    "userAgentOS": "MacOSX"
+   }
+  },
+  {
+   "count": 2920,
+   "dimensions": {
+    "userAgentOS": "Android"
+   }
+  },
+  {
+   "count": 490,
+   "dimensions": {
+    "userAgentOS": "Unknown"
+   }
+  },
+  {
+   "count": 120,
+   "dimensions": {
+    "userAgentOS": "ChromeOS"
+   }
+  },
+  {
+   "count": 110,
+   "dimensions": {
+    "userAgentOS": "Linux"
+   }
+  }
+ ],
+ "hourly": [
+  {
+   "count": 60,
+   "dimensions": {
+    "datetimeHour": "2026-06-22T18:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 60,
+   "dimensions": {
+    "datetimeHour": "2026-06-22T19:00:00Z"
+   },
+   "sum": {
+    "visits": 60
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-06-22T20:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-22T21:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-22T22:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-22T23:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T00:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T01:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T02:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T03:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T04:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T05:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T12:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T16:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T20:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T21:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-23T23:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-24T00:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-24T02:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-24T06:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-24T18:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-24T19:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-24T22:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-24T23:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T03:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T04:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T05:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T06:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T07:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T08:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T09:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T10:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T11:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T12:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 80,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T13:00:00Z"
+   },
+   "sum": {
+    "visits": 80
+   }
+  },
+  {
+   "count": 320,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T14:00:00Z"
+   },
+   "sum": {
+    "visits": 300
+   }
+  },
+  {
+   "count": 320,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T15:00:00Z"
+   },
+   "sum": {
+    "visits": 300
+   }
+  },
+  {
+   "count": 430,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T16:00:00Z"
+   },
+   "sum": {
+    "visits": 410
+   }
+  },
+  {
+   "count": 480,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T17:00:00Z"
+   },
+   "sum": {
+    "visits": 440
+   }
+  },
+  {
+   "count": 450,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T18:00:00Z"
+   },
+   "sum": {
+    "visits": 370
+   }
+  },
+  {
+   "count": 420,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T19:00:00Z"
+   },
+   "sum": {
+    "visits": 350
+   }
+  },
+  {
+   "count": 200,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T20:00:00Z"
+   },
+   "sum": {
+    "visits": 180
+   }
+  },
+  {
+   "count": 200,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T21:00:00Z"
+   },
+   "sum": {
+    "visits": 200
+   }
+  },
+  {
+   "count": 170,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T22:00:00Z"
+   },
+   "sum": {
+    "visits": 150
+   }
+  },
+  {
+   "count": 180,
+   "dimensions": {
+    "datetimeHour": "2026-06-25T23:00:00Z"
+   },
+   "sum": {
+    "visits": 170
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T00:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 110,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T01:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 90,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T02:00:00Z"
+   },
+   "sum": {
+    "visits": 60
+   }
+  },
+  {
+   "count": 60,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T03:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T04:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T05:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T06:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T07:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T08:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T09:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T10:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T11:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T12:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T13:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 110,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T14:00:00Z"
+   },
+   "sum": {
+    "visits": 110
+   }
+  },
+  {
+   "count": 180,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T15:00:00Z"
+   },
+   "sum": {
+    "visits": 160
+   }
+  },
+  {
+   "count": 180,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T16:00:00Z"
+   },
+   "sum": {
+    "visits": 180
+   }
+  },
+  {
+   "count": 280,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T17:00:00Z"
+   },
+   "sum": {
+    "visits": 260
+   }
+  },
+  {
+   "count": 470,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T18:00:00Z"
+   },
+   "sum": {
+    "visits": 470
+   }
+  },
+  {
+   "count": 430,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T19:00:00Z"
+   },
+   "sum": {
+    "visits": 420
+   }
+  },
+  {
+   "count": 230,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T20:00:00Z"
+   },
+   "sum": {
+    "visits": 220
+   }
+  },
+  {
+   "count": 170,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T21:00:00Z"
+   },
+   "sum": {
+    "visits": 170
+   }
+  },
+  {
+   "count": 220,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T22:00:00Z"
+   },
+   "sum": {
+    "visits": 210
+   }
+  },
+  {
+   "count": 250,
+   "dimensions": {
+    "datetimeHour": "2026-06-26T23:00:00Z"
+   },
+   "sum": {
+    "visits": 230
+   }
+  },
+  {
+   "count": 190,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T00:00:00Z"
+   },
+   "sum": {
+    "visits": 180
+   }
+  },
+  {
+   "count": 200,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T01:00:00Z"
+   },
+   "sum": {
+    "visits": 190
+   }
+  },
+  {
+   "count": 140,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T02:00:00Z"
+   },
+   "sum": {
+    "visits": 120
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T03:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 130,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T04:00:00Z"
+   },
+   "sum": {
+    "visits": 120
+   }
+  },
+  {
+   "count": 90,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T05:00:00Z"
+   },
+   "sum": {
+    "visits": 80
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T06:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T07:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T08:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T09:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T10:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T12:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T13:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T14:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 80,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T15:00:00Z"
+   },
+   "sum": {
+    "visits": 80
+   }
+  },
+  {
+   "count": 170,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T16:00:00Z"
+   },
+   "sum": {
+    "visits": 170
+   }
+  },
+  {
+   "count": 150,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T17:00:00Z"
+   },
+   "sum": {
+    "visits": 150
+   }
+  },
+  {
+   "count": 240,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T18:00:00Z"
+   },
+   "sum": {
+    "visits": 210
+   }
+  },
+  {
+   "count": 270,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T19:00:00Z"
+   },
+   "sum": {
+    "visits": 260
+   }
+  },
+  {
+   "count": 250,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T20:00:00Z"
+   },
+   "sum": {
+    "visits": 240
+   }
+  },
+  {
+   "count": 170,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T21:00:00Z"
+   },
+   "sum": {
+    "visits": 170
+   }
+  },
+  {
+   "count": 170,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T22:00:00Z"
+   },
+   "sum": {
+    "visits": 160
+   }
+  },
+  {
+   "count": 180,
+   "dimensions": {
+    "datetimeHour": "2026-06-27T23:00:00Z"
+   },
+   "sum": {
+    "visits": 180
+   }
+  },
+  {
+   "count": 120,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T00:00:00Z"
+   },
+   "sum": {
+    "visits": 110
+   }
+  },
+  {
+   "count": 200,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T01:00:00Z"
+   },
+   "sum": {
+    "visits": 190
+   }
+  },
+  {
+   "count": 170,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T02:00:00Z"
+   },
+   "sum": {
+    "visits": 160
+   }
+  },
+  {
+   "count": 100,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T03:00:00Z"
+   },
+   "sum": {
+    "visits": 100
+   }
+  },
+  {
+   "count": 90,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T04:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T05:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T06:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T07:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T08:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T12:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T13:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T14:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 160,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T15:00:00Z"
+   },
+   "sum": {
+    "visits": 160
+   }
+  },
+  {
+   "count": 120,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T16:00:00Z"
+   },
+   "sum": {
+    "visits": 120
+   }
+  },
+  {
+   "count": 160,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T17:00:00Z"
+   },
+   "sum": {
+    "visits": 160
+   }
+  },
+  {
+   "count": 280,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T18:00:00Z"
+   },
+   "sum": {
+    "visits": 270
+   }
+  },
+  {
+   "count": 260,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T19:00:00Z"
+   },
+   "sum": {
+    "visits": 260
+   }
+  },
+  {
+   "count": 170,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T20:00:00Z"
+   },
+   "sum": {
+    "visits": 170
+   }
+  },
+  {
+   "count": 220,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T21:00:00Z"
+   },
+   "sum": {
+    "visits": 210
+   }
+  },
+  {
+   "count": 110,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T22:00:00Z"
+   },
+   "sum": {
+    "visits": 100
+   }
+  },
+  {
+   "count": 100,
+   "dimensions": {
+    "datetimeHour": "2026-06-28T23:00:00Z"
+   },
+   "sum": {
+    "visits": 100
+   }
+  },
+  {
+   "count": 190,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T00:00:00Z"
+   },
+   "sum": {
+    "visits": 190
+   }
+  },
+  {
+   "count": 110,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T01:00:00Z"
+   },
+   "sum": {
+    "visits": 80
+   }
+  },
+  {
+   "count": 100,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T02:00:00Z"
+   },
+   "sum": {
+    "visits": 90
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T03:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T04:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 60,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T05:00:00Z"
+   },
+   "sum": {
+    "visits": 60
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T06:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T07:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T11:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T12:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T13:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T14:00:00Z"
+   },
+   "sum": {
+    "visits": 60
+   }
+  },
+  {
+   "count": 90,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T15:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 170,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T16:00:00Z"
+   },
+   "sum": {
+    "visits": 170
+   }
+  },
+  {
+   "count": 290,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T17:00:00Z"
+   },
+   "sum": {
+    "visits": 280
+   }
+  },
+  {
+   "count": 340,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T18:00:00Z"
+   },
+   "sum": {
+    "visits": 330
+   }
+  },
+  {
+   "count": 320,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T19:00:00Z"
+   },
+   "sum": {
+    "visits": 310
+   }
+  },
+  {
+   "count": 210,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T20:00:00Z"
+   },
+   "sum": {
+    "visits": 200
+   }
+  },
+  {
+   "count": 260,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T21:00:00Z"
+   },
+   "sum": {
+    "visits": 250
+   }
+  },
+  {
+   "count": 100,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T22:00:00Z"
+   },
+   "sum": {
+    "visits": 100
+   }
+  },
+  {
+   "count": 160,
+   "dimensions": {
+    "datetimeHour": "2026-06-29T23:00:00Z"
+   },
+   "sum": {
+    "visits": 160
+   }
+  },
+  {
+   "count": 190,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T00:00:00Z"
+   },
+   "sum": {
+    "visits": 190
+   }
+  },
+  {
+   "count": 90,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T01:00:00Z"
+   },
+   "sum": {
+    "visits": 90
+   }
+  },
+  {
+   "count": 120,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T02:00:00Z"
+   },
+   "sum": {
+    "visits": 120
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T03:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 80,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T04:00:00Z"
+   },
+   "sum": {
+    "visits": 80
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T05:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T06:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T07:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T08:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T09:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T12:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T13:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 100,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T14:00:00Z"
+   },
+   "sum": {
+    "visits": 100
+   }
+  },
+  {
+   "count": 90,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T15:00:00Z"
+   },
+   "sum": {
+    "visits": 80
+   }
+  },
+  {
+   "count": 160,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T16:00:00Z"
+   },
+   "sum": {
+    "visits": 150
+   }
+  },
+  {
+   "count": 180,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T17:00:00Z"
+   },
+   "sum": {
+    "visits": 170
+   }
+  },
+  {
+   "count": 330,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T18:00:00Z"
+   },
+   "sum": {
+    "visits": 320
+   }
+  },
+  {
+   "count": 270,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T19:00:00Z"
+   },
+   "sum": {
+    "visits": 260
+   }
+  },
+  {
+   "count": 260,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T20:00:00Z"
+   },
+   "sum": {
+    "visits": 250
+   }
+  },
+  {
+   "count": 150,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T21:00:00Z"
+   },
+   "sum": {
+    "visits": 140
+   }
+  },
+  {
+   "count": 100,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T22:00:00Z"
+   },
+   "sum": {
+    "visits": 90
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-06-30T23:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 120,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T00:00:00Z"
+   },
+   "sum": {
+    "visits": 110
+   }
+  },
+  {
+   "count": 140,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T01:00:00Z"
+   },
+   "sum": {
+    "visits": 130
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T02:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 80,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T03:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T04:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T05:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T08:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T09:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T13:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T14:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 60,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T15:00:00Z"
+   },
+   "sum": {
+    "visits": 60
+   }
+  },
+  {
+   "count": 110,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T16:00:00Z"
+   },
+   "sum": {
+    "visits": 110
+   }
+  },
+  {
+   "count": 180,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T17:00:00Z"
+   },
+   "sum": {
+    "visits": 170
+   }
+  },
+  {
+   "count": 150,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T18:00:00Z"
+   },
+   "sum": {
+    "visits": 150
+   }
+  },
+  {
+   "count": 230,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T19:00:00Z"
+   },
+   "sum": {
+    "visits": 230
+   }
+  },
+  {
+   "count": 130,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T20:00:00Z"
+   },
+   "sum": {
+    "visits": 110
+   }
+  },
+  {
+   "count": 100,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T21:00:00Z"
+   },
+   "sum": {
+    "visits": 90
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T22:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-07-01T23:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T00:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 70,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T01:00:00Z"
+   },
+   "sum": {
+    "visits": 70
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T02:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T03:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T04:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T05:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T10:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T13:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T14:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 40,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T15:00:00Z"
+   },
+   "sum": {
+    "visits": 40
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T16:00:00Z"
+   },
+   "sum": {
+    "visits": 30
+   }
+  },
+  {
+   "count": 50,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T17:00:00Z"
+   },
+   "sum": {
+    "visits": 50
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T18:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T19:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T20:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-02T23:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T00:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T02:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T04:00:00Z"
+   },
+   "sum": {
+    "visits": 0
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T10:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T14:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T15:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T17:00:00Z"
+   },
+   "sum": {
+    "visits": 0
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T22:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-03T23:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-04T01:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-04T02:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-04T03:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-04T04:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-04T18:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-04T23:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-05T05:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-05T13:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-05T15:00:00Z"
+   },
+   "sum": {
+    "visits": 0
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-05T19:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-05T20:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-05T22:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-06T15:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-06T17:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-06T18:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 20,
+   "dimensions": {
+    "datetimeHour": "2026-07-06T20:00:00Z"
+   },
+   "sum": {
+    "visits": 20
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-07T00:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-07T01:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-07T04:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "datetimeHour": "2026-07-07T05:00:00Z"
+   },
+   "sum": {
+    "visits": 10
+   }
+  }
+ ],
+ "countries": [
+  {
+   "count": 19910,
+   "dimensions": {
+    "countryName": "US"
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "countryName": "GB"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "countryName": "NL"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "countryName": "RS"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "countryName": "IN"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "countryName": "VE"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "countryName": "DE"
+   }
+  }
+ ],
+ "paths": [
+  {
+   "count": 17420,
+   "dimensions": {
+    "requestPath": "/embed/map/"
+   }
+  },
+  {
+   "count": 2410,
+   "dimensions": {
+    "requestPath": "/"
+   }
+  },
+  {
+   "count": 100,
+   "dimensions": {
+    "requestPath": "/embed/map"
+   }
+  },
+  {
+   "count": 60,
+   "dimensions": {
+    "requestPath": "/stats/"
+   }
+  }
+ ],
+ "referers": [
+  {
+   "count": 16380,
+   "dimensions": {
+    "refererHost": "www.independent.com"
+   }
+  },
+  {
+   "count": 1610,
+   "dimensions": {
+    "refererHost": ""
+   }
+  },
+  {
+   "count": 1200,
+   "dimensions": {
+    "refererHost": "sbsandwichweekmap.com"
+   }
+  },
+  {
+   "count": 640,
+   "dimensions": {
+    "refererHost": "www.reddit.com"
+   }
+  },
+  {
+   "count": 60,
+   "dimensions": {
+    "refererHost": "out.reddit.com"
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "refererHost": "com.reddit.frontpage"
+   }
+  },
+  {
+   "count": 30,
+   "dimensions": {
+    "refererHost": "www.google.com"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "refererHost": "search.yahoo.com"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "refererHost": "old.reddit.com"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "refererHost": "duckduckgo.com"
+   }
+  },
+  {
+   "count": 10,
+   "dimensions": {
+    "refererHost": "www.bing.com"
+   }
+  }
+ ]
+}

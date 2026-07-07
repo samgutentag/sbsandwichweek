@@ -69,13 +69,13 @@ const THEME = {
 
   // Archived — event is wound down; drives the off-season state while
   // trackUrl stays set so stats/admin keep reading historical data.
-  archived: false,
+  archived: true,
 
   // Event tracking — Cloudflare Worker URL (null to disable, see README Step 9)
   trackUrl: "https://sbsandwichweek-track.developer-95b.workers.dev",
 
   // Cloudflare Web Analytics (null to disable, see README Step 8)
-  cfAnalyticsToken: "bae17b8a85d54610965c8c8662738354",
+  cfAnalyticsToken: null,
 
   // Contact email domain — auto-generates sb{itemLabel}week{year}@{domain}
   // Set null to hide the contact link in the About modal
