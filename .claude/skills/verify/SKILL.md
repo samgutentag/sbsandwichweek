@@ -35,6 +35,10 @@ python3 -m http.server 8742 --bind 127.0.0.1
   production origin. Gone after wind-down nulls `cfAnalyticsToken`.
 - After wind-down: DevTools network panel must show ZERO requests to the Worker
   or Cloudflare beacons from the main map (see docs/wind-down-runbook.md).
+  **This MUST be re-checked on the LIVE domain after pushing** — track.js skips
+  dev/LAN hosts entirely, so localhost always shows zero outgoing tracking even
+  when the deployed site is leaking (this exact false negative happened at the
+  2026 wind-down). Watch at least one full 30s eyes-poll interval.
 
 ## Gotcha
 
