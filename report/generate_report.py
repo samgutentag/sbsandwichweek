@@ -275,6 +275,52 @@ def main():
 
     rows = {r["name"]: agg.restaurant_row(r["name"]) for r in restaurants}
     ranked = sorted(rows, key=lambda n: rows[n]["views"], reverse=True)
+    area_by_name = {r["name"]: r["area"] for r in restaurants}
+    view_values = sorted(r["views"] for r in rows.values())
+
+    # Each restaurant gets its single best honest story; the strongest float to
+    # a "worth forwarding" strip in the main report and the handoff guide.
+    med_views = view_values[len(view_values) // 2] if view_values else 0
+    rated = [n for n in rows if rows[n]["views"] >= 100]
+    median_rate = sorted(rows[n]["intent_rate"] for n in rated)[len(rated) // 2] if rated else 0
+    likes_leader = max(rows, key=lambda n: rows[n]["likes"])
+    shares_leader = max(rows, key=lambda n: rows[n]["shares"])
+    best_rate = max(rated, key=lambda n: rows[n]["intent_rate"]) if rated else None
+    area_leader = {}
+    for n in ranked:
+        area_leader.setdefault(area_by_name[n], n)
+
+    def story(name):
+        """(priority, text) — lower priority = stronger story. ≤6 counts as a standout."""
+        d = rows[name]
+        rank = ranked.index(name) + 1
+        pct = sum(1 for v in view_values if v < d["views"]) / len(view_values) * 100
+        if rank <= 3:
+            return 1, f"#{rank} most viewed restaurant of the whole event ({fmt(d['views'])} views)"
+        if name == likes_leader and d["likes"] >= 3:
+            return 2, f"the most liked restaurant of the event ({d['likes']} likes)"
+        if name == best_rate and d["intent_rate"] >= 2 * median_rate:
+            return 3, f"best browse-to-action rate of the event: {d['intent_rate']:.1f}% of views became a directions/website/phone tap"
+        if name == shares_leader and d["shares"] >= 5:
+            return 4, f"the most shared restaurant of the event ({d['shares']} shares)"
+        if d["views"] < med_views and median_rate and d["intent_rate"] >= 2 * median_rate and d["intents"] >= 3:
+            return 5, (f"hidden gem: {d['intent_rate']:.1f}% of its views turned into a directions/site/call tap, "
+                       f"about {d['intent_rate']/median_rate:.0f}x the field rate")
+        if area_leader.get(area_by_name[name]) == name and rank > 3:
+            return 6, f"the most viewed restaurant in {area_by_name[name]} ({fmt(d['views'])} views)"
+        if pct >= 75:
+            return 7, f"top quartile: more views than {pct:.0f}% of the field"
+        if first_year.get(name) and pct >= 50:
+            return 8, f"returning favorite with above-median attention ({fmt(d['views'])} views)"
+        return 9, f"{fmt(d['views'])} views, more than {pct:.0f}% of the field" if pct >= 40 else \
+            f"{fmt(d['views'])} views and {d['intents']} direct actions from map visitors"
+
+    stories = {n: story(n) for n in rows}
+    standouts = sorted((n for n in rows if stories[n][0] <= 6),
+                       key=lambda n: (stories[n][0], -rows[n]["views"]))
+
+    def pager_link(name, prefix="restaurants/"):
+        return f'<a href="{prefix}{slugify(name)}.html">{esc(name)}</a>'
     total = lambda k: sum(r[k] for r in rows.values())
 
     # RUM, event week only (hourly keys are UTC ISO strings)
@@ -290,7 +336,6 @@ def main():
     day_labels = [(d[8:].lstrip("0") and f"{int(d[5:7])}/{int(d[8:])}", agg.daily_views[d])
                   for d in sorted(agg.daily_views) if PRE_DAYS_START <= d <= "2026-07-01"]
     area_views = Counter()
-    area_by_name = {r["name"]: r["area"] for r in restaurants}
     for name, r in rows.items():
         area_views[area_by_name[name]] += r["views"]
 
@@ -369,6 +414,16 @@ and gluten-free {fmt(agg.filters.get("glutenFree",0))}, alongside {fmt(agg.filte
 taps on "Open Now." Searches that returned nothing are a menu wishlist for next year: readers
 looked for {", ".join(f'"{esc(t)}"' for t, _ in zero_top[:5])} and came up empty.</p>
 
+<h2>Worth Forwarding to Restaurants</h2>
+<p>Every restaurant has a print-ready one-page summary, linked from its name in the appendix
+below (and grouped by neighborhood in the <a href="restaurants/index.html">handoff guide</a>).
+These {len(standouts)} have the strongest stories and are worth sending first, with the
+headline to mention when you do:</p>
+<table>
+<tr><th>Restaurant</th><th>Area</th><th>The story to tell them</th></tr>
+{"".join(f"<tr><td>{pager_link(n)}</td><td>{esc(area_by_name[n])}</td><td>{esc(stories[n][1])}</td></tr>" for n in standouts)}
+</table>
+
 <h2>Methodology, Honestly</h2>
 <p class="note">Counts come from a privacy-light tracker: no cookies, no user IDs, no precise
 location. Numbers are actions, not unique people (someone who opened a restaurant twice counts
@@ -388,7 +443,7 @@ neighborhood, with the story worth telling each one.</p>
 <table>
 <tr><th>Restaurant</th><th>Area</th><th class="num">Views</th><th class="num">Intent taps</th>
 <th class="num">Directions</th><th class="num">Shares</th><th class="num">Likes</th><th class="num">Intent %</th></tr>
-{"".join(f"<tr><td>{esc(n)}</td><td>{esc(area_by_name[n])}</td><td class='num'>{fmt(rows[n]['views'])}</td>"
+{"".join(f"<tr><td>{pager_link(n)}</td><td>{esc(area_by_name[n])}</td><td class='num'>{fmt(rows[n]['views'])}</td>"
          f"<td class='num'>{fmt(rows[n]['intents'])}</td><td class='num'>{fmt(rows[n]['directions'])}</td>"
          f"<td class='num'>{fmt(rows[n]['shares'])}</td><td class='num'>{fmt(rows[n]['likes'])}</td>"
          f"<td class='num'>{rows[n]['intent_rate']:.1f}%</td></tr>" for n in ranked)}
@@ -403,7 +458,6 @@ from Cloudflare Analytics Engine and Web Analytics on July 7, 2026 · built by S
 
     # ── per-restaurant one-pagers ────────────────────────────────────────────
     (OUT / "restaurants").mkdir(exist_ok=True)
-    view_values = sorted(r["views"] for r in rows.values())
     for r in restaurants:
         name = r["name"]
         d = rows[name]
@@ -446,49 +500,9 @@ Full methodology in the event-wide report.</p>
     print(f"wrote {len(restaurants)} one-pagers to report/restaurants/")
 
     # ── handoff index: one page fronting all the one-pagers ─────────────────
-    # Each restaurant gets its single best honest story; the strongest stories
-    # float to a "send these first" strip so nobody reads 47 files to triage.
-    med_views = view_values[len(view_values) // 2] if view_values else 0
-    rated = [n for n in rows if rows[n]["views"] >= 100]
-    median_rate = sorted(rows[n]["intent_rate"] for n in rated)[len(rated) // 2] if rated else 0
-    likes_leader = max(rows, key=lambda n: rows[n]["likes"])
-    shares_leader = max(rows, key=lambda n: rows[n]["shares"])
-    best_rate = max(rated, key=lambda n: rows[n]["intent_rate"]) if rated else None
-    area_leader = {}
-    for n in ranked:
-        area_leader.setdefault(area_by_name[n], n)
-
-    def story(name):
-        """(priority, text) — lower priority = stronger story. ≤6 counts as a standout."""
-        d = rows[name]
-        rank = ranked.index(name) + 1
-        pct = sum(1 for v in view_values if v < d["views"]) / len(view_values) * 100
-        if rank <= 3:
-            return 1, f"#{rank} most viewed restaurant of the whole event ({fmt(d['views'])} views)"
-        if name == likes_leader and d["likes"] >= 3:
-            return 2, f"the most liked restaurant of the event ({d['likes']} likes)"
-        if name == best_rate and d["intent_rate"] >= 2 * median_rate:
-            return 3, f"best browse-to-action rate of the event: {d['intent_rate']:.1f}% of views became a directions/website/phone tap"
-        if name == shares_leader and d["shares"] >= 5:
-            return 4, f"the most shared restaurant of the event ({d['shares']} shares)"
-        if d["views"] < med_views and median_rate and d["intent_rate"] >= 2 * median_rate and d["intents"] >= 3:
-            return 5, (f"hidden gem: {d['intent_rate']:.1f}% of its views turned into a directions/site/call tap, "
-                       f"about {d['intent_rate']/median_rate:.0f}x the field rate")
-        if area_leader.get(area_by_name[name]) == name and rank > 3:
-            return 6, f"the most viewed restaurant in {area_by_name[name]} ({fmt(d['views'])} views)"
-        if pct >= 75:
-            return 7, f"top quartile: more views than {pct:.0f}% of the field"
-        if first_year.get(name) and pct >= 50:
-            return 8, f"returning favorite with above-median attention ({fmt(d['views'])} views)"
-        return 9, f"{fmt(d['views'])} views, more than {pct:.0f}% of the field" if pct >= 40 else \
-            f"{fmt(d['views'])} views and {d['intents']} direct actions from map visitors"
-
-    stories = {n: story(n) for n in rows}
-    standouts = sorted((n for n in rows if stories[n][0] <= 6),
-                       key=lambda n: (stories[n][0], -rows[n]["views"]))
-
+    # (stories/standouts computed up top, shared with the main report)
     def link(name):
-        return f'<a href="{slugify(name)}.html">{esc(name)}</a>'
+        return pager_link(name, prefix="")
 
     areas_by_traffic = sorted({area_by_name[n] for n in rows},
                               key=lambda a: -sum(rows[n]["views"] for n in rows if area_by_name[n] == a))
